@@ -6,12 +6,14 @@
 package br.unicap.poo.clinicaMedica.model;
 
 import br.unicap.poo.clinicaMedica.model.exceptions.TelefoneInvalidoException;
+import javax.enterprise.context.ApplicationScoped;
 
 
 /**
  *
  * @author Brenan Wanderley
  */
+@ApplicationScoped
 public abstract class Pessoa{
     private String nome;
     private String telefone;
@@ -22,6 +24,10 @@ public abstract class Pessoa{
     protected Pessoa(Pessoa pessoa){
         this.nome=pessoa.nome;
         this.telefone=pessoa.telefone;
+    }
+    protected Pessoa(String nome, String telefone){
+        this.nome=nome;
+        this.telefone=telefone;
     }
     public String getNome() {
         return nome;
@@ -41,5 +47,9 @@ public abstract class Pessoa{
         }else{
             this.telefone = telefone;
         }
+    }
+    public void setAll(Pessoa pessoa){
+        this.nome=pessoa.nome;
+        this.telefone=pessoa.telefone;
     }
 }

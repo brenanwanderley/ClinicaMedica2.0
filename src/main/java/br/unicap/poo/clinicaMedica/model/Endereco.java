@@ -10,11 +10,14 @@ import br.unicap.poo.clinicaMedica.model.exceptions.EnderecoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.CepInvalidoException;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.enterprise.context.ApplicationScoped;
 
 /**
  *
  * @author aluno
  */
+@ApplicationScoped
+
 public class Endereco {
     private String cep;
     private int numero;

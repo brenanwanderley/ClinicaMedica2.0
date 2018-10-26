@@ -6,12 +6,16 @@
 package br.unicap.poo.clinicaMedica.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import javax.enterprise.context.ApplicationScoped;
 
 /**
  *
  * @author aluno
  */
+@ApplicationScoped
 public class PlanoDeSaude {
     private SeguradoraPlano seguradoraPlano;
     private String numeroCarteira;
@@ -21,10 +25,12 @@ public class PlanoDeSaude {
 
     }
     @JsonCreator
-    public PlanoDeSaude(@JsonProperty("seguradoraPlano")SeguradoraPlano seguradoraPlano, @JsonProperty("numeroCarteira")String numeroCarteira, @JsonProperty("dataValidade")Date dataValidade){
+    public PlanoDeSaude(@JsonProperty("seguradoraPlano")SeguradoraPlano seguradoraPlano, 
+                        @JsonProperty("numeroCarteira")String numeroCarteira,
+                        @JsonProperty("dataValidade")String dataValidade){
         this.seguradoraPlano=seguradoraPlano;
         this.numeroCarteira=numeroCarteira;
-        this.dataValidade=dataValidade;
+        setDataValidade(dataValidade);        
     }
 
     public SeguradoraPlano getSeguradoraPlano() {
@@ -43,12 +49,16 @@ public class PlanoDeSaude {
         this.numeroCarteira = numeroCarteira;
     }
 
-    public Date getDataValidade() {
-        return dataValidade;
+    public String getDataValidade() {
+        Calendar calendar = Calendar.getInstance(); 
+        calendar.setTime(this.dataValidade);
+        DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
+        return df.format(calendar.getTime());
     }
 
-    public void setDataValidade(Date dataValidade) {
-        this.dataValidade = dataValidade;
+    public void setDataValidade(String dataValidade) {
+        DateProcessor dateProcessor = new DateProcessor(dataValidade);
+        this.dataValidade=dateProcessor.getDate();
     }
     public void setAll(PlanoDeSaude planoDeSaude, SeguradoraPlano segPlanoRef){
         this.numeroCarteira=planoDeSaude.numeroCarteira;

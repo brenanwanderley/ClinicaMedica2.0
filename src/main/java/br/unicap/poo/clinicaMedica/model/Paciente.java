@@ -7,14 +7,18 @@ package br.unicap.poo.clinicaMedica.model;
 
 import br.unicap.poo.clinicaMedica.model.exceptions.CpfInvalidoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.PessoaException;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import javax.enterprise.context.ApplicationScoped;
 
 /**
  *
  * @author aluno
  */
+@ApplicationScoped
 public class Paciente extends Pessoa{
     private PlanoDeSaude planoDeSaude;
     private Endereco endereco;
@@ -22,6 +26,23 @@ public class Paciente extends Pessoa{
     private final String cpf;
     private int numeroVisitas;
 
+    @JsonCreator
+    public Paciente(@JsonProperty("nome") String nome,
+                    @JsonProperty("telefone") String telefone, 
+                    @JsonProperty("cpf") String cpf, 
+                    @JsonProperty("planoDeSaude") PlanoDeSaude planoDeSaude, 
+                    @JsonProperty("endereco") Endereco endereco,
+                    @JsonProperty("dataNasc") String dataNasc) throws PessoaException{
+        super(nome, telefone);
+        if(!cpf.matches("^[0-9]{3}[0-9]{3}[0-9]{3}[0-9]{2}")){
+            throw new CpfInvalidoException();
+        }else{
+            this.cpf = cpf;
+        }
+        this.endereco = endereco;
+        this.planoDeSaude = planoDeSaude;
+        setDataNasc(dataNasc);
+    }
     public Paciente(String cpf) throws PessoaException {
         
         super();
@@ -46,7 +67,6 @@ public class Paciente extends Pessoa{
     
     public String getDataNasc() {
         Calendar calendar = Calendar.getInstance(); 
-        StringBuilder sb = new StringBuilder();
         calendar.setTime(this.dataNasc);
         DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
         return df.format(calendar.getTime());
@@ -55,7 +75,10 @@ public class Paciente extends Pessoa{
     public void setDataNasc(Date dataNasc) {
         this.dataNasc = dataNasc;
     }
-
+    public void setDataNasc(String dataNasc){
+        DateProcessor dateProcessor = new DateProcessor(dataNasc);
+        this.dataNasc = dateProcessor.getDate();
+    }
     public String getCpf() {
         return cpf;
     }
@@ -64,14 +87,16 @@ public class Paciente extends Pessoa{
     }
 
     public void increaseNumeroVisitas() {
-        this.numeroVisitas = numeroVisitas;
+        this.numeroVisitas++;
     }
     public boolean cadastroCompleto(){
         return dataNasc!=null && endereco.enderecoCompleto();
     }
-    public boolean equals(Object paciente){
-        Paciente objeto = (Paciente)paciente;
-        return this.cpf.equals(objeto.cpf);
+    public void setAll(Paciente paciente, SeguradoraPlano segPlanoRef){
+        super.setAll(this);
+        this.dataNasc=paciente.dataNasc;
+        planoDeSaude.setAll(planoDeSaude, segPlanoRef);
+        endereco.setAll(endereco);
     }
 
 }

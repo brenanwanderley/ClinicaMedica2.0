@@ -8,6 +8,7 @@ package br.unicap.poo.clinicaMedica.model;
 import br.unicap.poo.clinicaMedica.model.exceptions.EspecialidadeMedicoNaoEncontradaException;
 import br.unicap.poo.clinicaMedica.model.exceptions.EspecialidadeMedicoRepetidaException;
 import br.unicap.poo.clinicaMedica.model.exceptions.MedicoSemEspecialidadeException;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,10 @@ import java.util.List;
  */
 public class EspecialidadeMedico {
     private ArrayList<Especialidade> especialidades;
+    @JsonCreator
+    public EspecialidadeMedico(){
+        
+    }
     public EspecialidadeMedico(Especialidade especialidade){
         especialidades= new ArrayList<>();
         especialidades.add(especialidade);

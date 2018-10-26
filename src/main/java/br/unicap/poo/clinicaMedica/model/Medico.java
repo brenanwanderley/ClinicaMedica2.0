@@ -9,14 +9,30 @@ package br.unicap.poo.clinicaMedica.model;
  *
  * @author aluno
  */
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import javax.enterprise.context.ApplicationScoped;
+
+@ApplicationScoped
 public class Medico extends Pessoa{
     private final int codigo;
     private EspecialidadeMedico especialidadeMedico;
     private PlanoSaudeMedico planoSaudeMedico;
     private HorarioMedico horarioMedico;
     
-
+    @JsonCreator
+    public Medico(@JsonProperty("especialidadeMedico") EspecialidadeMedico especialidadeMedico,
+                  @JsonProperty("planoSaudeMedico") PlanoSaudeMedico planoSaudeMedico,
+                  @JsonProperty("horarioMedico") HorarioMedico horarioMedico,
+                  @JsonProperty("telefone") String telefone,
+                  @JsonProperty("nome") String nome){
+        super(nome, telefone);
+        this.especialidadeMedico=especialidadeMedico;
+        this.horarioMedico = horarioMedico;
+        this.planoSaudeMedico=planoSaudeMedico;
+        this.codigo=0;
+    }
     public Medico(Horario horario, Especialidade especialidade) {
         super();
         this.planoSaudeMedico = new PlanoSaudeMedico(true);
