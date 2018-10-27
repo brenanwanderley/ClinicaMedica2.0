@@ -22,18 +22,16 @@ public class Medico extends Pessoa{
     private HorarioMedico horarioMedico;
     
     @JsonCreator
-    public Medico(@JsonProperty("especialidadeMedico") EspecialidadeMedico especialidadeMedico,
-                  @JsonProperty("planoSaudeMedico") PlanoSaudeMedico planoSaudeMedico,
-                  @JsonProperty("horarioMedico") HorarioMedico horarioMedico,
-                  @JsonProperty("telefone") String telefone,
+    public Medico(@JsonProperty("telefone") String telefone,
                   @JsonProperty("nome") String nome){
         super(nome, telefone);
-        this.especialidadeMedico=especialidadeMedico;
-        this.horarioMedico = horarioMedico;
-        this.planoSaudeMedico=planoSaudeMedico;
         this.codigo=0;
     }
-    public Medico(Horario horario, Especialidade especialidade) {
+    @JsonCreator
+    public Medico(@JsonProperty("nome") String nome,
+                  @JsonProperty("telefone") String telefone, 
+                  @JsonProperty("horario") Horario horario, 
+                  @JsonProperty("especialidade")Especialidade especialidade) {
         super();
         this.planoSaudeMedico = new PlanoSaudeMedico(true);
         this.horarioMedico = new HorarioMedico(horario);
@@ -65,13 +63,10 @@ public class Medico extends Pessoa{
     public int getCodigo(){
         return codigo;
     }
-    @Override
-    public boolean equals(Object medico){
-        Medico objeto = (Medico)medico;
-        return objeto.getCodigo()==this.getCodigo();
-    }
     public Medico clonar(int codigo){
         return new Medico(codigo, this);
     }
-
+    public void setAll(Medico medico){
+        super.setAll(medico);
+    }
 }

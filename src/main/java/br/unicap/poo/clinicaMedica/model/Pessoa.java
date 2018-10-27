@@ -48,7 +48,7 @@ public abstract class Pessoa{
             this.telefone = telefone;
         }
     }
-    public void setAll(Pessoa pessoa){
+    protected void setAll(Pessoa pessoa){
         this.nome=pessoa.nome;
         this.telefone=pessoa.telefone;
     }

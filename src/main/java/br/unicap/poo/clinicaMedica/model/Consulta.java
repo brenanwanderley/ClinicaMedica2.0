@@ -6,13 +6,17 @@
 package br.unicap.poo.clinicaMedica.model;
 
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.enterprise.context.ApplicationScoped;
 
 /**
  *
  * @author Brenan Wanderley
  */
+@ApplicationScoped
 public class Consulta extends Agendamento{
     private Medico medico;
     private ArrayList<Exame> exames;
@@ -32,7 +36,10 @@ public class Consulta extends Agendamento{
         }
         this.paciente=consulta.paciente;
     }
-    public Consulta(Date data, Medico medico, Paciente paciente) throws AgendamentoException{
+    @JsonCreator
+    public Consulta(@JsonProperty("data")Date data, 
+                    @JsonProperty("medico")Medico medico, 
+                    @JsonProperty("paciente")Paciente paciente) throws AgendamentoException{
         super(data);
         this.medico=medico;
         this.paciente=paciente;
@@ -89,5 +96,14 @@ public class Consulta extends Agendamento{
     @Override
     public Agendamento clonar(int codigo){
         return new Consulta(codigo, this);
+    }
+    @Override
+    public void setStatus(Status status){
+        super.setStatus(status);
+        paciente.increaseNumeroVisitas();
+    }
+    public void setAll(Consulta consulta){
+        super.setAll(consulta);
+        this.setStatus(consulta.getStatus());
     }
 }

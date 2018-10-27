@@ -43,16 +43,19 @@ public class Paciente extends Pessoa{
         this.planoDeSaude = planoDeSaude;
         setDataNasc(dataNasc);
     }
-    public Paciente(String cpf) throws PessoaException {
+    @JsonCreator
+    public Paciente(@JsonProperty("cpf")String cpf, 
+                    @JsonProperty("nome")String nome,
+                    @JsonProperty("telefone")String telefone) throws PessoaException {
         
-        super();
+        super(nome, telefone);
         if(!cpf.matches("^[0-9]{3}[0-9]{3}[0-9]{3}[0-9]{2}")){
             throw new CpfInvalidoException();
         }else{
             this.cpf = cpf;
         }
         endereco = new Endereco();
-        planoDeSaude = new PlanoDeSaude();
+        planoDeSaude = new PlanoDeSaude();   
     }
 
     public PlanoDeSaude getPlanoDeSaude() {

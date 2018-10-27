@@ -7,11 +7,15 @@ package br.unicap.poo.clinicaMedica.model;
 
 import br.unicap.poo.clinicaMedica.model.exceptions.HorarioChegadaInvalidoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.HorarioSaidaInvalidoException;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.enterprise.context.ApplicationScoped;
 
 /**
  *
  * @author Danilo
  */
+@ApplicationScoped
 public class Horario {
     private final int codigo;
     private DiaSemana diaSemana;
@@ -22,6 +26,15 @@ public class Horario {
         this.diaSemana=diaSemana.SEGUNDA;
         this.chegada=0;
         this.saida=23;
+        this.codigo=0;
+    }
+    @JsonCreator
+    public Horario(@JsonProperty("diaSemana")DiaSemana diaSemana,
+                   @JsonProperty("chegada")int chegada,
+                   @JsonProperty("saida")int saida){
+        this.diaSemana=diaSemana;
+        this.chegada=chegada;
+        this.saida=saida;
         this.codigo=0;
     }
     private Horario(Horario horario){

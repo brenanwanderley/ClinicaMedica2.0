@@ -31,6 +31,7 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(br.unicap.poo.clinicaMedica.endPoint.ConsultaEndPoint.class);
         resources.add(br.unicap.poo.clinicaMedica.endPoint.EspecialidadeEndPoint.class);
+        resources.add(br.unicap.poo.clinicaMedica.endPoint.MedicoEndPoint.class);
         resources.add(br.unicap.poo.clinicaMedica.endPoint.PacienteEndPoint.class);
         resources.add(br.unicap.poo.clinicaMedica.endPoint.SeguradoraPlanoEndPoint.class);
         resources.add(br.unicap.poo.clinicaMedica.endPoint.TipoExameEndPoint.class);
