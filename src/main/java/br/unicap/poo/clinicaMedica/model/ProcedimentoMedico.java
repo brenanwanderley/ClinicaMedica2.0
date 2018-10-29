@@ -12,13 +12,18 @@ import java.util.Date;
  *
  * @author Brenan Wanderley
  */
+@ApplicationScoped
 public class ProcedimentoMedico extends Agendamento{
     public Consulta consulta;
     public TipoProcedimento tipo;
 
-    public ProcedimentoMedico(Date data, Consulta consulta, TipoProcedimento tipo) throws AgendamentoException {
+    @JsonCreator
+    public ProcedimentoMedico(@JsonProperty("data") Date data,
+                              @JsonProperty("consulta") Consulta consulta, 
+                              @JsonProperty("tipo") TipoProcedimento tipo) throws AgendamentoException {
         super(data);
         this.consulta = consulta;
+        this.consulta.addProcedimento(this);
     }
     private ProcedimentoMedico(int codigo, ProcedimentoMedico procedimento){
         super(codigo, procedimento);
@@ -44,5 +49,9 @@ public class ProcedimentoMedico extends Agendamento{
     @Override
     public Agendamento clonar(int codigo){
         return new ProcedimentoMedico(codigo, this);
+    }
+    public void setAll(ProcedimentoMedico procedimento, TipoProcedimento tipoProcedimentoRef){
+        super.setAll(procedimento);
+        this.tipo=tipoProcedimentoRef;
     }
 }

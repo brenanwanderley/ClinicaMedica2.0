@@ -85,12 +85,38 @@ public class ConsultaEndPoint {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void novaConsulta(Consulta consulta){
-        Medico medico = medService.selecionar(consulta.getMedico().getCodigo());
-        Paciente paciente = pacService.selecionar(consulta.getPaciente().getCpf());
-        
-        consulta.s
-        
+        service.AgendarConsulta(consulta);
     }
-
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void alterarConsulta(Consulta consulta){
+        Consulta item = service.selecionar(consulta.getCodigo());
+        item.setAll(consulta);
         
+        service.alterarConsulta(consulta);
+    }
+    @DELETE
+    @Path("/{id}")
+    public void removerConsulta(@PathParam("id") int id){
+        Consulta item = service.selecionar(id);
+        
+        service.cancelarConsulta(item);
+    }
+    @GET
+    @Path("/{id}")
+    public Consulta selecionarConsulta(@PathParam("id")int id){
+        return service.selecionar(id);
+    }
+    @POST
+    @Path("/novoexame")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void novoExame(Exame exame){
+        exService.novoExame(exame);
+    }
+    @POST
+    @Path("/novoprocedimento")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void novoProcedimento(ProcedimentoMedico procedimento){
+        procService.novoProcedimento(procedimento);
+    }
 }

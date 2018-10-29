@@ -7,19 +7,25 @@ package br.unicap.poo.clinicaMedica.model;
 
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
 import java.util.Date;
+import javax.enterprise.context.ApplicationScoped;
 
 /**
  *
  * @author Brenan Wanderley
  */
+@ApplicationScoped
 public class Exame extends Agendamento{
     private Consulta consulta;
     private TipoExame tipo;
     
-    public Exame(Date data, Consulta consulta, TipoExame tipo) throws AgendamentoException{
+    @JsonCreator
+    public Exame(@JsonProperty("data") Date data, 
+                @JsonProperty("consulta") Consulta consulta, 
+                @JsonProperty("tipo") TipoExame tipo) throws AgendamentoException{
         super(data);
         this.tipo=tipo;
         this.consulta=consulta;
+        consulta.addExame(this);
     }
     private Exame(int codigo, Exame exame){
         super(codigo, exame);
@@ -43,5 +49,9 @@ public class Exame extends Agendamento{
     @Override
     public Agendamento clonar(int codigo){
         return new Exame(codigo, this);
+    }
+    public void setAll(Exame exame, TipoExame tipoExameRef){
+        super.setAll(exame);
+        this.tipo=tipoExameRef;
     }
 }
