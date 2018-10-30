@@ -54,8 +54,6 @@ public class MedicoEndPoint {
         
         service.cadastrarMedico(medico);
         
-        medico.getEspecialidadeMedico().removeEspecialidade(item);
-        medico.getEspecialidadeMedico().addEspecialidade(item);
     }
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)

@@ -22,17 +22,11 @@ public class Medico extends Pessoa{
     private HorarioMedico horarioMedico;
     
     @JsonCreator
-    public Medico(@JsonProperty("telefone") String telefone,
-                  @JsonProperty("nome") String nome){
-        super(nome, telefone);
-        this.codigo=0;
-    }
-    @JsonCreator
     public Medico(@JsonProperty("nome") String nome,
                   @JsonProperty("telefone") String telefone, 
                   @JsonProperty("horario") Horario horario, 
-                  @JsonProperty("especialidade")Especialidade especialidade) {
-        super();
+                  @JsonProperty("especialidad")Especialidade especialidade) {
+        super(nome, telefone);
         this.planoSaudeMedico = new PlanoSaudeMedico(true);
         this.horarioMedico = new HorarioMedico(horario);
         especialidadeMedico = new EspecialidadeMedico(especialidade);

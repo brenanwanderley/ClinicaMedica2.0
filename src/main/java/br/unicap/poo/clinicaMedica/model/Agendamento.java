@@ -33,9 +33,6 @@ public abstract class Agendamento{
         return data;
     }
     public void setData(Date data) throws DataInvalidaException {
-        if(data==null){
-            System.out.println("É null");
-        }
         Calendar cal, cal2;
         cal2= Calendar.getInstance();
         cal = Calendar.getInstance();

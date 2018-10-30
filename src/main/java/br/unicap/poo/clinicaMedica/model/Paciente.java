@@ -43,10 +43,9 @@ public class Paciente extends Pessoa{
         this.planoDeSaude = planoDeSaude;
         setDataNasc(dataNasc);
     }
-    @JsonCreator
-    public Paciente(@JsonProperty("cpf")String cpf, 
-                    @JsonProperty("nome")String nome,
-                    @JsonProperty("telefone")String telefone) throws PessoaException {
+    public Paciente(String cpf, 
+                    String nome,
+                    String telefone) throws PessoaException {
         
         super(nome, telefone);
         if(!cpf.matches("^[0-9]{3}[0-9]{3}[0-9]{3}[0-9]{2}")){
