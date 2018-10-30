@@ -4,6 +4,7 @@ import br.unicap.poo.clinicaMedica.model.Agendamento;
 import br.unicap.poo.clinicaMedica.model.Consulta;
 import br.unicap.poo.clinicaMedica.model.Medico;
 import br.unicap.poo.clinicaMedica.repository.ConsultaRepBridge;
+import br.unicap.poo.clinicaMedica.repository.ConsultaConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.ConsultaRepFactory;
 
 import java.util.Date;
@@ -14,7 +15,7 @@ public class ConsultaService {
     private ConsultaRepBridge consultas;
     
     public ConsultaService(){
-        ConsultaRepFactory instance = new ConsultaRepFactory();
+        ConsultaRepFactory instance = new ConsultaConcreteRepFactory();
         consultas = instance.getInstance();
     }
     public void AgendarConsulta(Consulta item){

@@ -6,6 +6,7 @@
 package br.unicap.poo.clinicaMedica.service;
 import br.unicap.poo.clinicaMedica.model.TipoProcedimento;
 import br.unicap.poo.clinicaMedica.repository.TipoProcedimentoRepBridge;
+import br.unicap.poo.clinicaMedica.repository.TipoProcedimentoConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.TipoProcedimentoRepFactory;
 import java.util.Collections;
 import java.util.Comparator;
@@ -18,7 +19,7 @@ public class TipoProcedimentoService {
     private TipoProcedimentoRepBridge tipoProcedimentos;
     
     public TipoProcedimentoService(){
-        TipoProcedimentoRepFactory instance = new TipoProcedimentoRepFactory();
+        TipoProcedimentoRepFactory instance = new TipoProcedimentoConcreteRepFactory();
         tipoProcedimentos = instance.getInstance();
     }
 

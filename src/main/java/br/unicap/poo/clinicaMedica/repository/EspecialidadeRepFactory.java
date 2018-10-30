@@ -7,14 +7,8 @@ package br.unicap.poo.clinicaMedica.repository;
 
 /**
  *
- * @author Aluno
+ * @author Danilo
  */
-public class EspecialidadeRepFactory {
-    private EspecialidadeRepBridge instance;
-    public EspecialidadeRepFactory(){
-        instance = EspecialidadeDAO.getInstance();
-    }
-    public EspecialidadeRepBridge getInstance(){
-        return instance;
-    }
+public abstract class EspecialidadeRepFactory {
+    public abstract EspecialidadeRepBridge getInstance();
 }

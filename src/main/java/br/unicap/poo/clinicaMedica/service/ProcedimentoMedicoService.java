@@ -4,6 +4,7 @@ import br.unicap.poo.clinicaMedica.model.Agendamento;
 import br.unicap.poo.clinicaMedica.model.Medico;
 import br.unicap.poo.clinicaMedica.model.ProcedimentoMedico;
 import br.unicap.poo.clinicaMedica.repository.ProcedimentoMedicoRepBridge;
+import br.unicap.poo.clinicaMedica.repository.ProcedimentoMedicoConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.ProcedimentoMedicoRepFactory;
 import java.util.Date;
 import java.util.List;
@@ -12,7 +13,7 @@ public class ProcedimentoMedicoService {
     private ProcedimentoMedicoRepBridge procedimentos;
     
     public ProcedimentoMedicoService(){
-        ProcedimentoMedicoRepFactory instance = new ProcedimentoMedicoRepFactory();
+        ProcedimentoMedicoRepFactory instance = new ProcedimentoMedicoConcreteRepFactory();
         procedimentos = instance.getInstance();
     }   
     public void agendarProcedimento(ProcedimentoMedico procedimento){

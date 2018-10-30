@@ -4,6 +4,7 @@ import br.unicap.poo.clinicaMedica.model.Agendamento;
 import br.unicap.poo.clinicaMedica.model.Exame;
 import br.unicap.poo.clinicaMedica.model.Medico;
 import br.unicap.poo.clinicaMedica.repository.ExameRepBridge;
+import br.unicap.poo.clinicaMedica.repository.ExameConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.ExameRepFactory;
 import java.util.List;
 import java.util.Date;
@@ -13,7 +14,7 @@ public class ExameService {
     private ExameRepBridge exames;
 
     public ExameService(){
-        ExameRepFactory instance = new ExameRepFactory();
+        ExameRepFactory instance = new ExameConcreteRepFactory();
         exames = instance.getInstance();
     }
     public void novoExame(Exame item) {

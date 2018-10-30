@@ -7,8 +7,13 @@ package br.unicap.poo.clinicaMedica.repository;
 
 /**
  *
- * @author Danilo
+ * @author Aluno
  */
-public abstract class TipoProcedimentoRepFactory {
-    public abstract TipoProcedimentoRepBridge getInstance();
+public class ExameConcreteRepFactory extends ExameRepFactory{
+    public ExameConcreteRepFactory(){
+        super();
+    }
+    public ExameRepBridge getInstance(){
+        return ExameDAO.getInstance();
+    }
 }

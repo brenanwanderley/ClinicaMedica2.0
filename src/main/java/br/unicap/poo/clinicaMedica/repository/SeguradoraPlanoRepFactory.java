@@ -7,14 +7,9 @@ package br.unicap.poo.clinicaMedica.repository;
 
 /**
  *
- * @author Aluno
+ * @author Danilo
  */
-public class SeguradoraPlanoRepFactory {
-    private SeguradoraPlanoRepBridge instance;
-    public SeguradoraPlanoRepFactory(){
-        instance = SeguradoraPlanoDAO.getInstance();
-    }
-    public SeguradoraPlanoRepBridge getInstance(){
-        return instance;
-    }
+public abstract class SeguradoraPlanoRepFactory {
+    public abstract SeguradoraPlanoRepBridge getInstance();
+    
 }

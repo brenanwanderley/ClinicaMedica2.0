@@ -6,6 +6,7 @@
 package br.unicap.poo.clinicaMedica.service;
 import br.unicap.poo.clinicaMedica.model.TipoExame;
 import br.unicap.poo.clinicaMedica.repository.TipoExameRepBridge;
+import br.unicap.poo.clinicaMedica.repository.TipoExameConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.TipoExameRepFactory;
 import java.util.Collections;
 import java.util.Comparator;
@@ -19,7 +20,7 @@ public class TipoExameService {
     private TipoExameRepBridge tipoExames;
 
     public TipoExameService(){
-        TipoExameRepFactory instance = new TipoExameRepFactory();
+        TipoExameRepFactory instance = new TipoExameConcreteRepFactory();
         tipoExames = instance.getInstance();
     }
     public void adicionarTipo(TipoExame item){

@@ -6,6 +6,7 @@
 package br.unicap.poo.clinicaMedica.service;
 import br.unicap.poo.clinicaMedica.model.Especialidade;
 import br.unicap.poo.clinicaMedica.repository.EspecialidadeRepBridge;
+import br.unicap.poo.clinicaMedica.repository.EspecialidadeConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.EspecialidadeRepFactory;
 import java.util.Collections;
 import java.util.Comparator;
@@ -19,7 +20,7 @@ public class EspecialidadeService {
     private EspecialidadeRepBridge especialidades;
     
     public EspecialidadeService(){
-        EspecialidadeRepFactory instance = new EspecialidadeRepFactory();
+        EspecialidadeRepFactory instance = new EspecialidadeConcreteRepFactory();
         especialidades = instance.getInstance();
     }
     public void inserirEspecialidade(Especialidade item){

@@ -7,14 +7,8 @@ package br.unicap.poo.clinicaMedica.repository;
 
 /**
  *
- * @author Aluno
+ * @author Danilo
  */
-public class TipoExameRepFactory {
-    private TipoExameRepBridge instance;
-    public TipoExameRepFactory(){
-        instance = TipoExameDAO.getInstance();
-    }
-    public TipoExameRepBridge getInstance(){
-        return instance;
-    }
+public abstract class TipoExameRepFactory {
+    public abstract TipoExameRepBridge getInstance();
 }

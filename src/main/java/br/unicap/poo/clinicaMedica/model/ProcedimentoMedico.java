@@ -6,7 +6,10 @@
 package br.unicap.poo.clinicaMedica.model;
 
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import javax.enterprise.context.ApplicationScoped;
 
 /**
  *
@@ -14,8 +17,8 @@ import java.util.Date;
  */
 @ApplicationScoped
 public class ProcedimentoMedico extends Agendamento{
-    public Consulta consulta;
-    public TipoProcedimento tipo;
+    private Consulta consulta;
+    private TipoProcedimento tipo;
 
     @JsonCreator
     public ProcedimentoMedico(@JsonProperty("data") Date data,

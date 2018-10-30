@@ -2,6 +2,7 @@ package br.unicap.poo.clinicaMedica.service;
 
 import br.unicap.poo.clinicaMedica.model.Paciente;
 import br.unicap.poo.clinicaMedica.repository.PacienteRepBridge;
+import br.unicap.poo.clinicaMedica.repository.PacienteConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.PacienteRepFactory;
 
 
@@ -10,7 +11,7 @@ public class PacienteService {
     private PacienteRepBridge pacientes;
 
     public PacienteService() {
-        PacienteRepFactory instance = new PacienteRepFactory();
+        PacienteRepFactory instance = new PacienteConcreteRepFactory();
         pacientes = instance.getInstance();
     }
     

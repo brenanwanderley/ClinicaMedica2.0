@@ -7,14 +7,8 @@ package br.unicap.poo.clinicaMedica.repository;
 
 /**
  *
- * @author Aluno
+ * @author Danilo
  */
-public class MedicoRepFactory {
-    private MedicoRepBridge instance;
-    public MedicoRepFactory(){
-        instance = MedicoDAO.getInstance();
-    }
-    public MedicoRepBridge getInstance(){
-        return instance;
-    }
+public abstract class MedicoRepFactory {
+    public abstract MedicoRepBridge getInstance();
 }

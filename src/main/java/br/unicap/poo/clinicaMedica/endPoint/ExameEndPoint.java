@@ -8,12 +8,17 @@ package br.unicap.poo.clinicaMedica.endPoint;
 import br.unicap.poo.clinicaMedica.model.Consulta;
 import br.unicap.poo.clinicaMedica.model.Exame;
 import br.unicap.poo.clinicaMedica.model.Medico;
+import br.unicap.poo.clinicaMedica.model.TipoExame;
 import javax.ws.rs.Path;
 import br.unicap.poo.clinicaMedica.service.ExameService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
+import br.unicap.poo.clinicaMedica.service.TipoExameService;
 import java.util.Calendar;
 import java.util.List;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -26,6 +31,7 @@ import javax.ws.rs.core.MediaType;
 public class ExameEndPoint {
     private ExameService service;
     private MedicoService medService;
+    private TipoExameService tipoExameService;
     
     public ExameEndPoint(){
         service = new ExameService();
@@ -64,10 +70,30 @@ public class ExameEndPoint {
         
         return service.verExames(medico, calendar.getTime());
     }
+    @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Exame selecionarExame(@PathParam("id") int id){
+        Exame item = service.selecionar(id);
+        return item;
+    }
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void alterarExame(Exame exame){
+        Exame item = service.selecionar(exame.getCodigo());
+        TipoExame tipoItem = tipoExameService.selecionar(exame.getTipoExame().getCodigo());
         
+        item.setAll(exame, tipoItem);
+        
+        service.alterarExame(item);
+    }
+    @DELETE
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public void cancelarExame(@PathParam("/{id}")int id){
+        Exame item = service.selecionar(id);
+        
+        service.cancelarExame(item);
     }
     
     

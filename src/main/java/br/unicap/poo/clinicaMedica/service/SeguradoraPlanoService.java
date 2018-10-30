@@ -7,6 +7,7 @@ package br.unicap.poo.clinicaMedica.service;
 
 import br.unicap.poo.clinicaMedica.model.SeguradoraPlano;
 import br.unicap.poo.clinicaMedica.repository.SeguradoraPlanoRepBridge;
+import br.unicap.poo.clinicaMedica.repository.SeguradoraPlanoConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.SeguradoraPlanoRepFactory;
 import java.util.Collections;
 import java.util.Comparator;
@@ -20,7 +21,7 @@ public class SeguradoraPlanoService {
     private SeguradoraPlanoRepBridge seguradorasPlano;
     
     public SeguradoraPlanoService(){
-        SeguradoraPlanoRepFactory instance = new SeguradoraPlanoRepFactory();
+        SeguradoraPlanoRepFactory instance = new SeguradoraPlanoConcreteRepFactory();
         seguradorasPlano = instance.getInstance();
     }
     public void inserirSeguradora(SeguradoraPlano item){

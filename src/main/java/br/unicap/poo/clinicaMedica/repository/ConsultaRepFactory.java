@@ -7,14 +7,8 @@ package br.unicap.poo.clinicaMedica.repository;
 
 /**
  *
- * @author Aluno
+ * @author Danilo
  */
-public class ConsultaRepFactory {
-    private ConsultaRepBridge instance;
-    public ConsultaRepFactory(){
-        instance = ConsultaDAO.getInstance();
-    }
-    public ConsultaRepBridge getInstance(){
-        return instance;
-    }
+public abstract class ConsultaRepFactory {    
+    public abstract ConsultaRepBridge getInstance();
 }
