@@ -44,23 +44,15 @@ public class MedicoEndPoint {
     }
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void cadastrarMedico(Medico medico) throws Exception{
-        Especialidade item = espService.selecionar(medico.getEspecialidadeMedico()
-                                                         .getEspecialidades()
-                                                         .get(0)
-                                                         .getCodigo());
-        
-        
-        
-        service.cadastrarMedico(medico);
-        
+    public void cadastrarMedico(MedicoJsonToObject medicoJson){
+        service.cadastrarMedico(medicoJson.getInstance());
     }
+    @Path("/{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void alterarMedico(Medico medico){
-        Medico item = service.selecionar(medico.getCodigo());
-        item.setAll(medico);
-        service.alterarMedico(item);
+    public void alterarMedico(@PathParam("id") int id, MedicoJsonToObject medicoJson){
+        Medico item = service.selecionar(id);
+        item.setAll(medicoJson.getInstance());
     }
     @Path("/{id}")
     @DELETE

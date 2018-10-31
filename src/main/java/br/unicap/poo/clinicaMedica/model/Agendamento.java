@@ -59,7 +59,7 @@ public abstract class Agendamento{
         
         return -1;
     }
-    protected void setAll(Agendamento agendamento){
+    public void setAll(Agendamento agendamento){
         this.status=agendamento.status;
         this.data=agendamento.data;
     }

@@ -60,10 +60,10 @@ public class PlanoDeSaude {
         DateProcessor dateProcessor = new DateProcessor(dataValidade);
         this.dataValidade=dateProcessor.getDate();
     }
-    public void setAll(PlanoDeSaude planoDeSaude, SeguradoraPlano segPlanoRef){
+    public void setAll(PlanoDeSaude planoDeSaude){
         this.numeroCarteira=planoDeSaude.numeroCarteira;
         this.dataValidade=planoDeSaude.dataValidade;
-        this.seguradoraPlano=segPlanoRef;
+        this.seguradoraPlano=planoDeSaude.seguradoraPlano;
     }
     
     

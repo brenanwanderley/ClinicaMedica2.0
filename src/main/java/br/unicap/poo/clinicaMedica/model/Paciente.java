@@ -94,10 +94,10 @@ public class Paciente extends Pessoa{
     public boolean cadastroCompleto(){
         return dataNasc!=null && endereco.enderecoCompleto();
     }
-    public void setAll(Paciente paciente, SeguradoraPlano segPlanoRef){
+    public void setAll(Paciente paciente){
         super.setAll(this);
         this.dataNasc=paciente.dataNasc;
-        planoDeSaude.setAll(planoDeSaude, segPlanoRef);
+        planoDeSaude.setAll(planoDeSaude);
         endereco.setAll(endereco);
     }
 

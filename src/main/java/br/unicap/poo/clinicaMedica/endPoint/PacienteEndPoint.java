@@ -11,7 +11,6 @@ package br.unicap.poo.clinicaMedica.endPoint;
  */
 
 import br.unicap.poo.clinicaMedica.model.Paciente;
-import br.unicap.poo.clinicaMedica.model.SeguradoraPlano;
 import br.unicap.poo.clinicaMedica.service.PacienteService;
 import br.unicap.poo.clinicaMedica.service.SeguradoraPlanoService;
 import javax.ws.rs.Consumes;
@@ -42,33 +41,27 @@ public class PacienteEndPoint {
     
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void cadastrarPaciente(Paciente paciente){
-        SeguradoraPlano segPlano = paciente.getPlanoDeSaude().getSeguradoraPlano(), segRef=null;
-        if(segPlano!=null){
-            segRef = segService.selecionar(paciente.getPlanoDeSaude().getSeguradoraPlano().getCodigo());
-        }
-        paciente.getPlanoDeSaude().setSeguradoraPlano(segRef);
-        service.cadastrarPaciente(paciente);
+    public void cadastrarPaciente(PacienteJsonToObject pacienteJson){
+        service.cadastrarPaciente(pacienteJson.getInstance());
+        
     }
     @Path("/{cpf}")
     @DELETE
-    public void removerPaciente(@PathParam("cpf") String cpf) throws Exception{
+    public void removerPaciente(@PathParam("cpf") String cpf){
         Paciente item = service.selecionar(cpf);
-        if(item==null){
-            throw new Exception("Paciente não encontrado");
-        }
-        
         service.removerPaciente(item);
     }
+    @Path("/{cpf}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void alterarPaciente(Paciente paciente){
-        Paciente item = service.selecionar(paciente.getCpf());
-        SeguradoraPlano segPlano = paciente.getPlanoDeSaude().getSeguradoraPlano(), segRef=null;
-        if(segPlano!=null){
-            segRef = segService.selecionar(paciente.getPlanoDeSaude().getSeguradoraPlano().getCodigo());
-        }
-        item.setAll(paciente, segRef);
-        service.alterarPaciente(item);
+    public void alterarPaciente(@PathParam("cpf")String cpf, PacienteJsonToObject pacienteJson){
+        Paciente paciente = pacienteJson.getInstance();
+        Paciente alteracao = service.selecionar(cpf);
+        
+        alteracao.setAll(paciente);
+        
+        service.alterarPaciente(alteracao);
+        
+        
     }
 }

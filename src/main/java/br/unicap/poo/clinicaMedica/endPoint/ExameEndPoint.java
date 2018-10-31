@@ -5,10 +5,8 @@
  */
 package br.unicap.poo.clinicaMedica.endPoint;
 
-import br.unicap.poo.clinicaMedica.model.Consulta;
 import br.unicap.poo.clinicaMedica.model.Exame;
 import br.unicap.poo.clinicaMedica.model.Medico;
-import br.unicap.poo.clinicaMedica.model.TipoExame;
 import javax.ws.rs.Path;
 import br.unicap.poo.clinicaMedica.service.ExameService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
@@ -36,7 +34,7 @@ public class ExameEndPoint {
     public ExameEndPoint(){
         service = new ExameService();
     }
-       @Path("/{medicoid}")
+    @Path("/{medicoid}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Exame> listarExames(@PathParam("medicoid") int medicoId){
@@ -77,13 +75,14 @@ public class ExameEndPoint {
         Exame item = service.selecionar(id);
         return item;
     }
+    @Path("/{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void alterarExame(Exame exame){
-        Exame item = service.selecionar(exame.getCodigo());
-        TipoExame tipoItem = tipoExameService.selecionar(exame.getTipoExame().getCodigo());
+    public void alterarExame(@PathParam("id") int id, ExameJsonToObject exameJson){
+        Exame alteracao = exameJson.getInstance();
+        Exame item = service.selecionar(id);
         
-        item.setAll(exame, tipoItem);
+        item.setAll(alteracao);
         
         service.alterarExame(item);
     }

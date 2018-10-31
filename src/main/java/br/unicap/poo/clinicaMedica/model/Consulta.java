@@ -36,10 +36,7 @@ public class Consulta extends Agendamento{
         }
         this.paciente=consulta.paciente;
     }
-    @JsonCreator
-    public Consulta(@JsonProperty("data")Date data, 
-                    @JsonProperty("medico")Medico medico, 
-                    @JsonProperty("paciente")Paciente paciente) throws AgendamentoException{
+    public Consulta(Date data, Medico medico, Paciente paciente) throws AgendamentoException{
         super(data);
         this.medico=medico;
         this.paciente=paciente;
@@ -101,9 +98,5 @@ public class Consulta extends Agendamento{
     public void setStatus(Status status){
         super.setStatus(status);
         paciente.increaseNumeroVisitas();
-    }
-    public void setAll(Consulta consulta){
-        super.setAll(consulta);
-        this.setStatus(consulta.getStatus());
     }
 }

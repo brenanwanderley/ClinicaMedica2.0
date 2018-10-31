@@ -15,7 +15,6 @@ package br.unicap.poo.clinicaMedica.endPoint;
 import br.unicap.poo.clinicaMedica.model.Consulta;
 import br.unicap.poo.clinicaMedica.model.Exame;
 import br.unicap.poo.clinicaMedica.model.Medico;
-import br.unicap.poo.clinicaMedica.model.Paciente;
 import br.unicap.poo.clinicaMedica.model.ProcedimentoMedico;
 import br.unicap.poo.clinicaMedica.service.ConsultaService;
 import br.unicap.poo.clinicaMedica.service.ExameService;
@@ -86,16 +85,20 @@ public class ConsultaEndPoint {
     }
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void novaConsulta(Consulta consulta){
-        service.AgendarConsulta(consulta);
+    public void novaConsulta(ConsultaJsonToObject consultaJson){
+        Consulta item = consultaJson.getInstance();
+        service.AgendarConsulta(item);
     }
+    @Path("/{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void alterarConsulta(Consulta consulta){
-        Consulta item = service.selecionar(consulta.getCodigo());
-        item.setAll(consulta);
+    public void alterarConsulta(@PathParam("id")int id, ConsultaJsonToObject consultaJson){
+        Consulta item = consultaJson.getInstance();   
+        Consulta alteracao = service.selecionar(id);
         
-        service.alterarConsulta(consulta);
+        alteracao.setAll(item);
+        service.alterarConsulta(item);
+        
     }
     @DELETE
     @Path("/{id}")
@@ -112,7 +115,8 @@ public class ConsultaEndPoint {
     @POST
     @Path("/novoexame")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void novoExame(Exame exame){
+    public void novoExame(ExameJsonToObject exameJson){
+        Exame exame = exameJson.getInstance();
         exService.novoExame(exame);
     }
     @POST

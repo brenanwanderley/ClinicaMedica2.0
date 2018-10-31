@@ -52,8 +52,9 @@ public class Exame extends Agendamento{
     public Agendamento clonar(int codigo){
         return new Exame(codigo, this);
     }
-    public void setAll(Exame exame, TipoExame tipoExameRef){
-        super.setAll(exame);
-        this.tipo=tipoExameRef;
+    @Override
+    public void setAll(Agendamento agendamento){
+        super.setAll(agendamento);
+        this.tipo=((Exame)agendamento).tipo;
     }
 }
