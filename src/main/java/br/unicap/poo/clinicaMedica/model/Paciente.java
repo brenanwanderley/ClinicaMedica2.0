@@ -9,6 +9,8 @@ import br.unicap.poo.clinicaMedica.auxClasses.DateProcessor;
 import br.unicap.poo.clinicaMedica.auxClasses.JsonProcessor;
 import br.unicap.poo.clinicaMedica.model.exceptions.CpfInvalidoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.PessoaException;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -26,9 +28,10 @@ public class Paciente extends Pessoa{
     private final String cpf;
     private int numeroVisitas;
 
-    public Paciente(String cpf, 
-                    String nome,
-                    String telefone) throws PessoaException {
+    @JsonCreator
+    public Paciente(@JsonProperty("cpf") String cpf, 
+                    @JsonProperty("nome") String nome,
+                    @JsonProperty("telefone") String telefone) throws PessoaException {
         
         super(nome, telefone);
         if(!cpf.matches("^[0-9]{3}[0-9]{3}[0-9]{3}[0-9]{2}")){

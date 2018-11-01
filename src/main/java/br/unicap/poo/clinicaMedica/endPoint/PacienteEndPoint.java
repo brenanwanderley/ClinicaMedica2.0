@@ -44,8 +44,8 @@ public class PacienteEndPoint {
     
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void cadastrarPaciente(PacienteJsonToObject pacienteJson){
-        service.cadastrarPaciente(pacienteJson.getInstance());
+    public void cadastrarPaciente(Paciente paciente){
+        service.cadastrarPaciente(paciente);
         
     }
     @Path("/{cpf}")
