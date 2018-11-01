@@ -5,13 +5,8 @@
  */
 package br.unicap.poo.clinicaMedica.endPoint;
 
-import br.unicap.poo.clinicaMedica.model.Especialidade;
-import br.unicap.poo.clinicaMedica.model.EspecialidadeMedico;
-import br.unicap.poo.clinicaMedica.model.Horario;
-import br.unicap.poo.clinicaMedica.model.HorarioMedico;
+
 import br.unicap.poo.clinicaMedica.model.Medico;
-import br.unicap.poo.clinicaMedica.model.PlanoSaudeMedico;
-import br.unicap.poo.clinicaMedica.service.EspecialidadeService;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.enterprise.context.ApplicationScoped;
@@ -26,13 +21,9 @@ public class MedicoJsonToObject {
     
     @JsonCreator
     public MedicoJsonToObject(@JsonProperty("nome") String nome,
-                  @JsonProperty("telefone") String telefone, 
-                  @JsonProperty("horario") Horario horario, 
-                  @JsonProperty("especialidadeId")int especialidadeId) {
-        EspecialidadeService espService = new EspecialidadeService();
-        Especialidade especialidade = espService.selecionar(especialidadeId);
+                  @JsonProperty("telefone") String telefone) {
         
-        instance = new Medico(nome, telefone, horario, especialidade);
+        instance = new Medico(nome, telefone);
     }
     public Medico getInstance(){
         return instance;

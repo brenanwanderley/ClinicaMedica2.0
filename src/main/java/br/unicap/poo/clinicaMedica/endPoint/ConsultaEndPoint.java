@@ -15,7 +15,6 @@ package br.unicap.poo.clinicaMedica.endPoint;
 import br.unicap.poo.clinicaMedica.model.Consulta;
 import br.unicap.poo.clinicaMedica.model.Exame;
 import br.unicap.poo.clinicaMedica.model.Medico;
-import br.unicap.poo.clinicaMedica.model.ProcedimentoMedico;
 import br.unicap.poo.clinicaMedica.service.ConsultaService;
 import br.unicap.poo.clinicaMedica.service.ExameService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
@@ -122,7 +121,7 @@ public class ConsultaEndPoint {
     @POST
     @Path("/novoprocedimento")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void novoProcedimento(ProcedimentoMedico procedimento){
-        procService.agendarProcedimento(procedimento);
+    public void novoProcedimento(ProcedimentoMedicoJsonToObject procedimentoJson){
+        procService.agendarProcedimento(procedimentoJson.getInstance());
     }
 }

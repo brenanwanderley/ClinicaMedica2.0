@@ -25,7 +25,7 @@ public class ProcedimentoMedicoService {
     }
     
     
-    public void cancelarProcedimennto(ProcedimentoMedico procedimento){
+    public void cancelarProcedimento(ProcedimentoMedico procedimento){
         procedimentos.remover(procedimento);
     }
     

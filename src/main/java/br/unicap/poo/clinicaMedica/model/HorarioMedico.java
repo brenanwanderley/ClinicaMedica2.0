@@ -20,9 +20,8 @@ import java.util.List;
 public class HorarioMedico {
     private ArrayList<Horario> horarios;
     
-    public HorarioMedico(Horario horario){
+    public HorarioMedico(){
         this.horarios = new ArrayList<>();
-        this.horarios.add(horario);
     }
     private HorarioMedico(HorarioMedico horarioMedico){
         this.horarios = new ArrayList();

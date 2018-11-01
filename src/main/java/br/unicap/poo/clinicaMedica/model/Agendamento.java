@@ -17,7 +17,7 @@ public abstract class Agendamento{
     private Date data;
     private Status status;
 
-    public Agendamento(Date data) throws AgendamentoException {
+    public Agendamento(String data) throws AgendamentoException {
         setData(data);
         this.codigo=0;
     }
@@ -31,6 +31,10 @@ public abstract class Agendamento{
     }
     public Date getData() {
         return data;
+    }
+    public void setData(String data) throws DataInvalidaException{
+        DateProcessor dateProcessor = new DateProcessor(data);
+        setData(dateProcessor.getDate());
     }
     public void setData(Date data) throws DataInvalidaException {
         Calendar cal, cal2;

@@ -5,10 +5,10 @@
  */
 package br.unicap.poo.clinicaMedica.endPoint;
 
-import br.unicap.poo.clinicaMedica.model.Exame;
+import br.unicap.poo.clinicaMedica.model.ProcedimentoMedico;
 import br.unicap.poo.clinicaMedica.model.Medico;
 import javax.ws.rs.Path;
-import br.unicap.poo.clinicaMedica.service.ExameService;
+import br.unicap.poo.clinicaMedica.service.ProcedimentoMedicoService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
 import java.util.Calendar;
 import java.util.List;
@@ -24,37 +24,37 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Lucas Soares
  */
-@Path("exames")
-public class ExameEndPoint {
-    private ExameService service;
+@Path("procedimentomedico")
+public class ProcedimentoMedicoEndPoint {
+    private ProcedimentoMedicoService service;
     private MedicoService medService;
     
-    public ExameEndPoint(){
-        service = new ExameService();
+    public ProcedimentoMedicoEndPoint(){
+        service = new ProcedimentoMedicoService();
     }
     @Path("/{medicoid}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Exame> listarExames(@PathParam("medicoid") int medicoId){
+    public List<ProcedimentoMedico> listarProcedimentos(@PathParam("medicoid") int medicoId){
         Medico medico = medService.selecionar(medicoId);
-        return service.verExames(medico);
+        return service.verProcedimentos(medico);
     }
     @Path("/{dia}/{mes}/{ano}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Exame> listarExames(@PathParam("dia")int dia, @PathParam("mes")int mes, @PathParam("ano")int ano){
+    public List<ProcedimentoMedico> listarProcedimentos(@PathParam("dia")int dia, @PathParam("mes")int mes, @PathParam("ano")int ano){
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.DAY_OF_MONTH, dia);
         calendar.set(Calendar.MONTH, mes-1);
         calendar.set(Calendar.YEAR, ano);
         
-        return service.verExames(calendar.getTime());
+        return service.verProcedimentos(calendar.getTime());
     }
     @Path("/{dia}/{mes}/{ano}/{medicoid}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
 
-    public List<Exame> listarExames(@PathParam("dia")int dia, 
+    public List<ProcedimentoMedico> listarProcedimentos(@PathParam("dia")int dia, 
                                           @PathParam("mes")int mes, 
                                           @PathParam("ano")int ano, 
                                           @PathParam("medicoid") int medicoId){
@@ -64,32 +64,32 @@ public class ExameEndPoint {
         calendar.set(Calendar.MONTH, mes-1);
         calendar.set(Calendar.YEAR, ano);
         
-        return service.verExames(medico, calendar.getTime());
+        return service.verProcedimentos(medico, calendar.getTime());
     }
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Exame selecionarExame(@PathParam("id") int id){
-        Exame item = service.selecionar(id);
+    public ProcedimentoMedico selecionarProcedimento(@PathParam("id") int id){
+        ProcedimentoMedico item = service.selecionar(id);
         return item;
     }
     @Path("/{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void alterarExame(@PathParam("id") int id, ExameJsonToObject exameJson){
-        Exame alteracao = exameJson.getInstance();
-        Exame item = service.selecionar(id);
+    public void alterarExame(@PathParam("id") int id, ProcedimentoMedicoJsonToObject exameJson){
+        ProcedimentoMedico alteracao = exameJson.getInstance();
+        ProcedimentoMedico item = service.selecionar(id);
         
         item.setAll(alteracao);
         
-        service.alterarExame(item);
+        service.alterarProcedimento(item);
     }
     @DELETE
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public void cancelarExame(@PathParam("/{id}")int id){
-        Exame item = service.selecionar(id);
+        ProcedimentoMedico item = service.selecionar(id);
         
-        service.cancelarExame(item);
+        service.cancelarProcedimento(item);
     }
 }

@@ -9,6 +9,9 @@ import br.unicap.poo.clinicaMedica.model.Especialidade;
 import br.unicap.poo.clinicaMedica.model.Horario;
 import br.unicap.poo.clinicaMedica.model.Medico;
 import br.unicap.poo.clinicaMedica.model.SeguradoraPlano;
+import br.unicap.poo.clinicaMedica.model.exceptions.EspecialidadeMedicoNaoEncontradaException;
+import br.unicap.poo.clinicaMedica.model.exceptions.EspecialidadeMedicoRepetidaException;
+import br.unicap.poo.clinicaMedica.model.exceptions.MedicoSemEspecialidadeException;
 import br.unicap.poo.clinicaMedica.service.EspecialidadeService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
 import br.unicap.poo.clinicaMedica.service.SeguradoraPlanoService;
@@ -58,46 +61,27 @@ public class MedicoEndPoint {
     @DELETE
     public void removerMedico(@PathParam("id")int id) throws Exception{
         Medico item = service.selecionar(id);
-        if(item==null){
-            throw new Exception("Médico não encontrado");
-        }
         
         service.removerMedico(item);
     }
     @Path("/{id}/especialidades/{espid}")
     @POST
-    public void adicionarEspecialidade(@PathParam("id")int id, @PathParam("espid")int espId) throws Exception{
+    public void adicionarEspecialidade(@PathParam("id")int id, @PathParam("espid")int espId) throws EspecialidadeMedicoRepetidaException{
         Medico item = service.selecionar(id);
         Especialidade espItem;
         
-        if(item==null){
-            throw new Exception("Médico não encontrado");
-        }
-        
         espItem = espService.selecionar(espId);
-        
-        if(espItem==null){
-            throw new Exception("Especialidade não encontrada");
-        }
         
         item.getEspecialidadeMedico().addEspecialidade(espItem);
     }
     @Path("/{id}/especialidades/{espid}")
     @DELETE
-    public void removerEspecialidade(@PathParam("id")int id, @PathParam("espid")int espId) throws Exception{
+    public void removerEspecialidade(@PathParam("id")int id, @PathParam("espid")int espId) throws EspecialidadeMedicoNaoEncontradaException, MedicoSemEspecialidadeException{
         Medico item = service.selecionar(id);
         Especialidade espItem;
         
-        if(item==null){
-            throw new Exception("Médico não encontrado");
-        }
-        
         espItem = espService.selecionar(espId);
-        
-        if(espItem==null){
-            throw new Exception("Especialidade não encontrada");
-        }
-        
+
         item.getEspecialidadeMedico().removeEspecialidade(espItem);
     }
     @Path("/{id}/horarios")
@@ -105,10 +89,6 @@ public class MedicoEndPoint {
     @Consumes(MediaType.APPLICATION_JSON)
     public void adicionarHorario(@PathParam("id")int id, Horario horario) throws Exception{
         Medico item = service.selecionar(id);
-        
-        if(item==null){
-            throw new Exception("Médico não encontrado");
-        }
         
         item.getHorarioMedico().addHorario(horario);  
     }
@@ -118,47 +98,28 @@ public class MedicoEndPoint {
         Medico item = service.selecionar(id);
         Horario horItem;
         
-        if(item==null){
-            throw new Exception("Médico não encontrado");
-        }
-        
         horItem = item.getHorarioMedico().selecionar(horarioId);
 
         item.getHorarioMedico().removeHorario(horItem);
     }
     @Path("/{id}/seguradora/{segid}")
     @POST
-    public void adicionarSeguradora(@PathParam("id")int id, @PathParam("segId") int segId) throws Exception{
+    public void adicionarSeguradora(@PathParam("id")int id, @PathParam("segid") int segId) throws Exception{
         Medico item = service.selecionar(id);
         SeguradoraPlano segItem;
         
-        if(item==null){
-            throw new Exception("Médico não encontrado");
-        }
-        
         segItem = segService.selecionar(segId);
-        
-        if(segItem==null){
-            throw new Exception("Seguradora não encontrada");            
-        }
         
         item.getPlanoSaudeMedico().adicionarSeguradora(segItem);
     }
     @Path("/{id}/seguradora/{segid}")
     @DELETE
-    public void removerSeguradora(@PathParam("id")int id, @PathParam("segId") int segId) throws Exception{
+    public void removerSeguradora(@PathParam("id")int id, @PathParam("segid") int segId) throws Exception{
         Medico item = service.selecionar(id);
         SeguradoraPlano segItem;
         
-        if(item==null){
-            throw new Exception("Médico não encontrado");
-        }
-        
         segItem = segService.selecionar(segId);
-        
-        if(segItem==null){
-            throw new Exception("Seguradora não encontrada");            
-        }
+
         item.getPlanoSaudeMedico().adicionarSeguradora(segItem);
     }
     

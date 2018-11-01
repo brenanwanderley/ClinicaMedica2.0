@@ -6,8 +6,6 @@
 package br.unicap.poo.clinicaMedica.model;
 
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.enterprise.context.ApplicationScoped;
@@ -36,7 +34,7 @@ public class Consulta extends Agendamento{
         }
         this.paciente=consulta.paciente;
     }
-    public Consulta(Date data, Medico medico, Paciente paciente) throws AgendamentoException{
+    public Consulta(String data, Medico medico, Paciente paciente) throws AgendamentoException{
         super(data);
         this.medico=medico;
         this.paciente=paciente;

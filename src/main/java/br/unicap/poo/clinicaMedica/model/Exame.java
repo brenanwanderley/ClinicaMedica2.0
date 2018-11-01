@@ -21,7 +21,7 @@ public class Exame extends Agendamento{
     private TipoExame tipo;
     
     @JsonCreator
-    public Exame(@JsonProperty("data") Date data, 
+    public Exame(@JsonProperty("data") String data, 
                 @JsonProperty("consulta") Consulta consulta, 
                 @JsonProperty("tipo") TipoExame tipo) throws AgendamentoException{
         super(data);

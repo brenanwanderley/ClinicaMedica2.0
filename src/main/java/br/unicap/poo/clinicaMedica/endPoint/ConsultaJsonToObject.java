@@ -25,7 +25,7 @@ public class ConsultaJsonToObject {
     private Consulta instance;
     
     @JsonCreator
-    public ConsultaJsonToObject(@JsonProperty("data")Date data, 
+    public ConsultaJsonToObject(@JsonProperty("data")String data, 
                     @JsonProperty("medicoID")int medicoId, 
                     @JsonProperty("pacienteCPF")String pacienteCpf) throws AgendamentoException{
         MedicoService medService = new MedicoService();

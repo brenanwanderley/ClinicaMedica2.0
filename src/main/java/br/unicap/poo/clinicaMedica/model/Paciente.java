@@ -7,8 +7,6 @@ package br.unicap.poo.clinicaMedica.model;
 
 import br.unicap.poo.clinicaMedica.model.exceptions.CpfInvalidoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.PessoaException;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -26,23 +24,6 @@ public class Paciente extends Pessoa{
     private final String cpf;
     private int numeroVisitas;
 
-    @JsonCreator
-    public Paciente(@JsonProperty("nome") String nome,
-                    @JsonProperty("telefone") String telefone, 
-                    @JsonProperty("cpf") String cpf, 
-                    @JsonProperty("planoDeSaude") PlanoDeSaude planoDeSaude, 
-                    @JsonProperty("endereco") Endereco endereco,
-                    @JsonProperty("dataNasc") String dataNasc) throws PessoaException{
-        super(nome, telefone);
-        if(!cpf.matches("^[0-9]{3}[0-9]{3}[0-9]{3}[0-9]{2}")){
-            throw new CpfInvalidoException();
-        }else{
-            this.cpf = cpf;
-        }
-        this.endereco = endereco;
-        this.planoDeSaude = planoDeSaude;
-        setDataNasc(dataNasc);
-    }
     public Paciente(String cpf, 
                     String nome,
                     String telefone) throws PessoaException {
@@ -54,7 +35,7 @@ public class Paciente extends Pessoa{
             this.cpf = cpf;
         }
         endereco = new Endereco();
-        planoDeSaude = new PlanoDeSaude();   
+        planoDeSaude = new PlanoDeSaude();
     }
 
     public PlanoDeSaude getPlanoDeSaude() {
@@ -68,10 +49,13 @@ public class Paciente extends Pessoa{
     }
     
     public String getDataNasc() {
-        Calendar calendar = Calendar.getInstance(); 
-        calendar.setTime(this.dataNasc);
-        DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
-        return df.format(calendar.getTime());
+        if(dataNasc!=null){
+            Calendar calendar = Calendar.getInstance(); 
+            calendar.setTime(this.dataNasc);
+            DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
+            return df.format(calendar.getTime());
+        }
+        return "00/00/00";
     }
 
     public void setDataNasc(Date dataNasc) {

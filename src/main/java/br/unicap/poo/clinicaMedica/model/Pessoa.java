@@ -18,14 +18,11 @@ public abstract class Pessoa{
     private String nome;
     private String telefone;
 
-    public Pessoa(){
-        
-    }
     protected Pessoa(Pessoa pessoa){
         this.nome=pessoa.nome;
         this.telefone=pessoa.telefone;
     }
-    protected Pessoa(String nome, String telefone){
+    public Pessoa(String nome, String telefone){
         this.nome=nome;
         this.telefone=telefone;
     }

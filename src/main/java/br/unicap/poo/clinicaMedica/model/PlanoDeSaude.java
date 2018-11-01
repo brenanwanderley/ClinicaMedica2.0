@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package br.unicap.poo.clinicaMedica.model;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -21,16 +19,16 @@ public class PlanoDeSaude {
     private String numeroCarteira;
     private Date dataValidade;
 
-    public PlanoDeSaude() {
-
+    PlanoDeSaude(){
+        
     }
-    @JsonCreator
-    public PlanoDeSaude(@JsonProperty("seguradoraPlano")SeguradoraPlano seguradoraPlano, 
-                        @JsonProperty("numeroCarteira")String numeroCarteira,
-                        @JsonProperty("dataValidade")String dataValidade){
+    
+    public PlanoDeSaude(SeguradoraPlano seguradoraPlano, 
+                        String numeroCarteira,
+                        String dataValidade){
         this.seguradoraPlano=seguradoraPlano;
         this.numeroCarteira=numeroCarteira;
-        setDataValidade(dataValidade);        
+        setDataValidade(dataValidade);       
     }
 
     public SeguradoraPlano getSeguradoraPlano() {
@@ -38,7 +36,7 @@ public class PlanoDeSaude {
     }
 
     public void setSeguradoraPlano(SeguradoraPlano seguradoraPlano) {
-        this.seguradoraPlano = seguradoraPlano;
+        this.seguradoraPlano=seguradoraPlano;
     }
 
     public String getNumeroCarteira() {
@@ -50,10 +48,13 @@ public class PlanoDeSaude {
     }
 
     public String getDataValidade() {
-        Calendar calendar = Calendar.getInstance(); 
-        calendar.setTime(this.dataValidade);
-        DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
-        return df.format(calendar.getTime());
+        if(this.dataValidade!=null){
+            Calendar calendar = Calendar.getInstance(); 
+            calendar.setTime(this.dataValidade);
+            DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
+            return df.format(calendar.getTime());
+        }
+        return "";
     }
 
     public void setDataValidade(String dataValidade) {
