@@ -5,6 +5,7 @@
  */
 package br.unicap.poo.clinicaMedica.model;
 
+import br.unicap.poo.clinicaMedica.model.exceptions.PessoaException;
 import br.unicap.poo.clinicaMedica.model.exceptions.TelefoneInvalidoException;
 import javax.enterprise.context.ApplicationScoped;
 
@@ -22,9 +23,9 @@ public abstract class Pessoa{
         this.nome=pessoa.nome;
         this.telefone=pessoa.telefone;
     }
-    public Pessoa(String nome, String telefone){
+    public Pessoa(String nome, String telefone) throws PessoaException{
         this.nome=nome;
-        this.telefone=telefone;
+        setTelefone(telefone);
     }
     public String getNome() {
         return nome;

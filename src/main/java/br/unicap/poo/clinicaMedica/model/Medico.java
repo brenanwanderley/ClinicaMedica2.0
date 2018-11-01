@@ -9,6 +9,7 @@ package br.unicap.poo.clinicaMedica.model;
  *
  * @author aluno
  */
+import br.unicap.poo.clinicaMedica.model.exceptions.PessoaException;
 import java.util.Date;
 import javax.enterprise.context.ApplicationScoped;
 
@@ -19,7 +20,7 @@ public class Medico extends Pessoa{
     private PlanoSaudeMedico planoSaudeMedico;
     private HorarioMedico horarioMedico;
     
-    public Medico(String nome, String telefone) {
+    public Medico(String nome, String telefone) throws PessoaException{
         super(nome, telefone);
         this.planoSaudeMedico = new PlanoSaudeMedico(true);
         this.horarioMedico = new HorarioMedico();

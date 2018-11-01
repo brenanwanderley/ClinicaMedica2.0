@@ -6,8 +6,8 @@
 package br.unicap.poo.clinicaMedica.model;
 
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
+import br.unicap.poo.clinicaMedica.model.exceptions.ConsultaException;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.enterprise.context.ApplicationScoped;
 
 /**
@@ -36,7 +36,11 @@ public class Consulta extends Agendamento{
     }
     public Consulta(String data, Medico medico, Paciente paciente) throws AgendamentoException{
         super(data);
-        this.medico=medico;
+        if(medico.horarioDisponivel(super.getData())){
+            this.medico=medico;
+        }else{
+            throw new ConsultaException("O médico não tem horário disponível");
+        }
         this.paciente=paciente;
         exames = new ArrayList();
         procedimentos = new ArrayList();
