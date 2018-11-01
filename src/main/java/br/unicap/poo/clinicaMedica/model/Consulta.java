@@ -7,6 +7,7 @@ package br.unicap.poo.clinicaMedica.model;
 
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.ConsultaException;
+import br.unicap.poo.clinicaMedica.model.exceptions.DataInvalidaException;
 import java.util.ArrayList;
 import javax.enterprise.context.ApplicationScoped;
 
@@ -34,8 +35,9 @@ public class Consulta extends Agendamento{
         }
         this.paciente=consulta.paciente;
     }
-    public Consulta(String data, Medico medico, Paciente paciente) throws AgendamentoException{
+    public Consulta(String data, String hora, Medico medico, Paciente paciente) throws AgendamentoException{
         super(data);
+        this.setHora(hora);
         if(medico.horarioDisponivel(super.getData())){
             this.medico=medico;
         }else{
@@ -100,5 +102,9 @@ public class Consulta extends Agendamento{
     public void setStatus(Status status){
         super.setStatus(status);
         paciente.increaseNumeroVisitas();
+    }
+    public void setHora(String hora) throws DataInvalidaException{
+        TimeProcessor timeProcessor = new TimeProcessor(this.getData(), hora);
+        super.setData(timeProcessor.getDate());
     }
 }

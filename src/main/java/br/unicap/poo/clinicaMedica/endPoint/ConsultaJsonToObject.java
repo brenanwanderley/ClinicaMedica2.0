@@ -25,14 +25,15 @@ public class ConsultaJsonToObject {
     private Consulta instance;
     
     @JsonCreator
-    public ConsultaJsonToObject(@JsonProperty("data")String data, 
+    public ConsultaJsonToObject(@JsonProperty("data")String data,
+                    @JsonProperty("hora") String hora,
                     @JsonProperty("medicoID")int medicoId, 
                     @JsonProperty("pacienteCPF")String pacienteCpf) throws AgendamentoException{
         MedicoService medService = new MedicoService();
         PacienteService pacService = new PacienteService();
         Paciente paciente = pacService.selecionar(pacienteCpf);
         Medico medico = medService.selecionar(medicoId);
-        instance = new Consulta(data, medico, paciente);
+        instance = new Consulta(data, hora, medico, paciente);
     }
     
     public Consulta getInstance(){
