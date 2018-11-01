@@ -15,6 +15,8 @@ public class ConsultaConcreteRepFactory extends ConsultaRepFactory{
     }
     @Override
     public ConsultaRepBridge getInstance(){
+        
+        
         return ConsultaDAO.getInstance();
     }
 }

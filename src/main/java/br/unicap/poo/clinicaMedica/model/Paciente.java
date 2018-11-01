@@ -68,7 +68,7 @@ public class Paciente extends Pessoa{
     }
     public void setDataNasc(String dataNasc){
         DateProcessor dateProcessor = new DateProcessor(dataNasc);
-        this.dataNasc = dateProcessor.getDate();
+        setDataNasc(dateProcessor.getDate());
     }
     public String getCpf() {
         return cpf;

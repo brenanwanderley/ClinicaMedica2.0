@@ -9,8 +9,6 @@ import br.unicap.poo.clinicaMedica.model.Medico;
 import br.unicap.poo.clinicaMedica.repository.MedicoRepBridge;
 import br.unicap.poo.clinicaMedica.repository.MedicoConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.MedicoRepFactory;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**

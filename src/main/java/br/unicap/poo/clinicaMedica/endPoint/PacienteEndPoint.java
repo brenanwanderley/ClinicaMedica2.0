@@ -60,7 +60,9 @@ public class PacienteEndPoint {
     public void alterarPaciente(@PathParam("cpf")String cpf, String jsonContent) throws PessoaException{
         Paciente alteracao = service.selecionar(cpf);
         JsonProcessor json = new JsonProcessor(jsonContent);
-        SeguradoraPlano seguradora = segService.selecionar(Integer.parseInt(json.getJsonParam("seguradoraPlanoID")));
+        JsonProcessor jsonSeguradoraPlano = new JsonProcessor(json.getJsonParam("planoDeSaude"));
+        
+        SeguradoraPlano seguradora = segService.selecionar(Integer.parseInt(jsonSeguradoraPlano.getJsonParam("seguradoraPlanoID")));
         
         alteracao.setAll(jsonContent, seguradora);
         
