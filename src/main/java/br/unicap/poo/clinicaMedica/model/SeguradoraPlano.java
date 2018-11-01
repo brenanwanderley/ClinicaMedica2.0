@@ -1,5 +1,6 @@
 package br.unicap.poo.clinicaMedica.model;
 
+import br.unicap.poo.clinicaMedica.auxClasses.JsonProcessor;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.enterprise.context.ApplicationScoped;
@@ -43,15 +44,11 @@ public class SeguradoraPlano {
     public void setDescricao(String descricao){
         this.descricao=descricao;
     }
-    @Override
-    public boolean equals(Object seguradoraPlano){
-        SeguradoraPlano objeto = (SeguradoraPlano)seguradoraPlano;
-        return objeto.codigo==this.codigo;
-    }
     public SeguradoraPlano clonar(int codigo){
         return new SeguradoraPlano(codigo, this);
     }
-    public void setAll(SeguradoraPlano seguradoraPlano){
-        this.descricao=seguradoraPlano.descricao;
+    public void setAll(String jsonContent){
+        JsonProcessor json = new JsonProcessor(jsonContent);
+        setDescricao(json.getJsonParam("descricao"));
     }
 }

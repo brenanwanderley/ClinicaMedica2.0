@@ -5,6 +5,7 @@
  */
 package br.unicap.poo.clinicaMedica.model;
 
+import br.unicap.poo.clinicaMedica.auxClasses.TimeProcessor;
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.ConsultaException;
 import br.unicap.poo.clinicaMedica.model.exceptions.DataInvalidaException;
@@ -106,5 +107,9 @@ public class Consulta extends Agendamento{
     public void setHora(String hora) throws DataInvalidaException{
         TimeProcessor timeProcessor = new TimeProcessor(this.getData(), hora);
         super.setData(timeProcessor.getDate());
+    }
+    @Override
+    public void setAll(String jsonContent) throws AgendamentoException{
+        super.setAll(jsonContent);
     }
 }

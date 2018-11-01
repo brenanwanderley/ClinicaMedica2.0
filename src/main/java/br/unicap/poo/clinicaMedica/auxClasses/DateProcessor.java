@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.unicap.poo.clinicaMedica.model;
+package br.unicap.poo.clinicaMedica.auxClasses;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -12,20 +12,20 @@ import java.util.Date;
  *
  * @author Danilo
  */
-class DateProcessor {
+public class DateProcessor {
     private int dia;
     private int mes;
     private int ano;
-    Calendar calendar;
+    private Calendar calendar;
     
-    DateProcessor(String data){
+    public DateProcessor(String data){
         String[] dataArray = data.split("/");
         dia = Integer.parseInt(dataArray[0]);
         mes = Integer.parseInt(dataArray[1]);
         ano = Integer.parseInt(dataArray[2]);
         calendar = Calendar.getInstance();
     }
-    DateProcessor(Date date, String data){
+    public DateProcessor(Date date, String data){
         String[] dataArray = data.split("/");
         dia = Integer.parseInt(dataArray[0]);
         mes = Integer.parseInt(dataArray[1]);
@@ -33,7 +33,7 @@ class DateProcessor {
         calendar = Calendar.getInstance();
         calendar.setTime(date);
     }
-    Date getDate(){
+    public Date getDate(){
         calendar.set(Calendar.DAY_OF_MONTH, dia);
         calendar.set(Calendar.MONTH, mes-1);
         calendar.set(Calendar.YEAR, ano);

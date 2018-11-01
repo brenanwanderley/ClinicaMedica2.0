@@ -55,7 +55,8 @@ public class Medico extends Pessoa{
     public Medico clonar(int codigo){
         return new Medico(codigo, this);
     }
-    public void setAll(Medico medico){
-        super.setAll(medico);
+    @Override
+    public void setAll(String jsonContent) throws PessoaException{
+        super.setAll(jsonContent);
     }
 }

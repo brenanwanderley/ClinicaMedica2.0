@@ -46,11 +46,12 @@ public class SeguradoraPlanoEndPoint {
         SeguradoraPlano item = service.selecionar(id);
         service.removerSeguradora(item);
     }
+    @Path("/{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void alterarSeguradoraPlano(SeguradoraPlano seguradora){
-        SeguradoraPlano item = service.selecionar(seguradora.getCodigo());
-        item.setAll(seguradora);
+    public void alterarSeguradoraPlano(@PathParam("id")int id, String jsonContent){
+        SeguradoraPlano item = service.selecionar(id);
+        item.setAll(jsonContent);
         service.alterarSeguradora(item);
     }
     @Path("/{id}")

@@ -10,7 +10,10 @@ package br.unicap.poo.clinicaMedica.endPoint;
  * @author Danilo
  */
 
+import br.unicap.poo.clinicaMedica.auxClasses.JsonProcessor;
 import br.unicap.poo.clinicaMedica.model.Paciente;
+import br.unicap.poo.clinicaMedica.model.SeguradoraPlano;
+import br.unicap.poo.clinicaMedica.model.exceptions.PessoaException;
 import br.unicap.poo.clinicaMedica.service.PacienteService;
 import br.unicap.poo.clinicaMedica.service.SeguradoraPlanoService;
 import javax.ws.rs.Consumes;
@@ -54,14 +57,13 @@ public class PacienteEndPoint {
     @Path("/{cpf}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void alterarPaciente(@PathParam("cpf")String cpf, PacienteJsonToObject pacienteJson){
-        Paciente paciente = pacienteJson.getInstance();
+    public void alterarPaciente(@PathParam("cpf")String cpf, String jsonContent) throws PessoaException{
         Paciente alteracao = service.selecionar(cpf);
+        JsonProcessor json = new JsonProcessor(jsonContent);
+        SeguradoraPlano seguradora = segService.selecionar(Integer.parseInt(json.getJsonParam("seguradoraPlanoID")));
         
-        alteracao.setAll(paciente);
+        alteracao.setAll(jsonContent, seguradora);
         
         service.alterarPaciente(alteracao);
-        
-        
     }
 }

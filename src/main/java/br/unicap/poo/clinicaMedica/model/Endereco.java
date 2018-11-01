@@ -5,6 +5,7 @@
  */
 package br.unicap.poo.clinicaMedica.model;
 
+import br.unicap.poo.clinicaMedica.auxClasses.JsonProcessor;
 import br.unicap.poo.clinicaMedica.model.exceptions.NumeroInvalidoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.EnderecoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.CepInvalidoException;
@@ -79,10 +80,11 @@ public class Endereco {
     public Endereco clonar(){
         return new Endereco(this);
     }
-    public void setAll(Endereco endereco){
-        this.cep=endereco.cep;
-        this.complemento=endereco.complemento;
-        this.numero=endereco.numero;
+    public void setAll(String jsonContent) throws EnderecoException{
+        JsonProcessor json = new JsonProcessor(jsonContent);
+        setCep(json.getJsonParam("cep"));
+        setNumero(Integer.parseInt(json.getJsonParam("numero")));
+        setComplemento(json.getJsonParam("complemento"));
     }
     
 }

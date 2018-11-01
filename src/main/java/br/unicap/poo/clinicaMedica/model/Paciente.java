@@ -5,6 +5,8 @@
  */
 package br.unicap.poo.clinicaMedica.model;
 
+import br.unicap.poo.clinicaMedica.auxClasses.DateProcessor;
+import br.unicap.poo.clinicaMedica.auxClasses.JsonProcessor;
 import br.unicap.poo.clinicaMedica.model.exceptions.CpfInvalidoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.PessoaException;
 import java.text.DateFormat;
@@ -78,11 +80,12 @@ public class Paciente extends Pessoa{
     public boolean cadastroCompleto(){
         return dataNasc!=null && endereco.enderecoCompleto();
     }
-    public void setAll(Paciente paciente){
-        super.setAll(this);
-        this.dataNasc=paciente.dataNasc;
-        planoDeSaude.setAll(planoDeSaude);
-        endereco.setAll(endereco);
+    public void setAll(String jsonContent, SeguradoraPlano segPlanoRef) throws PessoaException{
+        super.setAll(jsonContent);
+        JsonProcessor json = new JsonProcessor(jsonContent);
+        setDataNasc(json.getJsonParam("dataNasc"));
+        planoDeSaude.setAll(json.getJsonParam("planoDeSaude"), segPlanoRef);
+        endereco.setAll(json.getJsonParam("endereco"));
     }
 
 }

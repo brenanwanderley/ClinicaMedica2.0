@@ -43,11 +43,12 @@ public class EspecialidadeEndPoint {
         Especialidade item = service.selecionar(id);
         service.removerEspecialidade(item);
     }
+    @Path("/{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void alterarEspecialidade(Especialidade especialidade){
-        Especialidade item = service.selecionar(especialidade.getCodigo());
-        item.setAll(especialidade);
+    public void alterarEspecialidade(@PathParam("id") int id, String jsonContent){
+        Especialidade item = service.selecionar(id);
+        item.setAll(jsonContent);
         service.alterarEspecialidade(item); 
     }
     @Path("/{id}")

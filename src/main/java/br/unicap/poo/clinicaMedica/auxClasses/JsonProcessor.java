@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.unicap.poo.clinicaMedica.endPoint;
+package br.unicap.poo.clinicaMedica.auxClasses;
 
 import java.io.StringReader;
 import javax.json.Json;

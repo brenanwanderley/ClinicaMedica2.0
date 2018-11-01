@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.unicap.poo.clinicaMedica.model;
+package br.unicap.poo.clinicaMedica.auxClasses;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -12,26 +12,26 @@ import java.util.Date;
  *
  * @author Danilo
  */
-class TimeProcessor {
+public class TimeProcessor {
     private int hora;
     private int minutos;
-    Calendar calendar;
+    private Calendar calendar;
 
-    TimeProcessor(String hora) {
+    public TimeProcessor(String hora) {
         String[] horaArray = hora.split(":");
         this.minutos = Integer.parseInt(horaArray[0]);
         this.hora = Integer.parseInt(horaArray[0]);
         calendar = Calendar.getInstance();
 
     }
-    TimeProcessor(Date data, String hora){
+    public TimeProcessor(Date data, String hora){
         String[] horaArray = hora.split(":");
         this.minutos = Integer.parseInt(horaArray[0]);
         this.hora = Integer.parseInt(horaArray[0]);
         calendar = Calendar.getInstance();
         calendar.setTime(data);
     }
-    Date getDate(){
+    public Date getDate(){
         calendar.set(Calendar.HOUR, hora);
         calendar.set(Calendar.MINUTE, minutos);     
         return calendar.getTime();

@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package br.unicap.poo.clinicaMedica.model;
+import br.unicap.poo.clinicaMedica.auxClasses.DateProcessor;
+import br.unicap.poo.clinicaMedica.auxClasses.JsonProcessor;
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.DataInvalidaException;
 import java.util.Date;
@@ -63,9 +65,9 @@ public abstract class Agendamento{
         
         return -1;
     }
-    public void setAll(Agendamento agendamento){
-        this.status=agendamento.status;
-        this.data=agendamento.data;
+    protected void setAll(String jsonContent) throws AgendamentoException{
+        JsonProcessor json = new JsonProcessor(jsonContent);
+        setData(json.getJsonParam("data"));
     }
     public abstract Medico getMedico();
     public abstract Paciente getPaciente();

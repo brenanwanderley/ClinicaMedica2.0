@@ -5,11 +5,15 @@
  */
 package br.unicap.poo.clinicaMedica.endPoint;
 
+import br.unicap.poo.clinicaMedica.auxClasses.JsonProcessor;
 import br.unicap.poo.clinicaMedica.model.ProcedimentoMedico;
 import br.unicap.poo.clinicaMedica.model.Medico;
+import br.unicap.poo.clinicaMedica.model.TipoProcedimento;
+import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
 import javax.ws.rs.Path;
 import br.unicap.poo.clinicaMedica.service.ProcedimentoMedicoService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
+import br.unicap.poo.clinicaMedica.service.TipoProcedimentoService;
 import java.util.Calendar;
 import java.util.List;
 import javax.ws.rs.Consumes;
@@ -28,9 +32,12 @@ import javax.ws.rs.core.MediaType;
 public class ProcedimentoMedicoEndPoint {
     private ProcedimentoMedicoService service;
     private MedicoService medService;
+    private TipoProcedimentoService tipoService;
     
     public ProcedimentoMedicoEndPoint(){
         service = new ProcedimentoMedicoService();
+        medService = new MedicoService();
+        tipoService = new TipoProcedimentoService();
     }
     @Path("/{medicoid}")
     @GET
@@ -76,11 +83,12 @@ public class ProcedimentoMedicoEndPoint {
     @Path("/{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void alterarExame(@PathParam("id") int id, ProcedimentoMedicoJsonToObject exameJson){
-        ProcedimentoMedico alteracao = exameJson.getInstance();
+    public void alterarExame(@PathParam("id") int id, String jsonContent) throws AgendamentoException{
         ProcedimentoMedico item = service.selecionar(id);
+        JsonProcessor json = new JsonProcessor(jsonContent);
+        TipoProcedimento tipo = tipoService.selecionar(Integer.parseInt(json.getJsonParam("tipoID")));
         
-        item.setAll(alteracao);
+        item.setAll(jsonContent, tipo);
         
         service.alterarProcedimento(item);
     }

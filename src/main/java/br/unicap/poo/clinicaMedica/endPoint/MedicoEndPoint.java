@@ -12,6 +12,7 @@ import br.unicap.poo.clinicaMedica.model.SeguradoraPlano;
 import br.unicap.poo.clinicaMedica.model.exceptions.EspecialidadeMedicoNaoEncontradaException;
 import br.unicap.poo.clinicaMedica.model.exceptions.EspecialidadeMedicoRepetidaException;
 import br.unicap.poo.clinicaMedica.model.exceptions.MedicoSemEspecialidadeException;
+import br.unicap.poo.clinicaMedica.model.exceptions.PessoaException;
 import br.unicap.poo.clinicaMedica.service.EspecialidadeService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
 import br.unicap.poo.clinicaMedica.service.SeguradoraPlanoService;
@@ -53,9 +54,9 @@ public class MedicoEndPoint {
     @Path("/{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void alterarMedico(@PathParam("id") int id, MedicoJsonToObject medicoJson){
+    public void alterarMedico(@PathParam("id") int id, String jsonContent) throws PessoaException{
         Medico item = service.selecionar(id);
-        item.setAll(medicoJson.getInstance());
+        item.setAll(jsonContent);
     }
     @Path("/{id}")
     @DELETE

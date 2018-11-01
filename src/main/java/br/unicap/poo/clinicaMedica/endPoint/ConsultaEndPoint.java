@@ -15,6 +15,7 @@ package br.unicap.poo.clinicaMedica.endPoint;
 import br.unicap.poo.clinicaMedica.model.Consulta;
 import br.unicap.poo.clinicaMedica.model.Exame;
 import br.unicap.poo.clinicaMedica.model.Medico;
+import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
 import br.unicap.poo.clinicaMedica.service.ConsultaService;
 import br.unicap.poo.clinicaMedica.service.ExameService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
@@ -91,12 +92,11 @@ public class ConsultaEndPoint {
     @Path("/{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void alterarConsulta(@PathParam("id")int id, ConsultaJsonToObject consultaJson){
-        Consulta item = consultaJson.getInstance();   
+    public void alterarConsulta(@PathParam("id")int id, String jsonContent) throws AgendamentoException{
         Consulta alteracao = service.selecionar(id);
         
-        alteracao.setAll(item);
-        service.alterarConsulta(item);
+        alteracao.setAll(jsonContent);
+        service.alterarConsulta(alteracao);
         
     }
     @DELETE

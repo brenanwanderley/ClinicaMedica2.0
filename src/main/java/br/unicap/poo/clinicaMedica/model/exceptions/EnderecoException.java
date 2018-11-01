@@ -9,7 +9,7 @@ package br.unicap.poo.clinicaMedica.model.exceptions;
  *
  * @author aluno
  */
-public class EnderecoException extends Exception {
+public class EnderecoException extends PessoaException {
     public EnderecoException(String e){
         super(e);
     }

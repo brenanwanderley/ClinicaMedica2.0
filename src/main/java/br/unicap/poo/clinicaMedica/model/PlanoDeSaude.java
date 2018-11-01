@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package br.unicap.poo.clinicaMedica.model;
+import br.unicap.poo.clinicaMedica.auxClasses.DateProcessor;
+import br.unicap.poo.clinicaMedica.auxClasses.JsonProcessor;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -61,10 +63,11 @@ public class PlanoDeSaude {
         DateProcessor dateProcessor = new DateProcessor(dataValidade);
         this.dataValidade=dateProcessor.getDate();
     }
-    public void setAll(PlanoDeSaude planoDeSaude){
-        this.numeroCarteira=planoDeSaude.numeroCarteira;
-        this.dataValidade=planoDeSaude.dataValidade;
-        this.seguradoraPlano=planoDeSaude.seguradoraPlano;
+    public void setAll(String jsonContent, SeguradoraPlano segPlanoRef){
+        JsonProcessor json = new JsonProcessor(jsonContent);
+        setNumeroCarteira(json.getJsonParam("numeroCarteira"));
+        setDataValidade(json.getJsonParam("dataValidade"));
+        this.seguradoraPlano=segPlanoRef;
     }
     
     

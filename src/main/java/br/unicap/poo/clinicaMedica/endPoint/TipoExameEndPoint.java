@@ -38,11 +38,12 @@ public class TipoExameEndPoint {
     public void cadastrarTipoExame(TipoExame tipoExame){
         service.adicionarTipo(tipoExame);
     }
+    @Path("/{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void alterarTipoExame(TipoExame tipoExame){
-        TipoExame item = service.selecionar(tipoExame.getCodigo());
-        item.setAll(tipoExame);
+    public void alterarTipoExame(@PathParam("id")int id, String jsonContent){
+        TipoExame item = service.selecionar(id);
+        item.setAll(jsonContent);
         service.alterarTipo(item);
     }
     @Path("/{id}")
