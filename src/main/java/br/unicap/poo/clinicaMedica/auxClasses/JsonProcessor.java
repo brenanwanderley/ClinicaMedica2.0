@@ -17,14 +17,18 @@ import javax.json.JsonReader;
 public class JsonProcessor {
     private JsonReader reader;
     private JsonObject object;
-    private String jsonContent;
     
     public JsonProcessor(String jsonContent){
-        this.jsonContent=jsonContent;
         reader = Json.createReader(new StringReader(jsonContent));
         object = reader.readObject();
     }
+    private JsonProcessor(JsonObject object){
+        this.object=object;
+    }
     public String getJsonParam(String param){
         return object.getString(param);
+    }
+    public JsonProcessor getObjectJsonParam(String param){
+        return new JsonProcessor(object.getJsonObject(param));
     }
 }
