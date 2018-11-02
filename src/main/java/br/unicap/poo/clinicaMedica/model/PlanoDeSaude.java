@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package br.unicap.poo.clinicaMedica.model;
-import br.unicap.poo.clinicaMedica.auxClasses.DateProcessor;
+import br.unicap.poo.clinicaMedica.auxClasses.DDMMYYYDateInterpretor;
+import br.unicap.poo.clinicaMedica.auxClasses.DateContext;
+import br.unicap.poo.clinicaMedica.auxClasses.DateInterpretor;
 import br.unicap.poo.clinicaMedica.auxClasses.JsonProcessor;
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -58,10 +60,14 @@ public class PlanoDeSaude {
         }
         return "";
     }
-
+    public void setDataValidade(Date dataValidade){
+        this.dataValidade=dataValidade;
+    }
     public void setDataValidade(String dataValidade) {
-        DateProcessor dateProcessor = new DateProcessor(dataValidade);
-        this.dataValidade=dateProcessor.getDate();
+        DateContext context = new DateContext(dataValidade, "/");
+        DateInterpretor interpretor = new DDMMYYYDateInterpretor(context);
+        interpretor.interpretar();
+        this.setDataValidade(context.getData());
     }
     public void setAll(String jsonContent, SeguradoraPlano segPlanoRef){
         JsonProcessor json = new JsonProcessor(jsonContent);

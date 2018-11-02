@@ -13,7 +13,22 @@ public class MedicoConcreteRepFactory extends MedicoRepFactory{
     public MedicoConcreteRepFactory(){
         super();
     }
+    @Override
     public MedicoRepBridge getInstance(){
-        return MedicoDAO.getInstance();
+        //1 - Memória
+        //2 - Arquivo
+        //3 - Banco de Dados
+        int opcao=1;
+        
+        switch(opcao){
+            case 1:
+                return MedicoDAO.getInstance();
+            case 2:
+                throw new UnsupportedOperationException("Não há suporte para arquivo");
+            case 3:
+                throw new UnsupportedOperationException("Não há suporte para banco de dados");
+            default:
+                return null;
+        }
     }
 }

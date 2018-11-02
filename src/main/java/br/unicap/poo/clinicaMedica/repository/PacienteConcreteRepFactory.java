@@ -13,7 +13,23 @@ public class PacienteConcreteRepFactory extends PacienteRepFactory {
     public PacienteConcreteRepFactory(){
         super();
     }
+    @Override
     public PacienteRepBridge getInstance(){
-        return PacienteDAO.getInstance();
+        //1 - Memória
+        //2 - Arquivo
+        //3 - Banco de Dados
+        int opcao=1;
+        
+        
+        switch(opcao){
+            case 1:
+                return PacienteDAO.getInstance();
+            case 2:
+                throw new UnsupportedOperationException("Não há suporte para arquivo");
+            case 3:
+                throw new UnsupportedOperationException("Não há suporte para banco de dados");
+            default:
+                return null;
+        }    
     }
 }

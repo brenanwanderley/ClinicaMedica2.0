@@ -15,6 +15,19 @@ public class TipoProcedimentoConcreteRepFactory extends TipoProcedimentoRepFacto
     }
     @Override
     public TipoProcedimentoRepBridge getInstance(){
-        return TipoProcedimentoDAO.getInstance();
-    }
+        //1 - Memória
+        //2 - Arquivo
+        //3 - Banco de Dados
+        int opcao=1;
+        
+        switch(opcao){
+            case 1:
+                return TipoProcedimentoDAO.getInstance();
+            case 2:
+                throw new UnsupportedOperationException("Não há suporte para arquivo");
+            case 3:
+                throw new UnsupportedOperationException("Não há suporte para banco de dados");
+            default:
+                return null;
+        }    }
 }

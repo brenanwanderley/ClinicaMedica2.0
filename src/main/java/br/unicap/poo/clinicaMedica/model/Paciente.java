@@ -5,7 +5,9 @@
  */
 package br.unicap.poo.clinicaMedica.model;
 
-import br.unicap.poo.clinicaMedica.auxClasses.DateProcessor;
+import br.unicap.poo.clinicaMedica.auxClasses.DDMMYYYDateInterpretor;
+import br.unicap.poo.clinicaMedica.auxClasses.DateContext;
+import br.unicap.poo.clinicaMedica.auxClasses.DateInterpretor;
 import br.unicap.poo.clinicaMedica.auxClasses.JsonProcessor;
 import br.unicap.poo.clinicaMedica.model.exceptions.CpfInvalidoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.PessoaException;
@@ -67,8 +69,10 @@ public class Paciente extends Pessoa{
         this.dataNasc = dataNasc;
     }
     public void setDataNasc(String dataNasc){
-        DateProcessor dateProcessor = new DateProcessor(dataNasc);
-        setDataNasc(dateProcessor.getDate());
+        DateContext context = new DateContext(dataNasc, "/");
+        DateInterpretor interpretor = new DDMMYYYDateInterpretor(context);
+        interpretor.interpretar();
+        setDataNasc(context.getData());
     }
     public String getCpf() {
         return cpf;

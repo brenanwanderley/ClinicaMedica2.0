@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package br.unicap.poo.clinicaMedica.model;
-import br.unicap.poo.clinicaMedica.auxClasses.DateProcessor;
+import br.unicap.poo.clinicaMedica.auxClasses.DDMMYYYDateInterpretor;
+import br.unicap.poo.clinicaMedica.auxClasses.DateContext;
+import br.unicap.poo.clinicaMedica.auxClasses.DateInterpretor;
 import br.unicap.poo.clinicaMedica.auxClasses.JsonProcessor;
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.DataInvalidaException;
@@ -35,8 +37,10 @@ public abstract class Agendamento{
         return data;
     }
     public void setData(String data) throws DataInvalidaException{
-        DateProcessor dateProcessor = new DateProcessor(data);
-        setData(dateProcessor.getDate());
+        DateContext context = new DateContext(data, "/");
+        DateInterpretor dateInterpretor = new DDMMYYYDateInterpretor(context);
+        dateInterpretor.interpretar();
+        setData(context.getData());
     }
     public void setData(Date data) throws DataInvalidaException {
         Calendar cal, cal2;

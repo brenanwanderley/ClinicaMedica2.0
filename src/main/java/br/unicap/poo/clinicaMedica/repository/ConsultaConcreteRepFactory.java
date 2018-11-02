@@ -15,8 +15,20 @@ public class ConsultaConcreteRepFactory extends ConsultaRepFactory{
     }
     @Override
     public ConsultaRepBridge getInstance(){
+        //1 - Memória
+        //2 - Arquivo
+        //3 - Banco de Dados
+        int opcao=1;
         
-        
-        return ConsultaDAO.getInstance();
+        switch(opcao){
+            case 1:
+                return ConsultaDAO.getInstance();
+            case 2:
+                throw new UnsupportedOperationException("Não há suporte para arquivo");
+            case 3:
+                throw new UnsupportedOperationException("Não há suporte para banco de dados");
+            default:
+                return null;
+        }
     }
 }

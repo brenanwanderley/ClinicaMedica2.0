@@ -13,7 +13,22 @@ public class EspecialidadeConcreteRepFactory extends EspecialidadeRepFactory{
     public EspecialidadeConcreteRepFactory(){
         super();
     }
+    @Override
     public EspecialidadeRepBridge getInstance(){
-        return EspecialidadeDAO.getInstance();
+        //1 - Memória
+        //2 - Arquivo
+        //3 - Banco de Dados
+        int opcao=1;
+        
+        switch(opcao){
+            case 1:
+                return EspecialidadeDAO.getInstance();
+            case 2:
+                throw new UnsupportedOperationException("Não há suporte para arquivo");
+            case 3:
+                throw new UnsupportedOperationException("Não há suporte para banco de dados");
+            default:
+                return null;
+        }
     }
 }
