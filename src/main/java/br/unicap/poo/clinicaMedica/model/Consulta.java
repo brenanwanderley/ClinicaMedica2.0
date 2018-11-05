@@ -55,6 +55,9 @@ public class Consulta extends Agendamento{
     public Medico getMedico() {
         return medico;
     }
+    void setMedico(Medico medico){
+        this.medico=medico;
+    }
 
     public ArrayList<Exame> getExames() {
         return exames;

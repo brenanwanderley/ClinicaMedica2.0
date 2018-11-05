@@ -6,9 +6,6 @@
 package br.unicap.poo.clinicaMedica.model;
 
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
 import javax.enterprise.context.ApplicationScoped;
 
 /**
@@ -20,25 +17,26 @@ public class Exame extends Agendamento{
     private Consulta consulta;
     private TipoExame tipo;
     
-    @JsonCreator
-    public Exame(@JsonProperty("data") String data, 
-                @JsonProperty("consulta") Consulta consulta, 
-                @JsonProperty("tipo") TipoExame tipo) throws AgendamentoException{
-        super(data);
-        this.tipo=tipo;
-        this.consulta=consulta;
-        consulta.addExame(this);
+    Exame(){
+        super();
     }
     private Exame(int codigo, Exame exame){
         super(codigo, exame);
         consulta = exame.consulta;
         tipo = exame.tipo;
     }
+
     public Consulta getConsulta() {
         return consulta;
     }
+    void setConsulta(Consulta consulta){
+        this.consulta=consulta;
+    }
     public TipoExame getTipoExame() {
         return tipo;
+    }
+    void setTipoExame(TipoExame tipoExame){
+       this.tipo=tipoExame;
     }
     @Override
     public Medico getMedico(){
