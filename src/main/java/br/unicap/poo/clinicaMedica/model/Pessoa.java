@@ -5,7 +5,7 @@
  */
 package br.unicap.poo.clinicaMedica.model;
 
-import br.unicap.poo.clinicaMedica.auxClasses.JsonProcessor;
+import br.unicap.poo.clinicaMedica.interpretors.JsonProcessor;
 import br.unicap.poo.clinicaMedica.model.exceptions.PessoaException;
 import br.unicap.poo.clinicaMedica.model.exceptions.TelefoneInvalidoException;
 import javax.enterprise.context.ApplicationScoped;

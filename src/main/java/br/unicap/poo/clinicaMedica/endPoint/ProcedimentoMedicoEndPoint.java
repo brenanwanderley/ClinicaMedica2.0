@@ -5,7 +5,7 @@
  */
 package br.unicap.poo.clinicaMedica.endPoint;
 
-import br.unicap.poo.clinicaMedica.auxClasses.JsonProcessor;
+import br.unicap.poo.clinicaMedica.interpretors.JsonProcessor;
 import br.unicap.poo.clinicaMedica.model.ProcedimentoMedico;
 import br.unicap.poo.clinicaMedica.model.Medico;
 import br.unicap.poo.clinicaMedica.model.TipoProcedimento;

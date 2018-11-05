@@ -10,7 +10,7 @@ package br.unicap.poo.clinicaMedica.endPoint;
  * @author Danilo
  */
 
-import br.unicap.poo.clinicaMedica.auxClasses.JsonProcessor;
+import br.unicap.poo.clinicaMedica.interpretors.JsonProcessor;
 import br.unicap.poo.clinicaMedica.model.Paciente;
 import br.unicap.poo.clinicaMedica.model.SeguradoraPlano;
 import br.unicap.poo.clinicaMedica.model.exceptions.PessoaException;

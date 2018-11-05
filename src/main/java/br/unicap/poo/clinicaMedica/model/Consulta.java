@@ -5,9 +5,9 @@
  */
 package br.unicap.poo.clinicaMedica.model;
 
-import br.unicap.poo.clinicaMedica.auxClasses.HHMMTimeInterpretor;
-import br.unicap.poo.clinicaMedica.auxClasses.TimeContext;
-import br.unicap.poo.clinicaMedica.auxClasses.TimeInterpretor;
+import br.unicap.poo.clinicaMedica.interpretors.HHMMTimeInterpretor;
+import br.unicap.poo.clinicaMedica.interpretors.TimeContext;
+import br.unicap.poo.clinicaMedica.interpretors.TimeInterpretor;
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.ConsultaException;
 import br.unicap.poo.clinicaMedica.model.exceptions.DataInvalidaException;

@@ -1,6 +1,6 @@
 package br.unicap.poo.clinicaMedica.model;
 
-import br.unicap.poo.clinicaMedica.auxClasses.JsonProcessor;
+import br.unicap.poo.clinicaMedica.interpretors.JsonProcessor;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.enterprise.context.ApplicationScoped;

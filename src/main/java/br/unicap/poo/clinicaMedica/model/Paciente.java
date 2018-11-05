@@ -5,10 +5,10 @@
  */
 package br.unicap.poo.clinicaMedica.model;
 
-import br.unicap.poo.clinicaMedica.auxClasses.DDMMYYYDateInterpretor;
-import br.unicap.poo.clinicaMedica.auxClasses.DateContext;
-import br.unicap.poo.clinicaMedica.auxClasses.DateInterpretor;
-import br.unicap.poo.clinicaMedica.auxClasses.JsonProcessor;
+import br.unicap.poo.clinicaMedica.interpretors.DDMMYYYDateInterpretor;
+import br.unicap.poo.clinicaMedica.interpretors.DateContext;
+import br.unicap.poo.clinicaMedica.interpretors.DateInterpretor;
+import br.unicap.poo.clinicaMedica.interpretors.JsonProcessor;
 import br.unicap.poo.clinicaMedica.model.exceptions.CpfInvalidoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.PessoaException;
 import com.fasterxml.jackson.annotation.JsonCreator;
