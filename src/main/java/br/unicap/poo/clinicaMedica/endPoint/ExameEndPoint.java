@@ -5,10 +5,8 @@
  */
 package br.unicap.poo.clinicaMedica.endPoint;
 
-import br.unicap.poo.clinicaMedica.interpretors.JsonProcessor;
 import br.unicap.poo.clinicaMedica.model.Exame;
 import br.unicap.poo.clinicaMedica.model.Medico;
-import br.unicap.poo.clinicaMedica.model.TipoExame;
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
 import javax.ws.rs.Path;
 import br.unicap.poo.clinicaMedica.service.ExameService;
@@ -80,17 +78,10 @@ public class ExameEndPoint {
         Exame item = service.selecionar(id);
         return item;
     }
-    @Path("/{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void alterarExame(@PathParam("id") int id, String jsonContent) throws AgendamentoException{
-        Exame item = service.selecionar(id);
-        JsonProcessor json = new JsonProcessor(jsonContent);
-        TipoExame tipo = tipoService.selecionar(Integer.parseInt(json.getJsonParam("tipoID")));
-        
-        item.setAll(jsonContent, tipo);
-        
-        service.alterarExame(item);
+    public void alterarExame(ExameEditFromJson exameJson) throws AgendamentoException{
+        service.alterarExame(exameJson.getEdit());
     }
     @DELETE
     @Path("/{id}")

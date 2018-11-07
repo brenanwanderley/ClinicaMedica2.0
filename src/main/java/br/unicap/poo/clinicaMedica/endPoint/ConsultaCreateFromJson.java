@@ -7,13 +7,13 @@ package br.unicap.poo.clinicaMedica.endPoint;
 
 import br.unicap.poo.clinicaMedica.model.Consulta;
 import br.unicap.poo.clinicaMedica.model.Medico;
+import br.unicap.poo.clinicaMedica.model.ConsultaBuilder;
 import br.unicap.poo.clinicaMedica.model.Paciente;
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
 import br.unicap.poo.clinicaMedica.service.PacienteService;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
 import javax.enterprise.context.ApplicationScoped;
 
 /**
@@ -21,19 +21,25 @@ import javax.enterprise.context.ApplicationScoped;
  * @author Danilo
  */
 @ApplicationScoped
-public class ConsultaJsonToObject {
+public class ConsultaCreateFromJson {
     private Consulta instance;
     
     @JsonCreator
-    public ConsultaJsonToObject(@JsonProperty("data")String data,
+    public ConsultaCreateFromJson(@JsonProperty("data")String data,
                     @JsonProperty("hora") String hora,
                     @JsonProperty("medicoID")int medicoId, 
                     @JsonProperty("pacienteCPF")String pacienteCpf) throws AgendamentoException{
+        ConsultaBuilder builder = new ConsultaBuilder();
         MedicoService medService = new MedicoService();
+        Medico medico = medService.selecionar(medicoId);
         PacienteService pacService = new PacienteService();
         Paciente paciente = pacService.selecionar(pacienteCpf);
-        Medico medico = medService.selecionar(medicoId);
-        instance = new Consulta(data, hora, medico, paciente);
+        
+        instance = builder.addData(data)
+                            .addHora(hora)
+                            .addMedico(medico)
+                            .addPaciente(paciente)
+                            .build();
     }
     
     public Consulta getInstance(){

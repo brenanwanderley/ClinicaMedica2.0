@@ -38,25 +38,24 @@ public class Consulta extends Agendamento{
         }
         this.paciente=consulta.paciente;
     }
-    public Consulta(String data, String hora, Medico medico, Paciente paciente) throws AgendamentoException{
-        super(data);
-        this.setHora(hora);
-        if(medico.horarioDisponivel(super.getData())){
-            this.medico=medico;
-        }else{
-            throw new ConsultaException("O médico não tem horário disponível");
-        }
-        this.paciente=paciente;
-        exames = new ArrayList();
-        procedimentos = new ArrayList();
+    Consulta(){
+
     }
 
     @Override
     public Medico getMedico() {
         return medico;
     }
-    void setMedico(Medico medico){
-        this.medico=medico;
+    void setMedico(Medico medico) throws ConsultaException{
+        if(medico==null){
+            medico=null;
+            return;
+        }
+        if(medico.horarioDisponivel(super.getData())){
+            this.medico=medico;
+        }else{
+            throw new ConsultaException("O médico não tem horário disponível");
+        }
     }
 
     public ArrayList<Exame> getExames() {
@@ -69,6 +68,9 @@ public class Consulta extends Agendamento{
     @Override
     public Paciente getPaciente() {
         return paciente;
+    }
+    void setPaciente(Paciente paciente){
+        this.paciente=paciente;
     }
     public void addExame(Exame exame){
         exames.add(exame);

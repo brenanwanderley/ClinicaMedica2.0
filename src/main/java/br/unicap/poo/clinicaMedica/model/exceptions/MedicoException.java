@@ -9,7 +9,7 @@ package br.unicap.poo.clinicaMedica.model.exceptions;
  *
  * @author Brenan Wanderley
  */
-public class MedicoException extends Exception{
+public class MedicoException extends PessoaException{
     public MedicoException(String e){
         super(e);
     }

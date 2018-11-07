@@ -80,17 +80,10 @@ public class ProcedimentoMedicoEndPoint {
         ProcedimentoMedico item = service.selecionar(id);
         return item;
     }
-    @Path("/{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void alterarExame(@PathParam("id") int id, String jsonContent) throws AgendamentoException{
-        ProcedimentoMedico item = service.selecionar(id);
-        JsonProcessor json = new JsonProcessor(jsonContent);
-        TipoProcedimento tipo = tipoService.selecionar(Integer.parseInt(json.getJsonParam("tipoID")));
-        
-        item.setAll(jsonContent, tipo);
-        
-        service.alterarProcedimento(item);
+    public void alterarExame(ProcedimentoMedicoEditFromJson procedimentoJson) throws AgendamentoException{
+        service.alterarProcedimento(procedimentoJson.getEdit());
     }
     @DELETE
     @Path("/{id}")

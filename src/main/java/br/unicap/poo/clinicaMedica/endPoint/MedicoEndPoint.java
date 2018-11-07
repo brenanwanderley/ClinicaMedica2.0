@@ -48,15 +48,13 @@ public class MedicoEndPoint {
     }
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void cadastrarMedico(MedicoJsonToObject medicoJson){
+    public void cadastrarMedico(MedicoCreateFromJson medicoJson){
         service.cadastrarMedico(medicoJson.getInstance());
     }
-    @Path("/{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void alterarMedico(@PathParam("id") int id, String jsonContent) throws PessoaException{
-        Medico item = service.selecionar(id);
-        item.setAll(jsonContent);
+    public void alterarMedico(MedicoEditFromJson medicoJson) throws PessoaException{
+        service.alterarMedico(medicoJson.getEdit());
     }
     @Path("/{id}")
     @DELETE

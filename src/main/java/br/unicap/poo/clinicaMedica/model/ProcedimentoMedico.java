@@ -17,10 +17,8 @@ public class ProcedimentoMedico extends Agendamento{
     private Consulta consulta;
     private TipoProcedimento tipo;
 
-    public ProcedimentoMedico(String data, Consulta consulta, TipoProcedimento tipo) throws AgendamentoException {
-        super(data);
-        this.consulta = consulta;
-        this.consulta.addProcedimento(this);
+    ProcedimentoMedico(){
+
     }
     private ProcedimentoMedico(int codigo, ProcedimentoMedico procedimento){
         super(codigo, procedimento);
@@ -30,9 +28,14 @@ public class ProcedimentoMedico extends Agendamento{
     public Consulta getConsulta() {
         return consulta;
     }
-
+    void setConsulta(Consulta consulta){
+        this.consulta=consulta;
+    }
     public TipoProcedimento getTipoProcedimento() {
         return tipo;
+    }
+    void setTipoProcedimento(TipoProcedimento tipo){
+        this.tipo=tipo;
     }
     @Override
     public Medico getMedico(){

@@ -24,9 +24,8 @@ public abstract class Pessoa{
         this.nome=pessoa.nome;
         this.telefone=pessoa.telefone;
     }
-    public Pessoa(String nome, String telefone) throws PessoaException{
-        this.nome=nome;
-        setTelefone(telefone);
+    Pessoa(){
+        
     }
     public String getNome() {
         return nome;

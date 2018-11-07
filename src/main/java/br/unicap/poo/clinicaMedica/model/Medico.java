@@ -20,11 +20,7 @@ public class Medico extends Pessoa{
     private PlanoSaudeMedico planoSaudeMedico;
     private HorarioMedico horarioMedico;
     
-    public Medico(String nome, String telefone, Especialidade especialidade) throws PessoaException{
-        super(nome, telefone);
-        this.planoSaudeMedico = new PlanoSaudeMedico(true);
-        this.horarioMedico = new HorarioMedico();
-        this.especialidadeMedico = new EspecialidadeMedico(especialidade);
+    Medico(){
         this.codigo=0;
     }
     private Medico(int codigo, Medico medico){

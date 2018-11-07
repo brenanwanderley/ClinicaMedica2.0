@@ -35,7 +35,8 @@ public class Paciente extends Pessoa{
                     @JsonProperty("nome") String nome,
                     @JsonProperty("telefone") String telefone) throws PessoaException {
         
-        super(nome, telefone);
+        super.setNome(nome);
+        super.setTelefone(telefone);
         if(!cpf.matches("^[0-9]{3}[0-9]{3}[0-9]{3}[0-9]{2}")){
             throw new CpfInvalidoException();
         }else{
@@ -54,7 +55,9 @@ public class Paciente extends Pessoa{
     public Endereco getEndereco() {
         return endereco;
     }
-    
+    public void setEndereco(Endereco endereco){
+        this.endereco=endereco;
+    }
     public String getDataNasc() {
         if(dataNasc!=null){
             Calendar calendar = Calendar.getInstance(); 

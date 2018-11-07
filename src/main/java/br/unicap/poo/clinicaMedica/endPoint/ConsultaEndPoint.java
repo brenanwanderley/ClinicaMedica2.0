@@ -13,9 +13,8 @@ package br.unicap.poo.clinicaMedica.endPoint;
  */
 
 import br.unicap.poo.clinicaMedica.model.Consulta;
-import br.unicap.poo.clinicaMedica.model.Exame;
 import br.unicap.poo.clinicaMedica.model.Medico;
-import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
+import br.unicap.poo.clinicaMedica.model.exceptions.ConsultaException;
 import br.unicap.poo.clinicaMedica.service.ConsultaService;
 import br.unicap.poo.clinicaMedica.service.ExameService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
@@ -85,19 +84,14 @@ public class ConsultaEndPoint {
     }
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void novaConsulta(ConsultaJsonToObject consultaJson){
+    public void novaConsulta(ConsultaCreateFromJson consultaJson){
         Consulta item = consultaJson.getInstance();
         service.AgendarConsulta(item);
     }
-    @Path("/{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void alterarConsulta(@PathParam("id")int id, String jsonContent) throws AgendamentoException{
-        Consulta alteracao = service.selecionar(id);
-        
-        alteracao.setAll(jsonContent);
-        service.alterarConsulta(alteracao);
-        
+    public void alterarConsulta(ConsultaEditFromJson consultaJson) throws ConsultaException{
+        service.alterarConsulta(consultaJson.getEdit());
     }
     @DELETE
     @Path("/{id}")
@@ -114,14 +108,13 @@ public class ConsultaEndPoint {
     @POST
     @Path("/novoexame")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void novoExame(ExameJsonToObject exameJson){
-        Exame exame = exameJson.getInstance();
-        exService.novoExame(exame);
+    public void novoExame(ExameCreateFromJson exameJson){
+        exService.novoExame(exameJson.getInstance());
     }
     @POST
     @Path("/novoprocedimento")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void novoProcedimento(ProcedimentoMedicoJsonToObject procedimentoJson){
+    public void novoProcedimento(ProcedimentoMedicoCreateFromJson procedimentoJson){
         procService.agendarProcedimento(procedimentoJson.getInstance());
     }
 }

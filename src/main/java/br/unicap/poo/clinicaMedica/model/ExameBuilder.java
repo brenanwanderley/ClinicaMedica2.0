@@ -12,30 +12,31 @@ import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
  *
  * @author Lucas Soares
  */
-public class ExameBuilder extends AgendamentoBuilder{
+public class ExameBuilder{
+    private Exame exame;
     public ExameBuilder(){
-        this.agendamento = new Exame();
+        exame = new Exame();
+    }
+    public ExameBuilder addData(String data) throws AgendamentoException{
+        exame.setData(data);
+        return this;
     }
     public ExameBuilder addConsulta(Consulta consulta){
-        Exame item = (Exame)this.agendamento;
-        item.setConsulta(consulta);
+        exame.setConsulta(consulta);
         return this;
     }
     public ExameBuilder addTipoExame(TipoExame tipoExame){
-        Exame item = (Exame)this.agendamento;
-        item.setTipoExame(tipoExame);
+        exame.setTipoExame(tipoExame);
         return this;
     }
-    @Override
-    public Agendamento build() throws AgendamentoException{
-        Exame item = (Exame)this.agendamento;
-        if(item.getConsulta()==null){
+    public Exame build() throws AgendamentoException{
+        if(exame.getConsulta()==null){
             throw new AgendamentoException("Exame sem consulta");
         }
-        if(item.getTipoExame()==null){
+        if(exame.getTipoExame()==null){
             throw new AgendamentoException("Exame sem tipo especificado");
         }
         
-        return item;
+        return exame;
     }
 }
