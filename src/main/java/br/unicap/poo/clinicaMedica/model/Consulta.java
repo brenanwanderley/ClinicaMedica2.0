@@ -117,8 +117,4 @@ public class Consulta extends Agendamento{
         interpretor.interpretador();
         this.setData(context.getDate());
     }
-    @Override
-    public void setAll(String jsonContent) throws AgendamentoException{
-        super.setAll(jsonContent);
-    }
 }

@@ -23,15 +23,14 @@ public class PacienteEditFromJson {
     public PacienteEditFromJson(@JsonProperty("cpf") String cpf,
                                 @JsonProperty("nome") String nome,
                                 @JsonProperty("telefone") String telefone,
-                                @JsonProperty("endereco") Endereco endereco,
-                                @JsonProperty("planoDeSaude") PlanoDeSaudeCreateFromJson planoDeSaudeJson,
                                 @JsonProperty("dataNasc") String dataNasc) throws PessoaException{
         PacienteService service = new PacienteService();
         edit = service.selecionar(cpf);
         edit.setNome(nome);
         edit.setTelefone(telefone);
-        edit.setEndereco(endereco);
-        edit.setPlanoDeSaude(planoDeSaudeJson.getPlanodeSaude());
         edit.setDataNasc(dataNasc);
+    }
+    public Paciente getEdit(){
+        return edit;
     }
 }

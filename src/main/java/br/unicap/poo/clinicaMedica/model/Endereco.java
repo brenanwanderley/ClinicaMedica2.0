@@ -25,9 +25,11 @@ public class Endereco {
     private String complemento;
 
     @JsonCreator
-    public Endereco(@JsonProperty("cep") String cep, @JsonProperty("numero")int numero, @JsonProperty("complemento")String complemento) throws EnderecoException{
-        setCep(cep);
-        setNumero(numero);
+    public Endereco(@JsonProperty("cep") String cep, 
+                    @JsonProperty("numero")int numero, 
+                    @JsonProperty("complemento")String complemento) throws EnderecoException{
+        this.setCep(cep);
+        this.setNumero(numero);
         this.complemento=complemento;
     }
     public Endereco(){
@@ -80,11 +82,4 @@ public class Endereco {
     public Endereco clonar(){
         return new Endereco(this);
     }
-    public void setAll(String jsonContent) throws EnderecoException{
-        JsonProcessor json = new JsonProcessor(jsonContent);
-        setCep(json.getJsonParam("cep"));
-        setNumero(Integer.parseInt(json.getJsonParam("numero")));
-        setComplemento(json.getJsonParam("complemento"));
-    }
-    
 }

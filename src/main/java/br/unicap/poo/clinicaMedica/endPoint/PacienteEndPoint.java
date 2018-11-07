@@ -10,12 +10,9 @@ package br.unicap.poo.clinicaMedica.endPoint;
  * @author Danilo
  */
 
-import br.unicap.poo.clinicaMedica.interpretors.JsonProcessor;
 import br.unicap.poo.clinicaMedica.model.Paciente;
-import br.unicap.poo.clinicaMedica.model.SeguradoraPlano;
 import br.unicap.poo.clinicaMedica.model.exceptions.PessoaException;
 import br.unicap.poo.clinicaMedica.service.PacienteService;
-import br.unicap.poo.clinicaMedica.service.SeguradoraPlanoService;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -29,12 +26,9 @@ import javax.ws.rs.core.MediaType;
 @Path("paciente")
 public class PacienteEndPoint {
     private PacienteService service;
-    private SeguradoraPlanoService segService;
     public PacienteEndPoint(){
         service = new PacienteService();
-        segService = new SeguradoraPlanoService();
-    }
-    
+    }   
     @Path("/{cpf}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -54,18 +48,9 @@ public class PacienteEndPoint {
         Paciente item = service.selecionar(cpf);
         service.removerPaciente(item);
     }
-    @Path("/{cpf}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void alterarPaciente(@PathParam("cpf")String cpf, String jsonContent) throws PessoaException{
-        Paciente alteracao = service.selecionar(cpf);
-        JsonProcessor json = new JsonProcessor(jsonContent);
-        JsonProcessor jsonSeguradoraPlano = new JsonProcessor(json.getJsonParam("planoDeSaude"));
-        
-        SeguradoraPlano seguradora = segService.selecionar(Integer.parseInt(jsonSeguradoraPlano.getJsonParam("seguradoraPlanoID")));
-        
-        alteracao.setAll(jsonContent, seguradora);
-        
-        service.alterarPaciente(alteracao);
+    public void alterarPaciente(PacienteEditFromJson pacienteJson) throws PessoaException{
+        service.alterarPaciente(pacienteJson.getEdit());
     }
 }

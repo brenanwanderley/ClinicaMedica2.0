@@ -69,12 +69,4 @@ public class PlanoDeSaude {
         interpretor.interpretar();
         this.setDataValidade(context.getData());
     }
-    public void setAll(String jsonContent, SeguradoraPlano segPlanoRef){
-        JsonProcessor json = new JsonProcessor(jsonContent);
-        setNumeroCarteira(json.getJsonParam("numeroCarteira"));
-        setDataValidade(json.getJsonParam("dataValidade"));
-        this.seguradoraPlano=segPlanoRef;
-    }
-    
-    
 }

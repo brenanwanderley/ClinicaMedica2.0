@@ -68,10 +68,6 @@ public abstract class Agendamento{
         
         return -1;
     }
-    protected void setAll(String jsonContent) throws AgendamentoException{
-        JsonProcessor json = new JsonProcessor(jsonContent);
-        setData(json.getJsonParam("data"));
-    }
     public abstract Medico getMedico();
     public abstract Paciente getPaciente();
     public abstract Agendamento clonar(int codigo);

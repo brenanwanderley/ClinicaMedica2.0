@@ -50,8 +50,4 @@ public class ProcedimentoMedico extends Agendamento{
     public Agendamento clonar(int codigo){
         return new ProcedimentoMedico(codigo, this);
     }
-    public void setAll(String jsonContent, TipoProcedimento tipoProcedimentoRef) throws AgendamentoException{
-        super.setAll(jsonContent);
-        this.tipo=tipoProcedimentoRef;
-    }
 }

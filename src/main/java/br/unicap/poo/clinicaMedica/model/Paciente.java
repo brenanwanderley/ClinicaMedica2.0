@@ -90,12 +90,4 @@ public class Paciente extends Pessoa{
     public boolean cadastroCompleto(){
         return dataNasc!=null && endereco.enderecoCompleto();
     }
-    public void setAll(String jsonContent, SeguradoraPlano segPlanoRef) throws PessoaException{
-        super.setAll(jsonContent);
-        JsonProcessor json = new JsonProcessor(jsonContent);
-        setDataNasc(json.getJsonParam("dataNasc"));
-        planoDeSaude.setAll(json.getJsonParam("planoDeSaude"), segPlanoRef);
-        endereco.setAll(json.getJsonParam("endereco"));
-    }
-
 }

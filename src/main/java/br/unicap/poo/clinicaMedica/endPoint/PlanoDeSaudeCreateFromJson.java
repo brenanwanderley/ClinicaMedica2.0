@@ -18,7 +18,7 @@ public class PlanoDeSaudeCreateFromJson {
     
     public PlanoDeSaudeCreateFromJson(@JsonProperty("seguradoraID")int seguradoraID,
                                       @JsonProperty("numeroCarteira")String numeroCarteira,
-                                      @JsonProperty("String dataValidade")String dataValidade){
+                                      @JsonProperty("dataValidade")String dataValidade){
         SeguradoraPlanoService segService = new SeguradoraPlanoService();
         
         planoDeSaude = new PlanoDeSaude(segService.selecionar(seguradoraID), numeroCarteira, dataValidade);

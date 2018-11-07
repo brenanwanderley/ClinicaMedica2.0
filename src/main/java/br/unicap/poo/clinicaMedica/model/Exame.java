@@ -50,8 +50,4 @@ public class Exame extends Agendamento{
     public Agendamento clonar(int codigo){
         return new Exame(codigo, this);
     }
-    public void setAll(String jsonContent, TipoExame tipoExameRef) throws AgendamentoException{
-        super.setAll(jsonContent);
-        this.tipo=tipoExameRef;
-    }
 }
