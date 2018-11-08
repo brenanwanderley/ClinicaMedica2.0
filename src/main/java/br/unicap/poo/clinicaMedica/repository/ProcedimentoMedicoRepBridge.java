@@ -6,8 +6,6 @@
 package br.unicap.poo.clinicaMedica.repository;
 
 import br.unicap.poo.clinicaMedica.model.ProcedimentoMedico;
-import java.util.List;
-
 /**
  *
  * @author Danilo
@@ -16,6 +14,6 @@ public interface ProcedimentoMedicoRepBridge {
     public boolean inserir(ProcedimentoMedico item);
     public boolean alterar(ProcedimentoMedico item);
     public boolean remover(ProcedimentoMedico item);
-    public List<ProcedimentoMedico> listar();
+    public Iterador<ProcedimentoMedico> listar();
     public ProcedimentoMedico selecionar(int codigo);
 }

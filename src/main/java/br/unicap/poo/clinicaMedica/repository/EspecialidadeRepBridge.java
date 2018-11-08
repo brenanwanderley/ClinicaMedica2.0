@@ -6,7 +6,6 @@
 package br.unicap.poo.clinicaMedica.repository;
 
 import br.unicap.poo.clinicaMedica.model.Especialidade;
-import java.util.List;
 
 /**
  *
@@ -16,6 +15,6 @@ public interface EspecialidadeRepBridge {
     public boolean inserir(Especialidade item);
     public boolean alterar(Especialidade item);
     public boolean remover(Especialidade item);
-    public List<Especialidade> listar();
+    public Iterador<Especialidade> listar();
     public Especialidade selecionar(int codigo);
 }

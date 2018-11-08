@@ -5,12 +5,10 @@
  */
 package br.unicap.poo.clinicaMedica.service;
 import br.unicap.poo.clinicaMedica.model.TipoProcedimento;
+import br.unicap.poo.clinicaMedica.repository.Iterador;
 import br.unicap.poo.clinicaMedica.repository.TipoProcedimentoRepBridge;
 import br.unicap.poo.clinicaMedica.repository.TipoProcedimentoConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.TipoProcedimentoRepFactory;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 /**
  *
  * @author Danilo
@@ -32,8 +30,8 @@ public class TipoProcedimentoService {
     public void removerTipoProcedimento(TipoProcedimento item){
         tipoProcedimentos.remover(item);
     }
-    public List<TipoProcedimento> listar(){
-        List<TipoProcedimento> listaTiposProcedimentos = tipoProcedimentos.listar();
+    public Iterador<TipoProcedimento> listar(){
+        Iterador<TipoProcedimento> listaTiposProcedimentos = tipoProcedimentos.listar();
         
         return listaTiposProcedimentos;
     }

@@ -6,11 +6,10 @@
 package br.unicap.poo.clinicaMedica.service;
 
 import br.unicap.poo.clinicaMedica.model.SeguradoraPlano;
+import br.unicap.poo.clinicaMedica.repository.Iterador;
 import br.unicap.poo.clinicaMedica.repository.SeguradoraPlanoRepBridge;
 import br.unicap.poo.clinicaMedica.repository.SeguradoraPlanoConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.SeguradoraPlanoRepFactory;
-import java.util.List;
-
 /**
  *
  * @author Danilo
@@ -31,8 +30,8 @@ public class SeguradoraPlanoService {
     public void removerSeguradora(SeguradoraPlano item){
         seguradorasPlano.remover(item);
     }
-    public List<SeguradoraPlano> listarSeguradoras(){
-        List<SeguradoraPlano> listaSeguradorasPlano = seguradorasPlano.listar();
+    public Iterador<SeguradoraPlano> listarSeguradoras(){
+        Iterador<SeguradoraPlano> listaSeguradorasPlano = seguradorasPlano.listar();
                 
         return listaSeguradorasPlano;
     }

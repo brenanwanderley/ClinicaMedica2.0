@@ -6,7 +6,7 @@
 package br.unicap.poo.clinicaMedica.repository;
 
 import br.unicap.poo.clinicaMedica.model.Consulta;
-import java.util.List;
+
 
 /**
  *
@@ -16,6 +16,6 @@ public interface ConsultaRepBridge {
     public boolean inserir(Consulta item);
     public boolean alterar(Consulta item);
     public boolean remover(Consulta item);
-    public List<Consulta> listar();
+    public Iterador<Consulta> listar();
     public Consulta selecionar(int codigo);
 }

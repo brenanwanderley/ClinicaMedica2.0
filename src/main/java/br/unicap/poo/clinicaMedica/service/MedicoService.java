@@ -6,11 +6,10 @@
 package br.unicap.poo.clinicaMedica.service;
  
 import br.unicap.poo.clinicaMedica.model.Medico;
+import br.unicap.poo.clinicaMedica.repository.Iterador;
 import br.unicap.poo.clinicaMedica.repository.MedicoRepBridge;
 import br.unicap.poo.clinicaMedica.repository.MedicoConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.MedicoRepFactory;
-import java.util.List;
-
 /**
  *
  * @author aluno
@@ -35,8 +34,8 @@ public class MedicoService {
         
         return selecao;
     }
-    public List<Medico> listarMedico(){
-        List<Medico> listaMedicos = medicos.listar();
+    public Iterador<Medico> listarMedico(){
+        Iterador<Medico> listaMedicos = medicos.listar();
                 
         return listaMedicos;
     }

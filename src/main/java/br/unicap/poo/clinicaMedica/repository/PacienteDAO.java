@@ -6,19 +6,16 @@
 package br.unicap.poo.clinicaMedica.repository;
 
 import br.unicap.poo.clinicaMedica.model.Paciente;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author Danilo
  */
 public class PacienteDAO implements PacienteRepBridge{
-    private ArrayList<Paciente> dataBase;
+    private ArrayListIterada<Paciente> dataBase;
     private static PacienteDAO instance;
     
     private PacienteDAO(){
-        dataBase = new ArrayList();
+        dataBase = new ArrayListIterada();
     }
     @Override
     public boolean inserir(Paciente item) {
@@ -58,7 +55,7 @@ public class PacienteDAO implements PacienteRepBridge{
     }
 
     @Override
-    public List<Paciente> listar() {
+    public Iterador<Paciente> listar() {
         return dataBase;
     }
 

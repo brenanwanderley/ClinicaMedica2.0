@@ -6,19 +6,16 @@
 package br.unicap.poo.clinicaMedica.repository;
 
 import br.unicap.poo.clinicaMedica.model.Medico;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author Danilo
  */
 public class MedicoDAO implements MedicoRepBridge{
-    private ArrayList<Medico> dataBase;
+    private ArrayListIterada<Medico> dataBase;
     private static MedicoDAO instance;
     
     private MedicoDAO(){
-        dataBase = new ArrayList();
+        dataBase = new ArrayListIterada();
     }
     public synchronized static MedicoDAO getInstance(){
         if(instance==null)
@@ -50,7 +47,7 @@ public class MedicoDAO implements MedicoRepBridge{
     }
 
     @Override
-    public List<Medico> listar() {
+    public Iterador<Medico> listar() {
         return dataBase;
     }
 

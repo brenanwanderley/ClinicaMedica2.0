@@ -6,8 +6,6 @@
 package br.unicap.poo.clinicaMedica.repository;
 
 import br.unicap.poo.clinicaMedica.model.TipoExame;
-import java.util.List;
-
 /**
  *
  * @author Danilo
@@ -16,6 +14,6 @@ public interface TipoExameRepBridge {
     public boolean inserir(TipoExame item);
     public boolean alterar(TipoExame item);
     public boolean remover(TipoExame item);
-    public List<TipoExame> listar();
+    public Iterador<TipoExame> listar();
     public TipoExame selecionar(int codigo);
 }

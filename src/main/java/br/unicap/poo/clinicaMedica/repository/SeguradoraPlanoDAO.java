@@ -6,19 +6,16 @@
 package br.unicap.poo.clinicaMedica.repository;
 
 import br.unicap.poo.clinicaMedica.model.SeguradoraPlano;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author Danilo
  */
 public class SeguradoraPlanoDAO implements SeguradoraPlanoRepBridge{
-    private ArrayList<SeguradoraPlano> dataBase;
+    private ArrayListIterada<SeguradoraPlano> dataBase;
     private static SeguradoraPlanoDAO instance;
     
     private SeguradoraPlanoDAO(){
-        dataBase = new ArrayList();
+        dataBase = new ArrayListIterada();
     }
     public synchronized static SeguradoraPlanoDAO getInstance(){
         if(instance==null)
@@ -60,7 +57,7 @@ public class SeguradoraPlanoDAO implements SeguradoraPlanoRepBridge{
     }
 
     @Override
-    public List<SeguradoraPlano> listar() {
+    public Iterador<SeguradoraPlano> listar() {
         return dataBase;
     }
 

@@ -6,6 +6,7 @@ import br.unicap.poo.clinicaMedica.model.Medico;
 import br.unicap.poo.clinicaMedica.repository.ExameRepBridge;
 import br.unicap.poo.clinicaMedica.repository.ExameConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.ExameRepFactory;
+import br.unicap.poo.clinicaMedica.repository.Iterador;
 import java.util.List;
 import java.util.Date;
 
@@ -31,24 +32,24 @@ public class ExameService {
     
     public List<Exame> verExames(Medico medico){
         AgendamentoList list = new AgendamentoList();
-        List<Agendamento> listagem = (List<Agendamento>)(List<?>)exames.listar();
-        List<Agendamento> resultado = list.verAgendamentos(listagem, medico);
+        Iterador<Agendamento> listagem = (Iterador<Agendamento>)(Iterador<?>)exames.listar();
+        Iterador<Agendamento> resultado = list.verAgendamentos(listagem, medico);
         
         return (List<Exame>)(List<?>) resultado;
     }
     public List<Exame> verExames(Date data){
         AgendamentoList list = new AgendamentoList();
-        List<Agendamento> listagem = (List<Agendamento>)(List<?>)exames.listar();
-        List<Agendamento> resultado = list.verAgendamentos(listagem, data);
+        Iterador<Agendamento> listagem = (Iterador<Agendamento>)(Iterador<?>)exames.listar();
+        Iterador<Agendamento> resultado = list.verAgendamentos(listagem, data);
         
         return (List<Exame>)(List<?>) resultado;       
     }
-    public List<Exame> verExames(Medico medico, Date data){
+    public Iterador<Exame> verExames(Medico medico, Date data){
         AgendamentoList list = new AgendamentoList();
-        List<Agendamento> listagem = (List<Agendamento>)(List<?>)exames.listar();
-        List<Agendamento> resultado = list.verAgendamentos(listagem, medico);
+        Iterador<Agendamento> listagem = (Iterador<Agendamento>)(List<?>)exames.listar();
+        Iterador<Agendamento> resultado = list.verAgendamentos(listagem, medico);
         
-        return (List<Exame>)(List<?>) resultado;
+        return (Iterador<Exame>)(Iterador<?>) resultado;
     }
     public Exame selecionar(int codigo){
         Exame selecao = exames.selecionar(codigo);

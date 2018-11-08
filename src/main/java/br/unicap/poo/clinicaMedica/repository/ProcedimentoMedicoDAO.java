@@ -6,19 +6,16 @@
 package br.unicap.poo.clinicaMedica.repository;
 
 import br.unicap.poo.clinicaMedica.model.ProcedimentoMedico;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author Danilo
  */
 public class ProcedimentoMedicoDAO implements ProcedimentoMedicoRepBridge{
-    private ArrayList<ProcedimentoMedico> dataBase;
+    private ArrayListIterada<ProcedimentoMedico> dataBase;
     private static ProcedimentoMedicoDAO instance;
     
     private ProcedimentoMedicoDAO(){
-        dataBase = new ArrayList();
+        dataBase = new ArrayListIterada();
     }
     public synchronized static ProcedimentoMedicoDAO getInstance(){
         if(instance==null)
@@ -60,7 +57,7 @@ public class ProcedimentoMedicoDAO implements ProcedimentoMedicoRepBridge{
     }
 
     @Override
-    public List<ProcedimentoMedico> listar() {
+    public Iterador<ProcedimentoMedico> listar() {
         return dataBase;
     }
 

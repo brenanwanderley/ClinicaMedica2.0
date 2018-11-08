@@ -6,8 +6,6 @@
 package br.unicap.poo.clinicaMedica.repository;
 
 import br.unicap.poo.clinicaMedica.model.SeguradoraPlano;
-import java.util.List;
-
 /**
  *
  * @author Danilo
@@ -16,6 +14,6 @@ public interface SeguradoraPlanoRepBridge {
     public boolean inserir(SeguradoraPlano item);
     public boolean alterar(SeguradoraPlano item);
     public boolean remover(SeguradoraPlano item);
-    public List<SeguradoraPlano> listar();
+    public Iterador<SeguradoraPlano> listar();
     public SeguradoraPlano selecionar(int codigo);
 }

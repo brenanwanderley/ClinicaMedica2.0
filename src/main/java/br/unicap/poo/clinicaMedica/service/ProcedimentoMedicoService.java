@@ -3,6 +3,7 @@ package br.unicap.poo.clinicaMedica.service;
 import br.unicap.poo.clinicaMedica.model.Agendamento;
 import br.unicap.poo.clinicaMedica.model.Medico;
 import br.unicap.poo.clinicaMedica.model.ProcedimentoMedico;
+import br.unicap.poo.clinicaMedica.repository.Iterador;
 import br.unicap.poo.clinicaMedica.repository.ProcedimentoMedicoRepBridge;
 import br.unicap.poo.clinicaMedica.repository.ProcedimentoMedicoConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.ProcedimentoMedicoRepFactory;
@@ -32,25 +33,25 @@ public class ProcedimentoMedicoService {
     
     public List<ProcedimentoMedico> verProcedimentos(Medico medico, Date data){
         AgendamentoList list = new AgendamentoList();
-        List<Agendamento> listagem = (List<Agendamento>)(List<?>)procedimentos.listar();
-        List<Agendamento> resultado = list.verAgendamentos(listagem, data, medico);
+        Iterador<Agendamento> listagem = (Iterador<Agendamento>)(Iterador<?>)procedimentos.listar();
+        Iterador<Agendamento> resultado = list.verAgendamentos(listagem, data, medico);
         
         return (List<ProcedimentoMedico>)(List<?>) resultado;
         
     }
     public List<ProcedimentoMedico> verProcedimentos(Medico medico){
         AgendamentoList list = new AgendamentoList();
-        List<Agendamento> listagem = (List<Agendamento>)(List<?>)procedimentos.listar();
-        List<Agendamento> resultado = list.verAgendamentos(listagem, medico);
+        Iterador<Agendamento> listagem = (Iterador<Agendamento>)(Iterador<?>)procedimentos.listar();
+        Iterador<Agendamento> resultado = list.verAgendamentos(listagem, medico);
         
         return (List<ProcedimentoMedico>)(List<?>) resultado;
     }
-    public List<ProcedimentoMedico> verProcedimentos(Date data){
+    public Iterador<ProcedimentoMedico> verProcedimentos(Date data){
         AgendamentoList list = new AgendamentoList();
-        List<Agendamento> listagem = (List<Agendamento>)(List<?>)procedimentos.listar();
-        List<Agendamento> resultado = list.verAgendamentos(listagem, data);
+        Iterador<Agendamento> listagem = (Iterador<Agendamento>)(List<?>)procedimentos.listar();
+        Iterador<Agendamento> resultado = list.verAgendamentos(listagem, data);
         
-        return (List<ProcedimentoMedico>)(List<?>) resultado;
+        return (Iterador<ProcedimentoMedico>)(Iterador<?>) resultado;
     }
     public ProcedimentoMedico selecionar(int codigo){
         ProcedimentoMedico selecao = procedimentos.selecionar(codigo);

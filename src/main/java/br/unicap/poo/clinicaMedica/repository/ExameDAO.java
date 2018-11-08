@@ -6,19 +6,16 @@
 package br.unicap.poo.clinicaMedica.repository;
 
 import br.unicap.poo.clinicaMedica.model.Exame;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author Danilo
  */
 public class ExameDAO implements ExameRepBridge{
-    private ArrayList<Exame> dataBase;
+    private ArrayListIterada<Exame> dataBase;
     private static ExameDAO instance;
     
     private ExameDAO(){
-        dataBase = new ArrayList();
+        dataBase = new ArrayListIterada();
     }
     public synchronized static ExameDAO getInstance(){
         if(instance==null)
@@ -59,7 +56,7 @@ public class ExameDAO implements ExameRepBridge{
         return false;    }
 
     @Override
-    public List<Exame> listar() {
+    public Iterador<Exame> listar() {
         return dataBase;
     }
 

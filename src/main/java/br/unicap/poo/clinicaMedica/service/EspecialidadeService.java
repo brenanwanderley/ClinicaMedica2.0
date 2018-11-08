@@ -8,10 +8,7 @@ import br.unicap.poo.clinicaMedica.model.Especialidade;
 import br.unicap.poo.clinicaMedica.repository.EspecialidadeRepBridge;
 import br.unicap.poo.clinicaMedica.repository.EspecialidadeConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.EspecialidadeRepFactory;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
+import br.unicap.poo.clinicaMedica.repository.Iterador;
 /**
  *
  * @author Danilo
@@ -34,8 +31,8 @@ public class EspecialidadeService {
     public void removerEspecialidade(Especialidade item){
         especialidades.remover(item);
     }
-   public List<Especialidade> listar(){
-       List<Especialidade> listaEspecialidades = especialidades.listar();
+   public Iterador<Especialidade> listar(){
+       Iterador<Especialidade> listaEspecialidades = especialidades.listar();
               
        return listaEspecialidades;
    }

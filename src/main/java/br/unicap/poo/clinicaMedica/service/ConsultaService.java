@@ -6,9 +6,9 @@ import br.unicap.poo.clinicaMedica.model.Medico;
 import br.unicap.poo.clinicaMedica.repository.ConsultaRepBridge;
 import br.unicap.poo.clinicaMedica.repository.ConsultaConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.ConsultaRepFactory;
+import br.unicap.poo.clinicaMedica.repository.Iterador;
 
 import java.util.Date;
-import java.util.List;
 
 
 public class ConsultaService {
@@ -29,26 +29,26 @@ public class ConsultaService {
     public void cancelarConsulta(Consulta item){
         consultas.remover(item);
     }
-    public List<Consulta> verConsultas(Medico medico, Date data){
+    public Iterador<Consulta> verConsultas(Medico medico, Date data){
         AgendamentoList list = new AgendamentoList();
-        List<Agendamento> listagem = (List<Agendamento>)(List<?>)consultas.listar();
-        List<Agendamento> resultado = list.verAgendamentos(listagem, data, medico);
+        Iterador<Agendamento> listagem = (Iterador<Agendamento>)(Iterador<?>)consultas.listar();
+        Iterador<Agendamento> resultado = list.verAgendamentos(listagem, data, medico);
         
-        return (List<Consulta>)(List<?>) resultado;
+        return (Iterador<Consulta>)(Iterador<?>) resultado;
     }
-    public List<Consulta> verConsultas(Medico medico){
+    public Iterador<Consulta> verConsultas(Medico medico){
         AgendamentoList list = new AgendamentoList();
-        List<Agendamento> listagem = (List<Agendamento>)(List<?>)consultas.listar();
-        List<Agendamento> resultado = list.verAgendamentos(listagem, medico);
+        Iterador<Agendamento> listagem = (Iterador<Agendamento>)(Iterador<?>)consultas.listar();
+        Iterador<Agendamento> resultado = list.verAgendamentos(listagem, medico);
         
-        return (List<Consulta>)(List<?>) resultado;
+        return (Iterador<Consulta>)(Iterador<?>) resultado;
     }
-    public List<Consulta> verConsultas(Date data){
+    public Iterador<Consulta> verConsultas(Date data){
         AgendamentoList list = new AgendamentoList();
-        List<Agendamento> listagem = (List<Agendamento>)(List<?>)consultas.listar();
-        List<Agendamento> resultado = list.verAgendamentos(listagem, data);
+        Iterador<Agendamento> listagem = (Iterador<Agendamento>)(Iterador<?>)consultas.listar();
+        Iterador<Agendamento> resultado = list.verAgendamentos(listagem, data);
         
-        return (List<Consulta>)(List<?>) resultado;
+        return (Iterador<Consulta>)(Iterador<?>) resultado;
     }
     public Consulta selecionar(int codigo){
         Consulta selecao = consultas.selecionar(codigo);
