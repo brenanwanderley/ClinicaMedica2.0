@@ -25,7 +25,7 @@ public class PlanoSaudeMedico {
     }
     private PlanoSaudeMedico(PlanoSaudeMedico planoSaudeMedico){
         this.atendePrivado=planoSaudeMedico.atendePrivado;
-        seguradorasPlano = new ArrayList();
+        this.seguradorasPlano = new ArrayList();
         for(SeguradoraPlano item : planoSaudeMedico.seguradorasPlano){
             this.seguradorasPlano.add(item);
         }

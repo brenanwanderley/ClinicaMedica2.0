@@ -47,9 +47,6 @@ public abstract class Agendamento{
         cal = Calendar.getInstance();
         cal.setTime(data);
         
-        if(cal.compareTo(cal2)<0){
-            throw new DataInvalidaException("Data inválida");
-        }
         
         this.data = data;
     }

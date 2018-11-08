@@ -22,6 +22,9 @@ public class Medico extends Pessoa{
     
     Medico(){
         this.codigo=0;
+        this.planoSaudeMedico = new PlanoSaudeMedico(true);
+        this.horarioMedico = new HorarioMedico();
+        this.especialidadeMedico = new EspecialidadeMedico();
     }
     private Medico(int codigo, Medico medico){
         super(medico);

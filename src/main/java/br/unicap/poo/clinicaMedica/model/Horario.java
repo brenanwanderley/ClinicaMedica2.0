@@ -87,12 +87,6 @@ public class Horario {
     public boolean horarioValido(int diaSemana, int hora){
         return diaSemana==this.diaSemana.getValorDiaSemana() && hora > chegada && hora < saida;
     }
-    @Override
-    public boolean equals(Object horario){
-        Horario objeto = (Horario)horario;
-        
-        return objeto.diaSemana==this.diaSemana && objeto.chegada==this.chegada && objeto.saida==this.saida;
-    }
     public Horario clonar(){
         return new Horario(this);
     }

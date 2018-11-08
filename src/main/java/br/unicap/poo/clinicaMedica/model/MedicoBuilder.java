@@ -26,8 +26,7 @@ public class MedicoBuilder{
         return this;
     }
     public MedicoBuilder addEspecialidade(Especialidade especialidade) throws MedicoException{
-        Medico item = (Medico)this.medico;
-        item.getEspecialidadeMedico().addEspecialidade(especialidade);
+        this.medico.getEspecialidadeMedico().addEspecialidade(especialidade);
         return this;
     }
     public Medico build() throws PessoaException{

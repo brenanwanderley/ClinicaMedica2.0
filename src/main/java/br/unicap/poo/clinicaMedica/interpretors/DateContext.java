@@ -20,7 +20,7 @@ public class DateContext {
     public DateContext(String dataString, String delimitor){
         this.dataString=dataString;
         this.delimitor=delimitor;
-        this.data = Calendar.getInstance().getTime();
+        this.data = new Date();
     }
     public DateContext(String dataString, String delimitor, Date data){
         this.dataString=dataString;

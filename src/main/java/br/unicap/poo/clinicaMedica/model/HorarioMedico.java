@@ -87,6 +87,9 @@ public class HorarioMedico {
         return new HorarioMedico(this);
     }
     private int lastCode(){
+        if(horarios.isEmpty()){
+            return -1;
+        }
         return horarios.get(horarios.size()-1).getCodigo();
     }
 }

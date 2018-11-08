@@ -48,6 +48,7 @@ public class MedicoEndPoint {
     }
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public void cadastrarMedico(MedicoCreateFromJson medicoJson){
         service.cadastrarMedico(medicoJson.getInstance());
     }

@@ -6,6 +6,7 @@
 package br.unicap.poo.clinicaMedica.interpretors;
 
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -20,7 +21,8 @@ public abstract class DateInterpretor {
     
     public DateInterpretor(DateContext context){
         calendar = Calendar.getInstance();
-        calendar.setTime(context.getData());
+        this.context=context;
+        calendar.setTime(this.context.getData());
     }
     public void interpretar(){
         calendar.set(Calendar.DAY_OF_MONTH, dia);
