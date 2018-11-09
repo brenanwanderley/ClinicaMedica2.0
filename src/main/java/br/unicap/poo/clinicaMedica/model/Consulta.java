@@ -5,12 +5,9 @@
  */
 package br.unicap.poo.clinicaMedica.model;
 
-import br.unicap.poo.clinicaMedica.interpretors.HHMMTimeInterpretor;
-import br.unicap.poo.clinicaMedica.interpretors.TimeContext;
-import br.unicap.poo.clinicaMedica.interpretors.TimeInterpretor;
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.ConsultaException;
-import br.unicap.poo.clinicaMedica.model.exceptions.DataInvalidaException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import javax.enterprise.context.ApplicationScoped;
 
@@ -39,7 +36,9 @@ public class Consulta extends Agendamento{
         this.paciente=consulta.paciente;
     }
     Consulta(){
-
+        super();
+        exames = new ArrayList();
+        procedimentos = new ArrayList();
     }
 
     @Override
@@ -110,11 +109,5 @@ public class Consulta extends Agendamento{
     public void setStatus(Status status){
         super.setStatus(status);
         paciente.increaseNumeroVisitas();
-    }
-    public void setHora(String hora) throws DataInvalidaException{
-        TimeContext context = new TimeContext(hora, super.getData());
-        TimeInterpretor interpretor = new HHMMTimeInterpretor(context);
-        interpretor.interpretador();
-        this.setData(context.getDate());
     }
 }

@@ -20,8 +20,9 @@ public class EspecialidadeMedico {
     private ArrayList<Especialidade> especialidades;
     @JsonCreator
 
-    EspecialidadeMedico(){
-        especialidades= new ArrayList<>();
+    public EspecialidadeMedico(Especialidade especialidade){
+        especialidades= new ArrayList();
+        especialidades.add(especialidade);
     }
     private EspecialidadeMedico(EspecialidadeMedico especialidadeMedico){
         especialidades = new ArrayList<>();

@@ -6,6 +6,7 @@
 package br.unicap.poo.clinicaMedica.model;
 
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
+import java.text.ParseException;
 import javax.enterprise.context.ApplicationScoped;
 
 /**
@@ -17,8 +18,10 @@ public class ProcedimentoMedico extends Agendamento{
     private Consulta consulta;
     private TipoProcedimento tipo;
 
-    ProcedimentoMedico(){
-
+    public ProcedimentoMedico(String data, Consulta consulta, TipoProcedimento tipo) throws AgendamentoException, ParseException{
+        super(data);
+        this.consulta=consulta;
+        this.tipo=tipo;
     }
     private ProcedimentoMedico(int codigo, ProcedimentoMedico procedimento){
         super(codigo, procedimento);

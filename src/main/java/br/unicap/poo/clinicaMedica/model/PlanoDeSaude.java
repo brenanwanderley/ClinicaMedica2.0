@@ -4,13 +4,12 @@
  * and open the template in the editor.
  */
 package br.unicap.poo.clinicaMedica.model;
-import br.unicap.poo.clinicaMedica.interpretors.DDMMYYYDateInterpretor;
-import br.unicap.poo.clinicaMedica.interpretors.DateContext;
-import br.unicap.poo.clinicaMedica.interpretors.DateInterpretor;
-import br.unicap.poo.clinicaMedica.interpretors.JsonProcessor;
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import javax.enterprise.context.ApplicationScoped;
 
 /**
@@ -32,7 +31,6 @@ public class PlanoDeSaude {
                         String dataValidade){
         this.seguradoraPlano=seguradoraPlano;
         this.numeroCarteira=numeroCarteira;
-        setDataValidade(dataValidade);       
     }
 
     public SeguradoraPlano getSeguradoraPlano() {
@@ -63,10 +61,8 @@ public class PlanoDeSaude {
     public void setDataValidade(Date dataValidade){
         this.dataValidade=dataValidade;
     }
-    public void setDataValidade(String dataValidade) {
-        DateContext context = new DateContext(dataValidade, "/");
-        DateInterpretor interpretor = new DDMMYYYDateInterpretor(context);
-        interpretor.interpretar();
-        this.setDataValidade(context.getData());
+    public void setDataValidade(String dataValidade) throws ParseException {
+        DateFormat df = new SimpleDateFormat("dd/mm/yy", Locale.ENGLISH);
+        this.setDataValidade(df.parse(dataValidade));
     }
 }

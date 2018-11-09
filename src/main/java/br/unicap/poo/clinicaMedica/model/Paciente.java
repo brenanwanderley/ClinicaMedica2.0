@@ -5,17 +5,16 @@
  */
 package br.unicap.poo.clinicaMedica.model;
 
-import br.unicap.poo.clinicaMedica.interpretors.DDMMYYYDateInterpretor;
-import br.unicap.poo.clinicaMedica.interpretors.DateContext;
-import br.unicap.poo.clinicaMedica.interpretors.DateInterpretor;
-import br.unicap.poo.clinicaMedica.interpretors.JsonProcessor;
 import br.unicap.poo.clinicaMedica.model.exceptions.CpfInvalidoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.PessoaException;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import javax.enterprise.context.ApplicationScoped;
 
 /**
@@ -71,11 +70,9 @@ public class Paciente extends Pessoa{
     public void setDataNasc(Date dataNasc) {
         this.dataNasc = dataNasc;
     }
-    public void setDataNasc(String dataNasc){
-        DateContext context = new DateContext(dataNasc, "/");
-        DateInterpretor interpretor = new DDMMYYYDateInterpretor(context);
-        interpretor.interpretar();
-        setDataNasc(context.getData());
+    public void setDataNasc(String dataNasc) throws ParseException{
+        DateFormat df = new SimpleDateFormat("dd/mm/yy", Locale.ENGLISH);
+        this.setDataNasc(df.parse(dataNasc));
     }
     public String getCpf() {
         return cpf;

@@ -6,14 +6,15 @@
 package br.unicap.poo.clinicaMedica.endPoint;
 
 import br.unicap.poo.clinicaMedica.model.Consulta;
-import br.unicap.poo.clinicaMedica.model.Medico;
 import br.unicap.poo.clinicaMedica.model.ConsultaBuilder;
 import br.unicap.poo.clinicaMedica.model.Paciente;
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
+import br.unicap.poo.clinicaMedica.model.exceptions.DataInvalidaException;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
 import br.unicap.poo.clinicaMedica.service.PacienteService;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.text.ParseException;
 import javax.enterprise.context.ApplicationScoped;
 
 /**
@@ -28,17 +29,15 @@ public class ConsultaCreateFromJson {
     public ConsultaCreateFromJson(@JsonProperty("data")String data,
                     @JsonProperty("hora") String hora,
                     @JsonProperty("medicoID")int medicoId, 
-                    @JsonProperty("pacienteCPF")String pacienteCpf) throws AgendamentoException{
+                    @JsonProperty("pacienteCPF")String pacienteCpf) throws AgendamentoException, DataInvalidaException, ParseException{
         ConsultaBuilder builder = new ConsultaBuilder();
         MedicoService medService = new MedicoService();
-        Medico medico = medService.selecionar(medicoId);
         PacienteService pacService = new PacienteService();
         Paciente paciente = pacService.selecionar(pacienteCpf);
         
         instance = builder.addData(data)
-                            .addHora(hora)
-                            .addMedico(medico)
-                            .addPaciente(paciente)
+                            .addMedico(medService.selecionar(medicoId))
+                            .addPaciente(pacService.selecionar(pacienteCpf))
                             .build();
     }
     

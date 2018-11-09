@@ -7,9 +7,11 @@ package br.unicap.poo.clinicaMedica.endPoint;
 
 import br.unicap.poo.clinicaMedica.model.Exame;
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
+import br.unicap.poo.clinicaMedica.model.exceptions.DataInvalidaException;
 import br.unicap.poo.clinicaMedica.service.ExameService;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.text.ParseException;
 
 /**
  *
@@ -19,7 +21,7 @@ public class ExameEditFromJson {
     private Exame edit;
     @JsonCreator
     public ExameEditFromJson(@JsonProperty("id") int id,
-                             @JsonProperty("data") String data) throws AgendamentoException{
+                             @JsonProperty("data") String data) throws AgendamentoException, DataInvalidaException, ParseException{
         ExameService service = new ExameService();
         edit = service.selecionar(id);
         edit.setData(data);

@@ -6,6 +6,7 @@
 package br.unicap.poo.clinicaMedica.model;
 
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
+import java.text.ParseException;
 import javax.enterprise.context.ApplicationScoped;
 
 /**
@@ -17,8 +18,10 @@ public class Exame extends Agendamento{
     private Consulta consulta;
     private TipoExame tipo;
     
-    Exame(){
-        super();
+    public Exame(String data, Consulta consulta, TipoExame tipo) throws AgendamentoException, ParseException{
+        super(data);
+        this.consulta=consulta;
+        this.tipo=tipo;
     }
     private Exame(int codigo, Exame exame){
         super(codigo, exame);

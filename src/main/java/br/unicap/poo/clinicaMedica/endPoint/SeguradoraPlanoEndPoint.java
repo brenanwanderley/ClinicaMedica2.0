@@ -11,6 +11,7 @@ package br.unicap.poo.clinicaMedica.endPoint;
  */
 
 import br.unicap.poo.clinicaMedica.model.SeguradoraPlano;
+import br.unicap.poo.clinicaMedica.repository.Iterador;
 import br.unicap.poo.clinicaMedica.service.SeguradoraPlanoService;
 import java.util.List;
 import javax.ws.rs.Consumes;
@@ -32,7 +33,7 @@ public class SeguradoraPlanoEndPoint {
     }
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<SeguradoraPlano> listarSeguradoraPlanos(){
+    public Iterador<SeguradoraPlano> listarSeguradoraPlanos(){
         return service.listarSeguradoras();
     }
     @POST

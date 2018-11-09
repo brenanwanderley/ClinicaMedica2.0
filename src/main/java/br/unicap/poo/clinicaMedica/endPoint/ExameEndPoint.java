@@ -8,11 +8,13 @@ package br.unicap.poo.clinicaMedica.endPoint;
 import br.unicap.poo.clinicaMedica.model.Exame;
 import br.unicap.poo.clinicaMedica.model.Medico;
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
+import br.unicap.poo.clinicaMedica.repository.Iterador;
 import javax.ws.rs.Path;
 import br.unicap.poo.clinicaMedica.service.ExameService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
 import br.unicap.poo.clinicaMedica.service.TipoExameService;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -59,7 +61,7 @@ public class ExameEndPoint {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
 
-    public List<Exame> listarExames(@PathParam("dia")int dia, 
+    public Iterador<Exame> listarExames(@PathParam("dia")int dia, 
                                           @PathParam("mes")int mes, 
                                           @PathParam("ano")int ano, 
                                           @PathParam("medicoid") int medicoId){

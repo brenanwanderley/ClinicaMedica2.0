@@ -1,15 +1,12 @@
 package br.unicap.poo.clinicaMedica.endPoint;
 
-import br.unicap.poo.clinicaMedica.model.Consulta;
 import br.unicap.poo.clinicaMedica.model.ProcedimentoMedico;
-import br.unicap.poo.clinicaMedica.model.ProcedimentoMedicoBuilder;
-import br.unicap.poo.clinicaMedica.model.TipoProcedimento;
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
 import br.unicap.poo.clinicaMedica.service.ConsultaService;
 import br.unicap.poo.clinicaMedica.service.TipoProcedimentoService;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Date;
+import java.text.ParseException;
 import javax.enterprise.context.ApplicationScoped;
 
 /**
@@ -23,18 +20,11 @@ public class ProcedimentoMedicoCreateFromJson {
     @JsonCreator
     public ProcedimentoMedicoCreateFromJson(@JsonProperty("data") String data, 
                 @JsonProperty("consultaID") int consultaId, 
-                @JsonProperty("tipoID") int tipoId) throws AgendamentoException{
+                @JsonProperty("tipoID") int tipoId) throws AgendamentoException, ParseException{
         ConsultaService conService = new ConsultaService();
         TipoProcedimentoService exService = new TipoProcedimentoService();
-        Consulta consulta = conService.selecionar(consultaId);
-        TipoProcedimento tipo = exService.selecionar(tipoId);
-        ProcedimentoMedicoBuilder builder = new ProcedimentoMedicoBuilder();
         
-        instance = builder
-                        .addConsulta(consulta)
-                        .addData(data)
-                        .addTipoProcedimento(tipo)
-                        .build();
+        instance = new ProcedimentoMedico(data, conService.selecionar(consultaId), exService.selecionar(tipoId));
     }
     public ProcedimentoMedico getInstance(){
         return instance;

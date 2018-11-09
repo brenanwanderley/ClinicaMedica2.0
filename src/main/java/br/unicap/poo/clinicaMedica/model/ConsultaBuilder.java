@@ -7,6 +7,7 @@ package br.unicap.poo.clinicaMedica.model;
 
 import br.unicap.poo.clinicaMedica.model.exceptions.ConsultaException;
 import br.unicap.poo.clinicaMedica.model.exceptions.DataInvalidaException;
+import java.text.ParseException;
 
 /**
  *
@@ -18,12 +19,8 @@ public class ConsultaBuilder{
     public ConsultaBuilder(){
         consulta = new Consulta();
     }
-    public ConsultaBuilder addData(String data) throws DataInvalidaException{
+    public ConsultaBuilder addData(String data) throws DataInvalidaException, ParseException{
         consulta.setData(data);
-        return this;
-    }
-    public ConsultaBuilder addHora(String hora) throws DataInvalidaException{
-        consulta.setHora(hora);
         return this;
     }
     public ConsultaBuilder addMedico(Medico medico) throws ConsultaException{

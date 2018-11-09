@@ -13,6 +13,7 @@ import br.unicap.poo.clinicaMedica.model.exceptions.EspecialidadeMedicoNaoEncont
 import br.unicap.poo.clinicaMedica.model.exceptions.EspecialidadeMedicoRepetidaException;
 import br.unicap.poo.clinicaMedica.model.exceptions.MedicoSemEspecialidadeException;
 import br.unicap.poo.clinicaMedica.model.exceptions.PessoaException;
+import br.unicap.poo.clinicaMedica.repository.Iterador;
 import br.unicap.poo.clinicaMedica.service.EspecialidadeService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
 import br.unicap.poo.clinicaMedica.service.SeguradoraPlanoService;
@@ -43,7 +44,7 @@ public class MedicoEndPoint {
     }
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Medico> listarMedicos(){
+    public Iterador<Medico> listarMedicos(){
         return service.listarMedico();
     }
     @POST

@@ -5,11 +5,10 @@
  */
 package br.unicap.poo.clinicaMedica.endPoint;
 
-import br.unicap.poo.clinicaMedica.interpretors.JsonProcessor;
 import br.unicap.poo.clinicaMedica.model.ProcedimentoMedico;
 import br.unicap.poo.clinicaMedica.model.Medico;
-import br.unicap.poo.clinicaMedica.model.TipoProcedimento;
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
+import br.unicap.poo.clinicaMedica.repository.Iterador;
 import javax.ws.rs.Path;
 import br.unicap.poo.clinicaMedica.service.ProcedimentoMedicoService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
@@ -49,7 +48,7 @@ public class ProcedimentoMedicoEndPoint {
     @Path("/{dia}/{mes}/{ano}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<ProcedimentoMedico> listarProcedimentos(@PathParam("dia")int dia, @PathParam("mes")int mes, @PathParam("ano")int ano){
+    public Iterador<ProcedimentoMedico> listarProcedimentos(@PathParam("dia")int dia, @PathParam("mes")int mes, @PathParam("ano")int ano){
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.DAY_OF_MONTH, dia);
         calendar.set(Calendar.MONTH, mes-1);

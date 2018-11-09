@@ -11,6 +11,7 @@ package br.unicap.poo.clinicaMedica.endPoint;
  */
 
 import br.unicap.poo.clinicaMedica.model.TipoProcedimento;
+import br.unicap.poo.clinicaMedica.repository.Iterador;
 import br.unicap.poo.clinicaMedica.service.TipoProcedimentoService;
 import java.util.List;
 import javax.ws.rs.Consumes;
@@ -31,7 +32,7 @@ public class TipoProcedimentoEndPoint {
     }
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<TipoProcedimento> listarTipoProcedimentos(){
+    public Iterador<TipoProcedimento> listarTipoProcedimentos(){
         return service.listar();
     }
     @POST

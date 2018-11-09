@@ -15,6 +15,7 @@ package br.unicap.poo.clinicaMedica.endPoint;
 import br.unicap.poo.clinicaMedica.model.Consulta;
 import br.unicap.poo.clinicaMedica.model.Medico;
 import br.unicap.poo.clinicaMedica.model.exceptions.ConsultaException;
+import br.unicap.poo.clinicaMedica.repository.Iterador;
 import br.unicap.poo.clinicaMedica.service.ConsultaService;
 import br.unicap.poo.clinicaMedica.service.ExameService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
@@ -51,14 +52,14 @@ public class ConsultaEndPoint {
     @Path("/{medicoid}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Consulta> listarConsultas(@PathParam("medicoid") int medicoId){
+    public Iterador<Consulta> listarConsultas(@PathParam("medicoid") int medicoId){
         Medico medico = medService.selecionar(medicoId);
         return service.verConsultas(medico);
     }
     @Path("/{dia}/{mes}/{ano}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Consulta> listarConsultas(@PathParam("dia")int dia, @PathParam("mes")int mes, @PathParam("ano")int ano){
+    public Iterador<Consulta> listarConsultas(@PathParam("dia")int dia, @PathParam("mes")int mes, @PathParam("ano")int ano){
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.DAY_OF_MONTH, dia);
         calendar.set(Calendar.MONTH, mes-1);
@@ -70,7 +71,7 @@ public class ConsultaEndPoint {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
 
-    public List<Consulta> listarConsultas(@PathParam("dia")int dia, 
+    public Iterador<Consulta> listarConsultas(@PathParam("dia")int dia, 
                                           @PathParam("mes")int mes, 
                                           @PathParam("ano")int ano, 
                                           @PathParam("medicoid") int medicoId){

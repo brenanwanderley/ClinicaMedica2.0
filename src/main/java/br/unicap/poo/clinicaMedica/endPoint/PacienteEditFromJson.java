@@ -11,6 +11,7 @@ import br.unicap.poo.clinicaMedica.model.exceptions.PessoaException;
 import br.unicap.poo.clinicaMedica.service.PacienteService;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.text.ParseException;
 import javax.enterprise.context.ApplicationScoped;
 
 /**
@@ -27,7 +28,7 @@ public class PacienteEditFromJson {
                                 @JsonProperty("telefone") String telefone,
                                 @JsonProperty("endereco") Endereco endereco,
                                 @JsonProperty("planoDeSaude") PlanoDeSaudeCreateFromJson planoDeSaude,
-                                @JsonProperty("dataNasc") String dataNasc) throws PessoaException{
+                                @JsonProperty("dataNasc") String dataNasc) throws PessoaException, ParseException{
         PacienteService service = new PacienteService();
         edit = service.selecionar(cpf);
 

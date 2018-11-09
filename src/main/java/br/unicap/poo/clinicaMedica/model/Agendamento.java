@@ -4,14 +4,14 @@
  * and open the template in the editor.
  */
 package br.unicap.poo.clinicaMedica.model;
-import br.unicap.poo.clinicaMedica.interpretors.DDMMYYYDateInterpretor;
-import br.unicap.poo.clinicaMedica.interpretors.DateContext;
-import br.unicap.poo.clinicaMedica.interpretors.DateInterpretor;
-import br.unicap.poo.clinicaMedica.interpretors.JsonProcessor;
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.DataInvalidaException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Calendar;
+import java.util.Locale;
 /**
  *
  * @author aluno
@@ -21,7 +21,11 @@ public abstract class Agendamento{
     private Date data;
     private Status status;
 
-    Agendamento() {
+    public Agendamento(String data) throws AgendamentoException, ParseException {
+        this.setData(data);
+        this.codigo=0;
+    }
+    protected Agendamento(){
         this.codigo=0;
     }
     protected Agendamento(int codigo, Agendamento agendamento){
@@ -35,18 +39,16 @@ public abstract class Agendamento{
     public Date getData() {
         return data;
     }
-    public void setData(String data) throws DataInvalidaException{
-        DateContext context = new DateContext(data, "/");
-        DateInterpretor dateInterpretor = new DDMMYYYDateInterpretor(context);
-        dateInterpretor.interpretar();
-        setData(context.getData());
+    public void setData(String data) throws DataInvalidaException, ParseException{
+        DateFormat df = new SimpleDateFormat("dd/MM/yy", Locale.ENGLISH);
+        this.setData(df.parse(data));
     }
     public void setData(Date data) throws DataInvalidaException {
-        Calendar cal, cal2;
-        cal2= Calendar.getInstance();
-        cal = Calendar.getInstance();
-        cal.setTime(data);
+        Calendar cal = Calendar.getInstance();
         
+        if(data.compareTo(cal.getTime())<0){
+            throw new DataInvalidaException("Data inválida");
+        }
         
         this.data = data;
     }

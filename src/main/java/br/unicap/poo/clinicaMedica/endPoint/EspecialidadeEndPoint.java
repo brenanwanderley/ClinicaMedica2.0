@@ -5,6 +5,7 @@
  */
 package br.unicap.poo.clinicaMedica.endPoint;
 import br.unicap.poo.clinicaMedica.model.Especialidade;
+import br.unicap.poo.clinicaMedica.repository.Iterador;
 import javax.ws.rs.PathParam;
 import br.unicap.poo.clinicaMedica.service.EspecialidadeService;
 import java.util.List;
@@ -29,7 +30,7 @@ public class EspecialidadeEndPoint {
     }
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Especialidade> listarEspecialidades(){
+    public Iterador<Especialidade> listarEspecialidades(){
         return service.listar();
     }
     @POST
