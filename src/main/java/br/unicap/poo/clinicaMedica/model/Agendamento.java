@@ -6,12 +6,9 @@
 package br.unicap.poo.clinicaMedica.model;
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.DataInvalidaException;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Calendar;
-import java.util.Locale;
 /**
  *
  * @author aluno
@@ -21,7 +18,7 @@ public abstract class Agendamento{
     private Date data;
     private Status status;
 
-    public Agendamento(String data) throws AgendamentoException, ParseException {
+    public Agendamento(Date data) throws AgendamentoException, ParseException {
         this.setData(data);
         this.codigo=0;
     }
@@ -38,10 +35,6 @@ public abstract class Agendamento{
     }
     public Date getData() {
         return data;
-    }
-    public void setData(String data) throws DataInvalidaException, ParseException{
-        DateFormat df = new SimpleDateFormat("dd/MM/yy", Locale.ENGLISH);
-        this.setData(df.parse(data));
     }
     public void setData(Date data) throws DataInvalidaException {
         Calendar cal = Calendar.getInstance();
@@ -70,4 +63,5 @@ public abstract class Agendamento{
     public abstract Medico getMedico();
     public abstract Paciente getPaciente();
     public abstract Agendamento clonar(int codigo);
+    public abstract void setData(String data) throws DataInvalidaException, ParseException;
 }

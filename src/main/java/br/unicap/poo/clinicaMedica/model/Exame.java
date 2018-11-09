@@ -6,7 +6,11 @@
 package br.unicap.poo.clinicaMedica.model;
 
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
+import br.unicap.poo.clinicaMedica.model.exceptions.DataInvalidaException;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import javax.enterprise.context.ApplicationScoped;
 
 /**
@@ -19,7 +23,7 @@ public class Exame extends Agendamento{
     private TipoExame tipo;
     
     public Exame(String data, Consulta consulta, TipoExame tipo) throws AgendamentoException, ParseException{
-        super(data);
+        this.setData(data);
         this.consulta=consulta;
         this.tipo=tipo;
     }
@@ -52,5 +56,10 @@ public class Exame extends Agendamento{
     @Override
     public Agendamento clonar(int codigo){
         return new Exame(codigo, this);
+    }
+    @Override
+    public void setData(String data) throws DataInvalidaException, ParseException{
+        DateFormat df = new SimpleDateFormat("dd/MM/yy", Locale.ENGLISH);
+        this.setData(df.parse(data));
     }
 }

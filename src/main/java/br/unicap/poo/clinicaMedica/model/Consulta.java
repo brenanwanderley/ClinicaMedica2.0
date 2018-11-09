@@ -5,10 +5,13 @@
  */
 package br.unicap.poo.clinicaMedica.model;
 
-import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.ConsultaException;
+import br.unicap.poo.clinicaMedica.model.exceptions.DataInvalidaException;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 import javax.enterprise.context.ApplicationScoped;
 
 /**
@@ -51,7 +54,11 @@ public class Consulta extends Agendamento{
             return;
         }
         if(medico.horarioDisponivel(super.getData())){
-            this.medico=medico;
+            if(medico.atendePlanoSaude(paciente.getPlanoDeSaude().getSeguradoraPlano())){
+                this.medico=medico;
+            }else{
+                throw new ConsultaException("O médico não atende ao plano de saúde do paciente");
+            }
         }else{
             throw new ConsultaException("O médico não tem horário disponível");
         }
@@ -109,5 +116,10 @@ public class Consulta extends Agendamento{
     public void setStatus(Status status){
         super.setStatus(status);
         paciente.increaseNumeroVisitas();
+    }
+    @Override
+    public void setData(String data) throws DataInvalidaException, ParseException{
+        DateFormat df = new SimpleDateFormat("dd/MM/yy hh:mm", Locale.ENGLISH);
+        this.setData(df.parse(data));
     }
 }

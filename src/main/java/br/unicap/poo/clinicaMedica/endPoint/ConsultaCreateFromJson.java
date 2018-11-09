@@ -36,8 +36,8 @@ public class ConsultaCreateFromJson {
         Paciente paciente = pacService.selecionar(pacienteCpf);
         
         instance = builder.addData(data)
-                            .addMedico(medService.selecionar(medicoId))
                             .addPaciente(pacService.selecionar(pacienteCpf))
+                            .addMedico(medService.selecionar(medicoId))
                             .build();
     }
     

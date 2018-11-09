@@ -45,7 +45,7 @@ public class PlanoSaudeMedico {
         return seguradorasPlano;
     }
     public boolean atendePlanoSaude(SeguradoraPlano seguradoraPlano){
-        if(seguradoraPlano==null){
+        if(this.seguradorasPlano.isEmpty()){
             return atendePrivado;
         }else{
             return contemSeguradora(seguradoraPlano);
