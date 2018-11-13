@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package br.unicap.poo.clinicaMedica.model;
-import br.unicap.poo.clinicaMedica.interpretors.JsonProcessor;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.enterprise.context.ApplicationScoped;
@@ -43,9 +42,5 @@ public class TipoExame{
     }
     public TipoExame clonar(int codigo){
         return new TipoExame(codigo, this);
-    }
-    public void setAll(String jsonContent){
-        JsonProcessor json = new JsonProcessor(jsonContent);
-        setDescricao(json.getJsonParam("descricao"));
     }
 }

@@ -5,8 +5,6 @@
  */
 package br.unicap.poo.clinicaMedica.model;
 
-import br.unicap.poo.clinicaMedica.interpretors.JsonProcessor;
-import br.unicap.poo.clinicaMedica.model.exceptions.PessoaException;
 import br.unicap.poo.clinicaMedica.model.exceptions.TelefoneInvalidoException;
 import javax.enterprise.context.ApplicationScoped;
 
@@ -45,10 +43,5 @@ public abstract class Pessoa{
         }else{
             this.telefone = telefone;
         }
-    }
-    protected void setAll(String jsonContent) throws PessoaException{
-        JsonProcessor json = new JsonProcessor(jsonContent);
-        setNome(json.getJsonParam("nome"));
-        setTelefone(json.getJsonParam("telefone"));
     }
 }

@@ -9,7 +9,8 @@ package br.unicap.poo.clinicaMedica.model;
  *
  * @author aluno
  */
-import br.unicap.poo.clinicaMedica.model.exceptions.PessoaException;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import javax.enterprise.context.ApplicationScoped;
 
@@ -20,11 +21,16 @@ public class Medico extends Pessoa{
     private PlanoSaudeMedico planoSaudeMedico;
     private HorarioMedico horarioMedico;
     
-    public Medico(String nome, String telefone, Especialidade especialidade){
+    @JsonCreator
+    public Medico(@JsonProperty("nome") String nome, 
+                  @JsonProperty("telefone") String telefone, 
+                  @JsonProperty("especialidadeMedico") EspecialidadeMedico especialidadeMedico,
+                  @JsonProperty("horarioMedico") HorarioMedico horarioMedico,
+                  @JsonProperty("planoSaudeMedico")PlanoSaudeMedico planoSaudeMedico){
         this.codigo=0;
-        this.planoSaudeMedico = new PlanoSaudeMedico(true);
-        this.horarioMedico = new HorarioMedico();
-        this.especialidadeMedico = new EspecialidadeMedico(especialidade);
+        this.planoSaudeMedico = planoSaudeMedico;
+        this.horarioMedico = horarioMedico;
+        this.especialidadeMedico = especialidadeMedico;
     }
     private Medico(int codigo, Medico medico){
         super(medico);
@@ -53,9 +59,5 @@ public class Medico extends Pessoa{
     }
     public Medico clonar(int codigo){
         return new Medico(codigo, this);
-    }
-    @Override
-    public void setAll(String jsonContent) throws PessoaException{
-        super.setAll(jsonContent);
     }
 }

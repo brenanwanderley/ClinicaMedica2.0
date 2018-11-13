@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package br.unicap.poo.clinicaMedica.model;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,9 +28,10 @@ public class PlanoDeSaude {
         
     }
     
-    public PlanoDeSaude(SeguradoraPlano seguradoraPlano, 
-                        String numeroCarteira,
-                        String dataValidade){
+    @JsonCreator
+    public PlanoDeSaude(@JsonProperty("seguradoraPlano") SeguradoraPlano seguradoraPlano, 
+                        @JsonProperty("numeroConta") String numeroCarteira,
+                        @JsonProperty("dataValidade") String dataValidade){
         this.seguradoraPlano=seguradoraPlano;
         this.numeroCarteira=numeroCarteira;
     }

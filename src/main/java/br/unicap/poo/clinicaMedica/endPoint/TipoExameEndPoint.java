@@ -37,10 +37,8 @@ public class TipoExameEndPoint {
     @Path("/{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void alterarTipoExame(@PathParam("id")int id, String jsonContent){
-        TipoExame item = service.selecionar(id);
-        item.setAll(jsonContent);
-        service.alterarTipo(item);
+    public void alterarTipoExame(TipoExame tipoExame){
+        service.alterarTipo(tipoExame);
     }
     @Path("/{id}")
     @DELETE

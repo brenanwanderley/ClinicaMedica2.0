@@ -13,7 +13,9 @@ package br.unicap.poo.clinicaMedica.endPoint;
  */
 
 import br.unicap.poo.clinicaMedica.model.Consulta;
+import br.unicap.poo.clinicaMedica.model.Exame;
 import br.unicap.poo.clinicaMedica.model.Medico;
+import br.unicap.poo.clinicaMedica.model.ProcedimentoMedico;
 import br.unicap.poo.clinicaMedica.model.exceptions.ConsultaException;
 import br.unicap.poo.clinicaMedica.repository.Iterador;
 import br.unicap.poo.clinicaMedica.service.ConsultaService;
@@ -59,40 +61,26 @@ public class ConsultaEndPoint {
     @Path("/{dia}/{mes}/{ano}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Iterador<Consulta> listarConsultas(@PathParam("dia")int dia, @PathParam("mes")int mes, @PathParam("ano")int ano){
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.DAY_OF_MONTH, dia);
-        calendar.set(Calendar.MONTH, mes-1);
-        calendar.set(Calendar.YEAR, ano);
-        
-        return service.verConsultas(calendar.getTime());
+    public Iterador<Consulta> listarConsultas(ConsultaListDateParam consultaListDateParam){
+        return service.verConsultas(consultaListDateParam.getData());
     }
     @Path("/{dia}/{mes}/{ano}/{medicoid}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
 
-    public Iterador<Consulta> listarConsultas(@PathParam("dia")int dia, 
-                                          @PathParam("mes")int mes, 
-                                          @PathParam("ano")int ano, 
-                                          @PathParam("medicoid") int medicoId){
-        Medico medico = medService.selecionar(medicoId);
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.DAY_OF_MONTH, dia);
-        calendar.set(Calendar.MONTH, mes-1);
-        calendar.set(Calendar.YEAR, ano);
-        
-        return service.verConsultas(medico, calendar.getTime());
+    public Iterador<Consulta> listarConsultas(ConsultaListDateMedicoParam consultaListDateMedicoParam){
+        return service.verConsultas(consultaListDateMedicoParam.getMedico(), 
+                                    consultaListDateMedicoParam.getData());
     }
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void novaConsulta(ConsultaCreateFromJson consultaJson){
-        Consulta item = consultaJson.getInstance();
-        service.AgendarConsulta(item);
+    public void novaConsulta(Consulta consulta){
+        service.AgendarConsulta(consulta);
     }
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void alterarConsulta(ConsultaEditFromJson consultaJson) throws ConsultaException{
-        service.alterarConsulta(consultaJson.getEdit());
+    public void alterarConsulta(Consulta consulta) throws ConsultaException{
+        service.alterarConsulta(consulta);
     }
     @DELETE
     @Path("/{id}")
@@ -109,13 +97,13 @@ public class ConsultaEndPoint {
     @POST
     @Path("/novoexame")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void novoExame(ExameCreateFromJson exameJson){
-        exService.novoExame(exameJson.getInstance());
+    public void novoExame(Exame exame){
+        exService.novoExame(exame);
     }
     @POST
     @Path("/novoprocedimento")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void novoProcedimento(ProcedimentoMedicoCreateFromJson procedimentoJson){
-        procService.agendarProcedimento(procedimentoJson.getInstance());
+    public void novoProcedimento(ProcedimentoMedico procedimentoMedico){
+        procService.agendarProcedimento(procedimentoMedico);
     }
 }

@@ -49,10 +49,8 @@ public class TipoProcedimentoEndPoint {
     @Path("/{id}")
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void alterarTipoProcedimento(@PathParam("id") int id, String jsonContent){
-        TipoProcedimento item = service.selecionar(id);
-        item.setAll(jsonContent);
-        service.alterarTipoProcedimento(item);
+    public void alterarTipoProcedimento(TipoProcedimento tipoProcedimento){
+
     }
     @Path("/{id}")
     @GET

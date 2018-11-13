@@ -8,6 +8,8 @@ package br.unicap.poo.clinicaMedica.model;
 import br.unicap.poo.clinicaMedica.model.exceptions.MedicoSemPlanoSaudeAtendidoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.SeguradoraPlanoSaudeMedicoRepetidaException;
 import br.unicap.poo.clinicaMedica.model.exceptions.SeguradoraPlanoSaudeMedicoNaoEncontradaException;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +18,14 @@ import java.util.List;
  * @author Danilo
  */
 public class PlanoSaudeMedico {
-    private ArrayList<SeguradoraPlano> seguradorasPlano;
+    private List<SeguradoraPlano> seguradorasPlano;
     private boolean atendePrivado;
     
-    public PlanoSaudeMedico(boolean atendePrivado){
+    @JsonCreator
+    public PlanoSaudeMedico(@JsonProperty("atendePrivado") boolean atendePrivado,
+                            @JsonProperty("seguradorasPlano") ArrayList<SeguradoraPlano> seguradorasPlano){
         this.atendePrivado=atendePrivado;
-        seguradorasPlano = new ArrayList<>();
+        this.seguradorasPlano=seguradorasPlano;
     }
     private PlanoSaudeMedico(PlanoSaudeMedico planoSaudeMedico){
         this.atendePrivado=planoSaudeMedico.atendePrivado;

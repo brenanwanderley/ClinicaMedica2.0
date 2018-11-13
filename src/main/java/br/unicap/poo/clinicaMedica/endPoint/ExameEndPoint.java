@@ -82,8 +82,8 @@ public class ExameEndPoint {
     }
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public void alterarExame(ExameEditFromJson exameJson) throws AgendamentoException{
-        service.alterarExame(exameJson.getEdit());
+    public void alterarExame(Exame exame) throws AgendamentoException{
+        service.alterarExame(exame);
     }
     @DELETE
     @Path("/{id}")

@@ -50,9 +50,7 @@ public class PacienteEndPoint {
     }
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Paciente alterarPaciente(PacienteEditFromJson pacienteJson) throws PessoaException{
-        service.alterarPaciente(pacienteJson.getEdit());
-        return pacienteJson.getEdit();
+    public void alterarPaciente(Paciente paciente) throws PessoaException{
+        service.alterarPaciente(paciente);
     }
 }
