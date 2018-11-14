@@ -24,6 +24,7 @@ public abstract class Agendamento{
     }
     protected Agendamento(){
         this.codigo=0;
+        this.status=AgendamentoMarcado.getInstance();
     }
     protected Agendamento(int codigo, Agendamento agendamento){
         this.codigo=codigo;

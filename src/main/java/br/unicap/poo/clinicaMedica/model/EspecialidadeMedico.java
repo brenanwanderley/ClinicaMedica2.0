@@ -12,16 +12,18 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
+import javax.enterprise.context.ApplicationScoped;
 
 /**
  *
  * @author Danilo
  */
+@ApplicationScoped
 public class EspecialidadeMedico {
     private List<Especialidade> especialidades;
     @JsonCreator
-    public EspecialidadeMedico(){
-        especialidades= new ArrayList();
+    public EspecialidadeMedico(@JsonProperty("especialidades") ArrayList especialidades){
+        this.especialidades= especialidades;
     }
     
     private EspecialidadeMedico(EspecialidadeMedico especialidadeMedico){

@@ -27,7 +27,7 @@ public class MedicoDAO implements MedicoRepBridge{
     }
     @Override
     public boolean inserir(Medico item) {
-        return dataBase.add(item.clonar(lastCode()+1));
+        return dataBase.add(item);
     }
 
     @Override
@@ -65,11 +65,5 @@ public class MedicoDAO implements MedicoRepBridge{
             cont++;
         }
         return null;
-    }
-    private int lastCode(){
-        if(dataBase.isEmpty()){
-            return -1;
-        }
-        return dataBase.get(dataBase.size()-1).getCodigo();
     }
 }

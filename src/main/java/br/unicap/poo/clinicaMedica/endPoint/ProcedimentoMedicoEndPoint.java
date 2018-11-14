@@ -41,7 +41,7 @@ public class ProcedimentoMedicoEndPoint {
     @Path("/{medicoid}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<ProcedimentoMedico> listarProcedimentos(@PathParam("medicoid") int medicoId){
+    public Iterador<ProcedimentoMedico> listarProcedimentos(@PathParam("medicoid") int medicoId){
         Medico medico = medService.selecionar(medicoId);
         return service.verProcedimentos(medico);
     }
@@ -56,7 +56,7 @@ public class ProcedimentoMedicoEndPoint {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
 
-    public List<ProcedimentoMedico> listarProcedimentos(AgendamentoListDateMedicoParam procedimentoListDateMedicoParam){
+    public Iterador<ProcedimentoMedico> listarProcedimentos(AgendamentoListDateMedicoParam procedimentoListDateMedicoParam){
         return service.verProcedimentos(procedimentoListDateMedicoParam.getMedico(), 
                                         procedimentoListDateMedicoParam.getData());
     }

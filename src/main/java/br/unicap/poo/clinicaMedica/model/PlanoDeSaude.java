@@ -23,17 +23,14 @@ public class PlanoDeSaude {
     private SeguradoraPlano seguradoraPlano;
     private String numeroCarteira;
     private Date dataValidade;
-
-    PlanoDeSaude(){
-        
-    }
     
     @JsonCreator
     public PlanoDeSaude(@JsonProperty("seguradoraPlano") SeguradoraPlano seguradoraPlano, 
-                        @JsonProperty("numeroConta") String numeroCarteira,
-                        @JsonProperty("dataValidade") String dataValidade){
+                        @JsonProperty("numeroCarteira") String numeroCarteira,
+                        @JsonProperty("dataValidade") String dataValidade) throws ParseException{
         this.seguradoraPlano=seguradoraPlano;
         this.numeroCarteira=numeroCarteira;
+        this.setDataValidade(dataValidade);
     }
 
     public SeguradoraPlano getSeguradoraPlano() {

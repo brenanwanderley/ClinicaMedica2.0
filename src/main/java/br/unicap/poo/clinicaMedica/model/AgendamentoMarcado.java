@@ -32,5 +32,6 @@ public class AgendamentoMarcado implements StatusAgendamento{
     @Override
     public void realizar(Agendamento agendamento){
         agendamento.setStatus(AgendamentoRealizado.getInstance());
+        agendamento.getPaciente().increaseNumeroVisitas();
     }
 }

@@ -9,6 +9,7 @@ package br.unicap.poo.clinicaMedica.model;
  *
  * @author aluno
  */
+import br.unicap.poo.clinicaMedica.model.exceptions.PessoaException;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
@@ -22,22 +23,18 @@ public class Medico extends Pessoa{
     private HorarioMedico horarioMedico;
     
     @JsonCreator
-    public Medico(@JsonProperty("nome") String nome, 
+    public Medico(@JsonProperty("codigo") int codigo,
+                  @JsonProperty("nome") String nome, 
                   @JsonProperty("telefone") String telefone, 
                   @JsonProperty("especialidadeMedico") EspecialidadeMedico especialidadeMedico,
                   @JsonProperty("horarioMedico") HorarioMedico horarioMedico,
-                  @JsonProperty("planoSaudeMedico")PlanoSaudeMedico planoSaudeMedico){
+                  @JsonProperty("planoSaudeMedico")PlanoSaudeMedico planoSaudeMedico) throws PessoaException{
+        super.setNome(nome);
+        super.setTelefone(telefone);
         this.codigo=0;
         this.planoSaudeMedico = planoSaudeMedico;
         this.horarioMedico = horarioMedico;
         this.especialidadeMedico = especialidadeMedico;
-    }
-    private Medico(int codigo, Medico medico){
-        super(medico);
-        this.planoSaudeMedico = medico.planoSaudeMedico.clonar();
-        this.especialidadeMedico = medico.especialidadeMedico.clonar();
-        this.horarioMedico=medico.horarioMedico.clonar();
-        this.codigo=codigo;
     }
     public HorarioMedico getHorarioMedico(){
         return horarioMedico;
@@ -56,8 +53,5 @@ public class Medico extends Pessoa{
     }
     public int getCodigo(){
         return codigo;
-    }
-    public Medico clonar(int codigo){
-        return new Medico(codigo, this);
     }
 }

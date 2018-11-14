@@ -41,14 +41,14 @@ public class ExameEndPoint {
     @Path("/{medicoid}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Exame> listarExames(@PathParam("medicoid") int medicoId){
+    public Iterador<Exame> listarExames(@PathParam("medicoid") int medicoId){
         Medico medico = medService.selecionar(medicoId);
         return service.verExames(medico);
     }
     @Path("/{dia}/{mes}/{ano}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Exame> listarExames(AgendamentoListDateParam exameListDateParam){        
+    public Iterador<Exame> listarExames(AgendamentoListDateParam exameListDateParam){        
         return service.verExames(exameListDateParam.getData());
     }
     @Path("/{dia}/{mes}/{ano}/{medicoid}")

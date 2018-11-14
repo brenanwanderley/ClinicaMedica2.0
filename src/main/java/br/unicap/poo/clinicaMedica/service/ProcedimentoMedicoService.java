@@ -23,28 +23,35 @@ public class ProcedimentoMedicoService {
     
     public void alterarProcedimento(ProcedimentoMedico procedimento){
         procedimentos.alterar(procedimento);
+        ConsultaService service = new ConsultaService();
+        service.alterarConsulta(procedimento.getConsulta());
+        PacienteService pacService = new PacienteService();
+        pacService.alterarPaciente(procedimento.getPaciente());
     }
     
     
     public void cancelarProcedimento(ProcedimentoMedico procedimento){
         procedimentos.remover(procedimento);
+        procedimento.getConsulta().removeProcedimento(procedimento);
+        ConsultaService service = new ConsultaService();
+        service.alterarConsulta(procedimento.getConsulta());
     }
     
     
-    public List<ProcedimentoMedico> verProcedimentos(Medico medico, Date data){
+    public Iterador<ProcedimentoMedico> verProcedimentos(Medico medico, Date data){
         AgendamentoList list = new AgendamentoList();
         Iterador<Agendamento> listagem = (Iterador<Agendamento>)(Iterador<?>)procedimentos.listar();
         Iterador<Agendamento> resultado = list.verAgendamentos(listagem, data, medico);
         
-        return (List<ProcedimentoMedico>)(List<?>) resultado;
+        return (Iterador<ProcedimentoMedico>)(Iterador<?>) resultado;
         
     }
-    public List<ProcedimentoMedico> verProcedimentos(Medico medico){
+    public Iterador<ProcedimentoMedico> verProcedimentos(Medico medico){
         AgendamentoList list = new AgendamentoList();
         Iterador<Agendamento> listagem = (Iterador<Agendamento>)(Iterador<?>)procedimentos.listar();
         Iterador<Agendamento> resultado = list.verAgendamentos(listagem, medico);
         
-        return (List<ProcedimentoMedico>)(List<?>) resultado;
+        return (Iterador<ProcedimentoMedico>)(Iterador<?>) resultado;
     }
     public Iterador<ProcedimentoMedico> verProcedimentos(Date data){
         AgendamentoList list = new AgendamentoList();

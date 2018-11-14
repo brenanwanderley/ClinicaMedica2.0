@@ -6,11 +6,14 @@
 package br.unicap.poo.clinicaMedica.iteradores;
 
 import java.util.List;
+import javax.enterprise.context.ApplicationScoped;
 
 /**
  *
  * @author aluno
+ * @param <T> 
  */
+@ApplicationScoped
 public class ListIterador<T> implements Iterador<T>{
     private List<T> list;
     private int pos;

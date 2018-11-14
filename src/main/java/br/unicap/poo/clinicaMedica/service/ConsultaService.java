@@ -24,6 +24,8 @@ public class ConsultaService {
     
     public void alterarConsulta(Consulta item){
         consultas.alterar(item);
+        PacienteService pacService = new PacienteService();
+        pacService.alterarPaciente(item.getPaciente());
     }
     
     public void cancelarConsulta(Consulta item){

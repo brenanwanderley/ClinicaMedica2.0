@@ -9,6 +9,7 @@ import br.unicap.poo.clinicaMedica.model.exceptions.MedicoSemHorarioException;
 import br.unicap.poo.clinicaMedica.model.exceptions.HorarioMedicoNaoEncontradoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.HorarioRepetidoException;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -22,8 +23,8 @@ public class HorarioMedico {
     private ArrayList<Horario> horarios;
     
     @JsonCreator
-    public HorarioMedico(){
-        this.horarios = new ArrayList<>();
+    public HorarioMedico(@JsonProperty("horarios")ArrayList horarios){
+        this.horarios = horarios;
     }
     private HorarioMedico(HorarioMedico horarioMedico){
         this.horarios = new ArrayList();

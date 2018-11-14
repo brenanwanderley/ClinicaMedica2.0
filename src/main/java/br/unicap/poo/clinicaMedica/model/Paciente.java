@@ -32,7 +32,10 @@ public class Paciente extends Pessoa{
     @JsonCreator
     public Paciente(@JsonProperty("cpf") String cpf, 
                     @JsonProperty("nome") String nome,
-                    @JsonProperty("telefone") String telefone) throws PessoaException {
+                    @JsonProperty("telefone") String telefone,
+                    @JsonProperty("endereco") Endereco endereco,
+                    @JsonProperty("dataNasc") String dataNasc,
+                    @JsonProperty("planoDeSaude") PlanoDeSaude planoDeSaude) throws PessoaException, ParseException {
         
         super.setNome(nome);
         super.setTelefone(telefone);
@@ -41,8 +44,10 @@ public class Paciente extends Pessoa{
         }else{
             this.cpf = cpf;
         }
-        endereco = new Endereco();
-        planoDeSaude = new PlanoDeSaude();
+        this.endereco = endereco;
+        this.planoDeSaude = planoDeSaude;
+        this.setDataNasc(dataNasc);
+        
     }
 
     public PlanoDeSaude getPlanoDeSaude() {

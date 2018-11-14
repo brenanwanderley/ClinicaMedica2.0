@@ -24,25 +24,32 @@ public class ExameService {
 
     public void alterarExame(Exame item) {
         exames.alterar(item);
+        ConsultaService service = new ConsultaService();
+        service.alterarConsulta(item.getConsulta());
+        PacienteService pacService = new PacienteService();
+        pacService.alterarPaciente(item.getPaciente());
     }
 
     public void cancelarExame(Exame item) {
         exames.remover(item);
+        item.getConsulta().removeExame(item);
+        ConsultaService service = new ConsultaService();
+        service.alterarConsulta(item.getConsulta());
     }
     
-    public List<Exame> verExames(Medico medico){
+    public Iterador<Exame> verExames(Medico medico){
         AgendamentoList list = new AgendamentoList();
         Iterador<Agendamento> listagem = (Iterador<Agendamento>)(Iterador<?>)exames.listar();
         Iterador<Agendamento> resultado = list.verAgendamentos(listagem, medico);
         
-        return (List<Exame>)(List<?>) resultado;
+        return (Iterador<Exame>)(Iterador<?>) resultado;
     }
-    public List<Exame> verExames(Date data){
+    public Iterador<Exame> verExames(Date data){
         AgendamentoList list = new AgendamentoList();
         Iterador<Agendamento> listagem = (Iterador<Agendamento>)(Iterador<?>)exames.listar();
         Iterador<Agendamento> resultado = list.verAgendamentos(listagem, data);
         
-        return (List<Exame>)(List<?>) resultado;       
+        return (Iterador<Exame>)(Iterador<?>) resultado;       
     }
     public Iterador<Exame> verExames(Medico medico, Date data){
         AgendamentoList list = new AgendamentoList();
