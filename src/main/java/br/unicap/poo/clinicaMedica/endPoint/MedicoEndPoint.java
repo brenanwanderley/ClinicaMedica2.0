@@ -17,7 +17,6 @@ import br.unicap.poo.clinicaMedica.repository.Iterador;
 import br.unicap.poo.clinicaMedica.service.EspecialidadeService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
 import br.unicap.poo.clinicaMedica.service.SeguradoraPlanoService;
-import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;

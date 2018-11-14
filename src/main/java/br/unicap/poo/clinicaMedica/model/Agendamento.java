@@ -16,7 +16,7 @@ import java.util.Calendar;
 public abstract class Agendamento{
     private final int codigo;
     private Date data;
-    private Status status;
+    private StatusAgendamento status;
 
     public Agendamento(Date data) throws AgendamentoException, ParseException {
         this.setData(data);
@@ -45,12 +45,6 @@ public abstract class Agendamento{
         
         this.data = data;
     }
-    public Status getStatus() {
-        return status;
-    }
-    public void setStatus(Status status) {
-        this.status = status;
-    }
     public int compareTo(Agendamento agendamento){
         if(this.codigo>codigo){
             return 1;
@@ -60,8 +54,17 @@ public abstract class Agendamento{
         
         return -1;
     }
+    void setStatus(StatusAgendamento status){
+        this.status=status;
+    }
+    public void realizar(){
+        this.status.realizar(this);
+    }
+    public void reagendar(String data){
+        this.status.reagendar(data, this);
+    }
     public abstract Medico getMedico();
     public abstract Paciente getPaciente();
     public abstract Agendamento clonar(int codigo);
-    public abstract void setData(String data) throws DataInvalidaException, ParseException;
+    abstract void setData(String data) throws DataInvalidaException, ParseException;
 }

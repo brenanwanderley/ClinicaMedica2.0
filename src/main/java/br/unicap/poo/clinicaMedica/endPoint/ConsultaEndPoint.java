@@ -23,8 +23,6 @@ import br.unicap.poo.clinicaMedica.service.ExameService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
 import br.unicap.poo.clinicaMedica.service.PacienteService;
 import br.unicap.poo.clinicaMedica.service.ProcedimentoMedicoService;
-import java.util.Calendar;
-import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
