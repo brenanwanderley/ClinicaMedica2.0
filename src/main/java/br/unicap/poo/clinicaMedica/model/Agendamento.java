@@ -57,10 +57,10 @@ public abstract class Agendamento{
     void setStatus(StatusAgendamento status){
         this.status=status;
     }
-    public void realizar(){
+    public void realizar() throws AgendamentoException{
         this.status.realizar(this);
     }
-    public void reagendar(String data){
+    public void reagendar(String data) throws AgendamentoException, ParseException{
         this.status.reagendar(data, this);
     }
     public abstract Medico getMedico();

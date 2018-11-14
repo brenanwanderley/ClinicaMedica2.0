@@ -7,8 +7,9 @@ package br.unicap.poo.clinicaMedica.service;
 
 import br.unicap.poo.clinicaMedica.model.Agendamento;
 import br.unicap.poo.clinicaMedica.model.Medico;
-import br.unicap.poo.clinicaMedica.repository.ArrayListIterada;
-import br.unicap.poo.clinicaMedica.repository.Iterador;
+import br.unicap.poo.clinicaMedica.iteradores.Iterador;
+import br.unicap.poo.clinicaMedica.iteradores.ListIterador;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -29,7 +30,7 @@ class AgendamentoList {
         return listarPorDataEMedico;
     }
     Iterador<Agendamento> verAgendamentos(Iterador<Agendamento> lista, Medico medico){
-        ArrayListIterada<Agendamento> retorno = new ArrayListIterada<>();
+        ArrayList<Agendamento> retorno = new ArrayList<>();
         Agendamento item;
         
         while(lista.hasNext()){
@@ -40,10 +41,10 @@ class AgendamentoList {
             }
         }
         
-        return retorno;        
+        return new ListIterador<>(retorno);        
     }
     Iterador<Agendamento> verAgendamentos(Iterador<Agendamento> lista, Date data){
-        ArrayListIterada<Agendamento> retorno = new ArrayListIterada<>();
+        ArrayList<Agendamento> retorno = new ArrayList<>();
         Calendar cal = new GregorianCalendar();
         Calendar calItem = new GregorianCalendar();
         int dia, mes, ano, diaItem, mesItem, anoItem;
@@ -67,6 +68,6 @@ class AgendamentoList {
 
         }
         
-        return retorno;        
+        return new ListIterador<>(retorno);        
     }
 }

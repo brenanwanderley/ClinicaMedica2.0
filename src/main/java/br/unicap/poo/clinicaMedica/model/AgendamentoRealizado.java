@@ -5,6 +5,9 @@
  */
 package br.unicap.poo.clinicaMedica.model;
 
+import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
+import java.text.ParseException;
+
 /**
  *
  * @author aluno
@@ -17,15 +20,17 @@ public class AgendamentoRealizado implements StatusAgendamento{
     }
     public static AgendamentoRealizado getInstance(){
         if(instance==null){
-            instance = new AgendamentoMarcado();
+            instance = new AgendamentoRealizado();
         }
         
         return instance;
     }
-    public void reagendar(String data, Agendamento agendamento){
+    @Override
+    public void reagendar(String data, Agendamento agendamento) throws AgendamentoException, ParseException{
         throw new AgendamentoException("O agendamento já foi realizado");
     }
+    @Override
     public void realizar(Agendamento agendamento){
-        this.agendamento.setStatus(AgendamentoRealizado.getInstance());
+        agendamento.setStatus(instance);
     }
 }

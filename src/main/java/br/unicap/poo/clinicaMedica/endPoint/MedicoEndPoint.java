@@ -13,7 +13,7 @@ import br.unicap.poo.clinicaMedica.model.exceptions.EspecialidadeMedicoNaoEncont
 import br.unicap.poo.clinicaMedica.model.exceptions.EspecialidadeMedicoRepetidaException;
 import br.unicap.poo.clinicaMedica.model.exceptions.MedicoSemEspecialidadeException;
 import br.unicap.poo.clinicaMedica.model.exceptions.PessoaException;
-import br.unicap.poo.clinicaMedica.repository.Iterador;
+import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import br.unicap.poo.clinicaMedica.service.EspecialidadeService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
 import br.unicap.poo.clinicaMedica.service.SeguradoraPlanoService;

@@ -5,18 +5,21 @@
  */
 package br.unicap.poo.clinicaMedica.repository;
 
+import br.unicap.poo.clinicaMedica.iteradores.ListIterador;
+import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import br.unicap.poo.clinicaMedica.model.Consulta;
+import java.util.ArrayList;
 /**
  *
  * @author Danilo
  */
 public class ConsultaDAO implements ConsultaRepBridge {
     
-    private ArrayListIterada<Consulta> dataBase;
+    private ArrayList<Consulta> dataBase;
     private static ConsultaDAO instance;
     
     private ConsultaDAO(){
-        dataBase = new ArrayListIterada();
+        dataBase = new ArrayList();
     }
     public synchronized static ConsultaDAO getInstance(){
         if(instance==null){
@@ -59,7 +62,7 @@ public class ConsultaDAO implements ConsultaRepBridge {
 
     @Override
     public Iterador<Consulta> listar() {
-        return dataBase;
+        return new ListIterador<>(dataBase);
     }
 
     @Override

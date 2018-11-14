@@ -31,6 +31,7 @@ public class ProcedimentoMedico extends Agendamento{
         this.setData(data);
         this.consulta=consulta;
         this.tipo=tipo;
+        this.consulta.addProcedimento(getInstance());
     }
     private ProcedimentoMedico(int codigo, ProcedimentoMedico procedimento){
         super(codigo, procedimento);
@@ -66,5 +67,8 @@ public class ProcedimentoMedico extends Agendamento{
     public void setData(String data) throws DataInvalidaException, ParseException{
         DateFormat df = new SimpleDateFormat("dd/MM/yy", Locale.ENGLISH);
         this.setData(df.parse(data));
+    }
+    private ProcedimentoMedico getInstance(){
+        return this;
     }
 }

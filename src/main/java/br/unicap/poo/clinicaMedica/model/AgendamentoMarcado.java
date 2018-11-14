@@ -5,6 +5,9 @@
  */
 package br.unicap.poo.clinicaMedica.model;
 
+import br.unicap.poo.clinicaMedica.model.exceptions.DataInvalidaException;
+import java.text.ParseException;
+
 /**
  *
  * @author aluno
@@ -22,10 +25,12 @@ public class AgendamentoMarcado implements StatusAgendamento{
         
         return instance;
     }
-    public void reagendar(String data, Agendamento agendamento){
-        this.agendamento.setData(data);
+    @Override
+    public void reagendar(String data, Agendamento agendamento) throws DataInvalidaException, ParseException{
+        agendamento.setData(data);
     }
+    @Override
     public void realizar(Agendamento agendamento){
-        this.agendamento.setStatus(AgendamentoRealizado.getInstance());
+        agendamento.setStatus(AgendamentoRealizado.getInstance());
     }
 }

@@ -6,7 +6,7 @@
 package br.unicap.poo.clinicaMedica.service;
 
 import br.unicap.poo.clinicaMedica.model.SeguradoraPlano;
-import br.unicap.poo.clinicaMedica.repository.Iterador;
+import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import br.unicap.poo.clinicaMedica.repository.SeguradoraPlanoRepBridge;
 import br.unicap.poo.clinicaMedica.repository.SeguradoraPlanoConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.SeguradoraPlanoRepFactory;

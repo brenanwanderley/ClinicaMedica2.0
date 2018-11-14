@@ -31,6 +31,7 @@ public class Exame extends Agendamento{
         this.setData(data);
         this.consulta=consulta;
         this.tipo=tipo;
+        this.consulta.addExame(getInstance());
     }
     private Exame(int codigo, Exame exame){
         super(codigo, exame);
@@ -66,5 +67,8 @@ public class Exame extends Agendamento{
     public void setData(String data) throws DataInvalidaException, ParseException{
         DateFormat df = new SimpleDateFormat("dd/MM/yy", Locale.ENGLISH);
         this.setData(df.parse(data));
+    }
+    private Exame getInstance(){
+        return this;
     }
 }

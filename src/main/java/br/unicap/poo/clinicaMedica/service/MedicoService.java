@@ -6,7 +6,7 @@
 package br.unicap.poo.clinicaMedica.service;
  
 import br.unicap.poo.clinicaMedica.model.Medico;
-import br.unicap.poo.clinicaMedica.repository.Iterador;
+import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import br.unicap.poo.clinicaMedica.repository.MedicoRepBridge;
 import br.unicap.poo.clinicaMedica.repository.MedicoConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.MedicoRepFactory;

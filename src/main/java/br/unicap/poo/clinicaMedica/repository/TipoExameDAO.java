@@ -5,17 +5,20 @@
  */
 package br.unicap.poo.clinicaMedica.repository;
 
+import br.unicap.poo.clinicaMedica.iteradores.ListIterador;
+import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import br.unicap.poo.clinicaMedica.model.TipoExame;
+import java.util.ArrayList;
 /**
  *
  * @author Danilo
  */
 public class TipoExameDAO implements TipoExameRepBridge{
-    private ArrayListIterada<TipoExame> dataBase;
+    private ArrayList<TipoExame> dataBase;
     private static TipoExameDAO instance;
     
     private TipoExameDAO(){
-        dataBase = new ArrayListIterada();
+        dataBase = new ArrayList();
     }
     public synchronized static TipoExameDAO getInstance(){
         if(instance==null)
@@ -58,7 +61,7 @@ public class TipoExameDAO implements TipoExameRepBridge{
 
     @Override
     public Iterador<TipoExame> listar() {
-        return dataBase;
+        return new ListIterador<>(dataBase);
     }
 
     @Override

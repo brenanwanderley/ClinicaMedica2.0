@@ -16,13 +16,14 @@ import br.unicap.poo.clinicaMedica.model.Consulta;
 import br.unicap.poo.clinicaMedica.model.Exame;
 import br.unicap.poo.clinicaMedica.model.Medico;
 import br.unicap.poo.clinicaMedica.model.ProcedimentoMedico;
-import br.unicap.poo.clinicaMedica.model.exceptions.ConsultaException;
-import br.unicap.poo.clinicaMedica.repository.Iterador;
+import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
+import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import br.unicap.poo.clinicaMedica.service.ConsultaService;
 import br.unicap.poo.clinicaMedica.service.ExameService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
 import br.unicap.poo.clinicaMedica.service.PacienteService;
 import br.unicap.poo.clinicaMedica.service.ProcedimentoMedicoService;
+import java.text.ParseException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -59,25 +60,29 @@ public class ConsultaEndPoint {
     @Path("/{dia}/{mes}/{ano}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Iterador<Consulta> listarConsultas(ConsultaListDateParam consultaListDateParam){
+    public Iterador<Consulta> listarConsultas(AgendamentoListDateParam consultaListDateParam){
         return service.verConsultas(consultaListDateParam.getData());
     }
     @Path("/{dia}/{mes}/{ano}/{medicoid}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
 
-    public Iterador<Consulta> listarConsultas(ConsultaListDateMedicoParam consultaListDateMedicoParam){
+    public Iterador<Consulta> listarConsultas(AgendamentoListDateMedicoParam consultaListDateMedicoParam){
         return service.verConsultas(consultaListDateMedicoParam.getMedico(), 
                                     consultaListDateMedicoParam.getData());
     }
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void novaConsulta(Consulta consulta){
-        service.AgendarConsulta(consulta);
+    public void novaConsulta(ConsultaDirector consultaDirector){
+        service.AgendarConsulta(consultaDirector.getConsulta());
     }
     @PUT
+    @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void alterarConsulta(Consulta consulta) throws ConsultaException{
+    public void reagendarConsulta(@PathParam("id")int id, ReagendarParam reagendarParam) throws ParseException, AgendamentoException{
+        Consulta consulta = service.selecionar(id);
+        consulta.reagendar(reagendarParam.getData());
+        
         service.alterarConsulta(consulta);
     }
     @DELETE

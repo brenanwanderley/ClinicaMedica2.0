@@ -5,7 +5,7 @@
  */
 package br.unicap.poo.clinicaMedica.service;
 import br.unicap.poo.clinicaMedica.model.TipoProcedimento;
-import br.unicap.poo.clinicaMedica.repository.Iterador;
+import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import br.unicap.poo.clinicaMedica.repository.TipoProcedimentoRepBridge;
 import br.unicap.poo.clinicaMedica.repository.TipoProcedimentoConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.TipoProcedimentoRepFactory;

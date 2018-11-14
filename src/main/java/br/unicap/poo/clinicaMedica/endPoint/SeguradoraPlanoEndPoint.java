@@ -11,7 +11,7 @@ package br.unicap.poo.clinicaMedica.endPoint;
  */
 
 import br.unicap.poo.clinicaMedica.model.SeguradoraPlano;
-import br.unicap.poo.clinicaMedica.repository.Iterador;
+import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import br.unicap.poo.clinicaMedica.service.SeguradoraPlanoService;
 import java.util.List;
 import javax.ws.rs.Consumes;

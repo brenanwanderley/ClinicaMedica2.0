@@ -8,13 +8,12 @@ package br.unicap.poo.clinicaMedica.endPoint;
 import br.unicap.poo.clinicaMedica.model.Exame;
 import br.unicap.poo.clinicaMedica.model.Medico;
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
-import br.unicap.poo.clinicaMedica.repository.Iterador;
+import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import javax.ws.rs.Path;
 import br.unicap.poo.clinicaMedica.service.ExameService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
 import br.unicap.poo.clinicaMedica.service.TipoExameService;
-import java.util.Calendar;
-import java.util.Iterator;
+import java.text.ParseException;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -49,29 +48,16 @@ public class ExameEndPoint {
     @Path("/{dia}/{mes}/{ano}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Exame> listarExames(@PathParam("dia")int dia, @PathParam("mes")int mes, @PathParam("ano")int ano){
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.DAY_OF_MONTH, dia);
-        calendar.set(Calendar.MONTH, mes-1);
-        calendar.set(Calendar.YEAR, ano);
-        
-        return service.verExames(calendar.getTime());
+    public List<Exame> listarExames(AgendamentoListDateParam exameListDateParam){        
+        return service.verExames(exameListDateParam.getData());
     }
     @Path("/{dia}/{mes}/{ano}/{medicoid}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
 
-    public Iterador<Exame> listarExames(@PathParam("dia")int dia, 
-                                          @PathParam("mes")int mes, 
-                                          @PathParam("ano")int ano, 
-                                          @PathParam("medicoid") int medicoId){
-        Medico medico = medService.selecionar(medicoId);
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.DAY_OF_MONTH, dia);
-        calendar.set(Calendar.MONTH, mes-1);
-        calendar.set(Calendar.YEAR, ano);
-        
-        return service.verExames(medico, calendar.getTime());
+    public Iterador<Exame> listarExames(AgendamentoListDateMedicoParam exameListDateMedicoParam){
+        return service.verExames(exameListDateMedicoParam.getMedico(), 
+                                 exameListDateMedicoParam.getData());
     }
     @GET
     @Path("/{id}")
@@ -81,9 +67,11 @@ public class ExameEndPoint {
         return item;
     }
     @PUT
+    @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void alterarExame(Exame exame) throws AgendamentoException{
-        service.alterarExame(exame);
+    public void reagendarExame(@PathParam("id") int id, ReagendarParam reagendarParam) throws AgendamentoException, ParseException{
+        Exame item = service.selecionar(id);
+        item.reagendar(reagendarParam.getData());
     }
     @DELETE
     @Path("/{id}")

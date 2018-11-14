@@ -5,7 +5,7 @@
  */
 package br.unicap.poo.clinicaMedica.endPoint;
 import br.unicap.poo.clinicaMedica.model.Especialidade;
-import br.unicap.poo.clinicaMedica.repository.Iterador;
+import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import javax.ws.rs.PathParam;
 import br.unicap.poo.clinicaMedica.service.EspecialidadeService;
 import java.util.List;

@@ -5,18 +5,21 @@
  */
 package br.unicap.poo.clinicaMedica.repository;
 
+import br.unicap.poo.clinicaMedica.iteradores.ListIterador;
+import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import br.unicap.poo.clinicaMedica.model.Especialidade;
+import java.util.ArrayList;
 
 /**
  *
  * @author Danilo
  */
 public class EspecialidadeDAO implements EspecialidadeRepBridge{
-    private ArrayListIterada<Especialidade> dataBase;
+    private ArrayList<Especialidade> dataBase;
     private static EspecialidadeDAO instance;
     
     private EspecialidadeDAO(){
-        dataBase = new ArrayListIterada();
+        dataBase = new ArrayList();
     }
     public synchronized static EspecialidadeDAO getInstance(){
         if(instance==null){
@@ -59,7 +62,7 @@ public class EspecialidadeDAO implements EspecialidadeRepBridge{
 
     @Override
     public Iterador<Especialidade> listar() {
-        return dataBase;
+        return new ListIterador<>(dataBase);
     }
 
     @Override

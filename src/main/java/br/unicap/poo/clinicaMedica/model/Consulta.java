@@ -11,6 +11,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import javax.enterprise.context.ApplicationScoped;
 
@@ -21,8 +22,8 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class Consulta extends Agendamento{
     private Medico medico;
-    private ArrayList<Exame> exames;
-    private ArrayList<ProcedimentoMedico> procedimentos;
+    private List<Exame> exames;
+    private List<ProcedimentoMedico> procedimentos;
     private Paciente paciente;
     
     private Consulta(int codigo, Consulta consulta){
@@ -64,11 +65,11 @@ public class Consulta extends Agendamento{
         }
     }
 
-    public ArrayList<Exame> getExames() {
+    public List<Exame> getExames() {
         return exames;
     }
 
-    public ArrayList<ProcedimentoMedico> getProcedimentos() {
+    public List<ProcedimentoMedico> getProcedimentos() {
         return procedimentos;
     }
     @Override
@@ -113,12 +114,7 @@ public class Consulta extends Agendamento{
         return new Consulta(codigo, this);
     }
     @Override
-    public void setStatus(Status status){
-        super.setStatus(status);
-        paciente.increaseNumeroVisitas();
-    }
-    @Override
-    public void setData(String data) throws DataInvalidaException, ParseException{
+    void setData(String data) throws DataInvalidaException, ParseException{
         DateFormat df = new SimpleDateFormat("dd/MM/yy hh:mm", Locale.ENGLISH);
         this.setData(df.parse(data));
     }

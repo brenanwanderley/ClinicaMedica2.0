@@ -5,7 +5,7 @@ package br.unicap.poo.clinicaMedica.endPoint;
  * @author Danilo
  */
 import br.unicap.poo.clinicaMedica.model.TipoExame;
-import br.unicap.poo.clinicaMedica.repository.Iterador;
+import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import br.unicap.poo.clinicaMedica.service.TipoExameService;
 import java.util.List;
 import javax.ws.rs.Consumes;

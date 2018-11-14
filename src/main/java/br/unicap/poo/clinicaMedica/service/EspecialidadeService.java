@@ -8,7 +8,7 @@ import br.unicap.poo.clinicaMedica.model.Especialidade;
 import br.unicap.poo.clinicaMedica.repository.EspecialidadeRepBridge;
 import br.unicap.poo.clinicaMedica.repository.EspecialidadeConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.EspecialidadeRepFactory;
-import br.unicap.poo.clinicaMedica.repository.Iterador;
+import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 /**
  *
  * @author Danilo

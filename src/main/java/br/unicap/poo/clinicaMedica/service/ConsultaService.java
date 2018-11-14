@@ -6,7 +6,7 @@ import br.unicap.poo.clinicaMedica.model.Medico;
 import br.unicap.poo.clinicaMedica.repository.ConsultaRepBridge;
 import br.unicap.poo.clinicaMedica.repository.ConsultaConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.ConsultaRepFactory;
-import br.unicap.poo.clinicaMedica.repository.Iterador;
+import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 
 import java.util.Date;
 
