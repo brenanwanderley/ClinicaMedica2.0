@@ -17,6 +17,7 @@ import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import br.unicap.poo.clinicaMedica.service.EspecialidadeService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
 import br.unicap.poo.clinicaMedica.service.SeguradoraPlanoService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -43,8 +44,8 @@ public class MedicoEndPoint {
     }
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Iterador<Medico> listarMedicos(){
-        return service.listarMedico();
+    public String listarMedicos() throws JsonProcessingException{
+        return service.listarMedico().toJson();
     }
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

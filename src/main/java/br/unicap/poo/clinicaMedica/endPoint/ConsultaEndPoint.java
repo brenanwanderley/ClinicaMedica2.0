@@ -23,6 +23,7 @@ import br.unicap.poo.clinicaMedica.service.ExameService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
 import br.unicap.poo.clinicaMedica.service.PacienteService;
 import br.unicap.poo.clinicaMedica.service.ProcedimentoMedicoService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import java.text.ParseException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -53,23 +54,23 @@ public class ConsultaEndPoint {
     @Path("/{medicoid}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Iterador<Consulta> listarConsultas(@PathParam("medicoid") int medicoId){
+    public String listarConsultas(@PathParam("medicoid") int medicoId) throws JsonProcessingException{
         Medico medico = medService.selecionar(medicoId);
-        return service.verConsultas(medico);
+        return service.verConsultas(medico).toJson();
     }
     @Path("/{dia}/{mes}/{ano}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Iterador<Consulta> listarConsultas(AgendamentoListDateParam consultaListDateParam){
-        return service.verConsultas(consultaListDateParam.getData());
+    public String listarConsultas(AgendamentoListDateParam consultaListDateParam) throws JsonProcessingException{
+        return service.verConsultas(consultaListDateParam.getData()).toJson();
     }
     @Path("/{dia}/{mes}/{ano}/{medicoid}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
 
-    public Iterador<Consulta> listarConsultas(AgendamentoListDateMedicoParam consultaListDateMedicoParam){
+    public String listarConsultas(AgendamentoListDateMedicoParam consultaListDateMedicoParam) throws JsonProcessingException{
         return service.verConsultas(consultaListDateMedicoParam.getMedico(), 
-                                    consultaListDateMedicoParam.getData());
+                                    consultaListDateMedicoParam.getData()).toJson();
     }
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

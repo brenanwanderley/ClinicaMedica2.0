@@ -29,7 +29,7 @@ public class ConsultaDAO implements ConsultaRepBridge {
     }
     @Override
     public boolean inserir(Consulta item) {
-        return dataBase.add((Consulta)item.clonar(lastCode()+1));
+        return dataBase.add(item);
     }
 
     @Override
@@ -77,11 +77,4 @@ public class ConsultaDAO implements ConsultaRepBridge {
         }
         return null;
     }
-    private int lastCode(){
-        if(dataBase.isEmpty()){
-            return -1;
-        }
-        return dataBase.get(dataBase.size()-1).getCodigo();
-    }
-    
 }

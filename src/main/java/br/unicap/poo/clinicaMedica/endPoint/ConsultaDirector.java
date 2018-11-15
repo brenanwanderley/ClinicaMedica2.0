@@ -23,13 +23,15 @@ public class ConsultaDirector {
     private Consulta consulta;
     
     @JsonCreator
-    public ConsultaDirector(@JsonProperty("data") String data,
+    public ConsultaDirector(@JsonProperty("codigo") int codigo,
+                            @JsonProperty("data") String data,
                             @JsonProperty("medico") Medico medico,
                             @JsonProperty("paciente") Paciente paciente) throws DataInvalidaException, ConsultaException, ParseException{
         ConsultaBuilder builder = new ConsultaBuilder();
-        consulta = builder.addData(data)
-                         .addMedico(medico)
+        consulta = builder.addCodigo(codigo)
                          .addPaciente(paciente)
+                         .addData(data)
+                         .addMedico(medico)
                          .build();
     
     }

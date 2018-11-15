@@ -14,7 +14,7 @@ import java.util.Calendar;
  * @author aluno
  */
 public abstract class Agendamento{
-    private final int codigo;
+    private int codigo;
     private Date data;
     private StatusAgendamento status;
 
@@ -33,6 +33,9 @@ public abstract class Agendamento{
     }
     public int getCodigo() {
         return codigo;
+    }
+    void setCodigo(int codigo){
+        this.codigo=codigo;
     }
     public Date getData() {
         return data;
@@ -66,6 +69,5 @@ public abstract class Agendamento{
     }
     public abstract Medico getMedico();
     public abstract Paciente getPaciente();
-    public abstract Agendamento clonar(int codigo);
     abstract void setData(String data) throws DataInvalidaException, ParseException;
 }

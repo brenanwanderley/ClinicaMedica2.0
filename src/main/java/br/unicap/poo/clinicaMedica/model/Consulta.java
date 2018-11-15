@@ -26,19 +26,6 @@ public class Consulta extends Agendamento{
     private List<ProcedimentoMedico> procedimentos;
     private Paciente paciente;
     
-    private Consulta(int codigo, Consulta consulta){
-        super(codigo, consulta);
-        this.medico=consulta.medico;
-        this.exames= new ArrayList();
-        for(Exame item : consulta.exames){
-            exames.add(item);
-        }
-        this.procedimentos = new ArrayList();
-        for(ProcedimentoMedico item : consulta.procedimentos){
-            procedimentos.add(item);
-        }
-        this.paciente=consulta.paciente;
-    }
     Consulta(){
         super();
         exames = new ArrayList();
@@ -108,10 +95,6 @@ public class Consulta extends Agendamento{
             }
             cont++;
         }
-    }
-    @Override
-    public Agendamento clonar(int codigo){
-        return new Consulta(codigo, this);
     }
     @Override
     void setData(String data) throws DataInvalidaException, ParseException{

@@ -23,7 +23,7 @@ public class HorarioMedico {
     private ArrayList<Horario> horarios;
     
     @JsonCreator
-    public HorarioMedico(@JsonProperty("horarios")ArrayList horarios){
+    public HorarioMedico(@JsonProperty("horarios")ArrayList<Horario> horarios){
         this.horarios = horarios;
     }
     private HorarioMedico(HorarioMedico horarioMedico){

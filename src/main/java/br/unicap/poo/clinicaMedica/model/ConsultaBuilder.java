@@ -19,6 +19,10 @@ public class ConsultaBuilder{
     public ConsultaBuilder(){
         consulta = new Consulta();
     }
+    public ConsultaBuilder addCodigo(int codigo){
+        consulta.setCodigo(codigo);
+        return this;
+    }
     public ConsultaBuilder addData(String data) throws DataInvalidaException, ParseException{
         consulta.setData(data);
         return this;

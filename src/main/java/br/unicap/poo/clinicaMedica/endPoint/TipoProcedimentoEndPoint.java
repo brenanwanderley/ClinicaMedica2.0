@@ -11,9 +11,8 @@ package br.unicap.poo.clinicaMedica.endPoint;
  */
 
 import br.unicap.poo.clinicaMedica.model.TipoProcedimento;
-import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import br.unicap.poo.clinicaMedica.service.TipoProcedimentoService;
-import java.util.List;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -32,8 +31,8 @@ public class TipoProcedimentoEndPoint {
     }
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Iterador<TipoProcedimento> listarTipoProcedimentos(){
-        return service.listar();
+    public String listarTipoProcedimentos() throws JsonProcessingException{
+        return service.listar().toJson();
     }
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

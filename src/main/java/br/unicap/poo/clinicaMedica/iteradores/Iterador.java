@@ -5,11 +5,35 @@
  */
 package br.unicap.poo.clinicaMedica.iteradores;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
  *
  * @author Lucas Soares
  */
-public interface Iterador<T> {
-    public boolean hasNext();
-    public T next();
+public abstract class Iterador<T> {
+
+    public String toJson() throws JsonProcessingException{
+        StringBuilder sb = new StringBuilder();
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonResult;
+        T item;
+        
+        sb.append("[");
+        while(this.hasNext()){
+            item = this.next();
+            jsonResult = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(item);
+            sb.append(jsonResult);
+            sb.append(",");
+        }
+        sb.replace(sb.length()-1, sb.length(), " ");
+        sb.append("]");
+        return sb.toString();
+        
+    }
+    
+    public abstract boolean hasNext();
+    public abstract T next();
+    
 }

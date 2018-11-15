@@ -5,26 +5,27 @@
  */
 package br.unicap.poo.clinicaMedica.iteradores;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
-import javax.enterprise.context.ApplicationScoped;
 
 /**
  *
  * @author aluno
  * @param <T> 
  */
-@ApplicationScoped
-public class ListIterador<T> implements Iterador<T>{
+public class ListIterador<T> extends Iterador<T>{
     private List<T> list;
     private int pos;
     
     public ListIterador(List<T> list){
         this.list=list;
+        this.pos=-1;
     }
     
     @Override
     public boolean hasNext() {
-        if(pos<list.size()){
+        if((pos+1)<list.size()){
             return true;
         }
         return false;
@@ -35,5 +36,4 @@ public class ListIterador<T> implements Iterador<T>{
         pos++;
         return list.get(pos);
     }
-    
 }

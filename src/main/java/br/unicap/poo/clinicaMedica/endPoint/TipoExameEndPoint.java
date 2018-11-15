@@ -5,9 +5,8 @@ package br.unicap.poo.clinicaMedica.endPoint;
  * @author Danilo
  */
 import br.unicap.poo.clinicaMedica.model.TipoExame;
-import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import br.unicap.poo.clinicaMedica.service.TipoExameService;
-import java.util.List;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -26,8 +25,8 @@ public class TipoExameEndPoint {
     }
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Iterador<TipoExame> listarTipoExames(){
-        return service.listar();
+    public String listarTipoExames() throws JsonProcessingException{
+        return service.listar().toJson();
     }
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

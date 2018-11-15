@@ -33,11 +33,6 @@ public class Exame extends Agendamento{
         this.tipo=tipo;
         this.consulta.addExame(getInstance());
     }
-    private Exame(int codigo, Exame exame){
-        super(codigo, exame);
-        consulta = exame.consulta;
-        tipo = exame.tipo;
-    }
 
     public Consulta getConsulta() {
         return consulta;
@@ -58,10 +53,6 @@ public class Exame extends Agendamento{
     @Override
     public Paciente getPaciente() {
         return consulta.getPaciente();
-    }
-    @Override
-    public Agendamento clonar(int codigo){
-        return new Exame(codigo, this);
     }
     @Override
     public void setData(String data) throws DataInvalidaException, ParseException{

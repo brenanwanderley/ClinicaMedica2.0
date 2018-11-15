@@ -11,9 +11,8 @@ package br.unicap.poo.clinicaMedica.endPoint;
  */
 
 import br.unicap.poo.clinicaMedica.model.SeguradoraPlano;
-import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import br.unicap.poo.clinicaMedica.service.SeguradoraPlanoService;
-import java.util.List;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -33,8 +32,8 @@ public class SeguradoraPlanoEndPoint {
     }
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Iterador<SeguradoraPlano> listarSeguradoraPlanos(){
-        return service.listarSeguradoras();
+    public String listarSeguradoraPlanos() throws JsonProcessingException{
+        return service.listarSeguradoras().toJson();
     }
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

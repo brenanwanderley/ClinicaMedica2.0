@@ -13,6 +13,7 @@ import javax.ws.rs.Path;
 import br.unicap.poo.clinicaMedica.service.ProcedimentoMedicoService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
 import br.unicap.poo.clinicaMedica.service.TipoProcedimentoService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import java.text.ParseException;
 import java.util.List;
 import javax.ws.rs.Consumes;
@@ -41,24 +42,24 @@ public class ProcedimentoMedicoEndPoint {
     @Path("/{medicoid}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Iterador<ProcedimentoMedico> listarProcedimentos(@PathParam("medicoid") int medicoId){
+    public String listarProcedimentos(@PathParam("medicoid") int medicoId) throws JsonProcessingException{
         Medico medico = medService.selecionar(medicoId);
-        return service.verProcedimentos(medico);
+        return service.verProcedimentos(medico).toJson();
     }
     @Path("/{dia}/{mes}/{ano}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Iterador<ProcedimentoMedico> listarProcedimentos(AgendamentoListDateParam procedimentoListDateParam){
+    public String listarProcedimentos(AgendamentoListDateParam procedimentoListDateParam) throws JsonProcessingException{
         
-        return service.verProcedimentos(procedimentoListDateParam.getData());
+        return service.verProcedimentos(procedimentoListDateParam.getData()).toJson();
     }
     @Path("/{dia}/{mes}/{ano}/{medicoid}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
 
-    public Iterador<ProcedimentoMedico> listarProcedimentos(AgendamentoListDateMedicoParam procedimentoListDateMedicoParam){
+    public String listarProcedimentos(AgendamentoListDateMedicoParam procedimentoListDateMedicoParam) throws JsonProcessingException{
         return service.verProcedimentos(procedimentoListDateMedicoParam.getMedico(), 
-                                        procedimentoListDateMedicoParam.getData());
+                                        procedimentoListDateMedicoParam.getData()).toJson();
     }
     @GET
     @Path("/{id}")
