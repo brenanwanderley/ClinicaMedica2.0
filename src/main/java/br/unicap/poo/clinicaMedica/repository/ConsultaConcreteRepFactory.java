@@ -5,11 +5,15 @@
  */
 package br.unicap.poo.clinicaMedica.repository;
 
+import br.unicap.poo.clinicaMedica.repository.ConsultaRepEnum.consultarRep;
 /**
  *
  * @author Aluno
  */
 public class ConsultaConcreteRepFactory extends ConsultaRepFactory{
+    
+    consultarRep rapEnum;
+    
     public ConsultaConcreteRepFactory(){
         super();
     }
@@ -20,12 +24,12 @@ public class ConsultaConcreteRepFactory extends ConsultaRepFactory{
         //3 - Banco de Dados
         int opcao=1;
         
-        switch(opcao){
-            case 1:
+        switch(rapEnum){
+            case MEMORIA:
                 return ConsultaDAO.getInstance();
-            case 2:
+            case ARQUIVO:
                 throw new UnsupportedOperationException("Não há suporte para arquivo");
-            case 3:
+            case BANCODEDADOS:
                 throw new UnsupportedOperationException("Não há suporte para banco de dados");
             default:
                 return null;
