@@ -12,6 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import javax.ws.rs.PathParam;
 
 /**
  *
@@ -21,7 +22,7 @@ public class AgendamentoListDateParam {
     private Date data;
     
     @JsonCreator
-    public AgendamentoListDateParam(@JsonProperty("data") String data) throws ParseException{
+    public AgendamentoListDateParam(@PathParam("dia") String data) throws ParseException{
         this.setData(data);
     }
     private void setData(String data) throws ParseException{

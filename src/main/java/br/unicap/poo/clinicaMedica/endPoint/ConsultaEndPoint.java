@@ -17,13 +17,13 @@ import br.unicap.poo.clinicaMedica.model.Exame;
 import br.unicap.poo.clinicaMedica.model.Medico;
 import br.unicap.poo.clinicaMedica.model.ProcedimentoMedico;
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
-import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import br.unicap.poo.clinicaMedica.service.ConsultaService;
 import br.unicap.poo.clinicaMedica.service.ExameService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
 import br.unicap.poo.clinicaMedica.service.PacienteService;
 import br.unicap.poo.clinicaMedica.service.ProcedimentoMedicoService;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import java.io.IOException;
 import java.text.ParseException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -109,5 +109,11 @@ public class ConsultaEndPoint {
     @Consumes(MediaType.APPLICATION_JSON)
     public void novoProcedimento(ProcedimentoMedico procedimentoMedico){
         procService.agendarProcedimento(procedimentoMedico);
+    }
+    @PUT
+    @Path("/config")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void setConfig(ConsultaConfigParam consultaConfig) throws IOException{
+        service.setConfig(consultaConfig.getConsultaEnum());
     }
 }

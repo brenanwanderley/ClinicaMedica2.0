@@ -5,25 +5,36 @@
  */
 package br.unicap.poo.clinicaMedica.repository;
 
+import java.io.IOException;
+
 /**
  *
  * @author Brenan Wanderley
  */
-public class ConsultaConfig extends ConsultaRepEnum{
+public class ConsultaConfig{
 
-    private consultarRep getNum() {
-        return num;
+    private ConsultaRepEnum consultaRepEnum;
+    private FileConfigSerializable<ConsultaRepEnum> config;
+    
+    public ConsultaConfig() throws IOException{
+        this.config = new FileConfigSerializable("consultaConfig");
+    }
+    public ConsultaRepEnum getNum() {
+        return consultaRepEnum;
     }
 
-    private void setNum(consultarRep num) {
-        this.num = num;
+    public void setNum(ConsultaRepEnum num) {
+        this.consultaRepEnum=num;
     }
     
-    private void load(){
-        
+    public void load(){
+        consultaRepEnum = config.Load();
+        if(consultaRepEnum==null){
+            consultaRepEnum = ConsultaRepEnum.MEMORIA;
+        }
     }
     
-    private void save(){
-        
+    public void save(){
+        config.save(consultaRepEnum);
     }
 }

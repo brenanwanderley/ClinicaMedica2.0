@@ -5,26 +5,33 @@
  */
 package br.unicap.poo.clinicaMedica.repository;
 
-import br.unicap.poo.clinicaMedica.repository.ConsultaRepEnum.consultarRep;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Aluno
  */
 public class ConsultaConcreteRepFactory extends ConsultaRepFactory{
     
-    consultarRep rapEnum;
     
     public ConsultaConcreteRepFactory(){
         super();
     }
     @Override
     public ConsultaRepBridge getInstance(){
-        //1 - Memória
-        //2 - Arquivo
-        //3 - Banco de Dados
-        int opcao=1;
+        ConsultaConfig config;
+        try {
+            config = new ConsultaConfig();
+        } catch (IOException ex) {
+            Logger.getLogger(ConsultaConcreteRepFactory.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        config.load();
+        ConsultaRepEnum consultaEnum = config.getNum();
         
-        switch(rapEnum){
+        switch(consultaEnum){
             case MEMORIA:
                 return ConsultaDAO.getInstance();
             case ARQUIVO:

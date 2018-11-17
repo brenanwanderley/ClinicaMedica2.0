@@ -7,6 +7,9 @@ import br.unicap.poo.clinicaMedica.repository.ConsultaRepBridge;
 import br.unicap.poo.clinicaMedica.repository.ConsultaConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.ConsultaRepFactory;
 import br.unicap.poo.clinicaMedica.iteradores.Iterador;
+import br.unicap.poo.clinicaMedica.repository.ConsultaConfig;
+import br.unicap.poo.clinicaMedica.repository.ConsultaRepEnum;
+import java.io.IOException;
 
 import java.util.Date;
 
@@ -56,5 +59,10 @@ public class ConsultaService {
         Consulta selecao = consultas.selecionar(codigo);
         
         return selecao;
+    }
+    public void setConfig(ConsultaRepEnum consultaEnum) throws IOException{
+        ConsultaConfig config = new ConsultaConfig();
+        config.setNum(consultaEnum);
+        config.save();
     }
 }

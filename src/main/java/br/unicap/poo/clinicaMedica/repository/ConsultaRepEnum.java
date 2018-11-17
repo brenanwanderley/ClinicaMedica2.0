@@ -1,15 +1,13 @@
 package br.unicap.poo.clinicaMedica.repository;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Brenan Wanderley
  */
-public class ConsultaRepEnum {
     
-     enum consultarRep{
+public enum ConsultaRepEnum implements Serializable{
         MEMORIA, ARQUIVO, BANCODEDADOS;
-    }
-    consultarRep num;
-    
-   
 }
+ 
