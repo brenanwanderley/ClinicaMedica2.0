@@ -35,6 +35,7 @@ public class ApplicationConfig extends Application {
         resources.add(br.unicap.poo.clinicaMedica.endPoint.MedicoEndPoint.class);
         resources.add(br.unicap.poo.clinicaMedica.endPoint.PacienteEndPoint.class);
         resources.add(br.unicap.poo.clinicaMedica.endPoint.ProcedimentoMedicoEndPoint.class);
+        resources.add(br.unicap.poo.clinicaMedica.endPoint.RepConfigEndPoint.class);
         resources.add(br.unicap.poo.clinicaMedica.endPoint.SeguradoraPlanoEndPoint.class);
         resources.add(br.unicap.poo.clinicaMedica.endPoint.TipoExameEndPoint.class);
         resources.add(br.unicap.poo.clinicaMedica.endPoint.TipoProcedimentoEndPoint.class);

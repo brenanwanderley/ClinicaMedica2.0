@@ -8,14 +8,12 @@ package br.unicap.poo.clinicaMedica.endPoint;
 import br.unicap.poo.clinicaMedica.model.ProcedimentoMedico;
 import br.unicap.poo.clinicaMedica.model.Medico;
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
-import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import javax.ws.rs.Path;
 import br.unicap.poo.clinicaMedica.service.ProcedimentoMedicoService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
 import br.unicap.poo.clinicaMedica.service.TipoProcedimentoService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.text.ParseException;
-import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -42,8 +40,7 @@ public class ProcedimentoMedicoEndPoint {
     @Path("/{medicoid}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String listarProcedimentos(@PathParam("medicoid") int medicoId) throws JsonProcessingException{
-        Medico medico = medService.selecionar(medicoId);
+    public String listarProcedimentos(Medico medico) throws JsonProcessingException{
         return service.verProcedimentos(medico).toJson();
     }
     @Path("/{dia}/{mes}/{ano}")

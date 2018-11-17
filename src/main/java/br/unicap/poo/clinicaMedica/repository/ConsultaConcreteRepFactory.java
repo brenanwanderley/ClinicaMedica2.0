@@ -42,4 +42,10 @@ public class ConsultaConcreteRepFactory extends ConsultaRepFactory{
                 return null;
         }
     }
+    public void setConfig(ConsultaRepEnum consultaEnum) throws IOException{
+        ConsultaConfig config = new ConsultaConfig();
+        config.setNum(consultaEnum);
+        config.save();       
+    }
+
 }

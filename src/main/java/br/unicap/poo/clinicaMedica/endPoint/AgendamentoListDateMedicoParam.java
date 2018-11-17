@@ -27,19 +27,14 @@ public class AgendamentoListDateMedicoParam {
     
     @JsonCreator
     public AgendamentoListDateMedicoParam(@JsonProperty("data") String data,
-                             @JsonProperty("medico") int medicoId) throws ParseException{
+                             @JsonProperty("medico") Medico medico) throws ParseException{
         this.setData(data);
-        this.setMedico(medicoId);
+        this.medico=medico;
     }
     private void setData(String data) throws ParseException{
         DateFormat df = new SimpleDateFormat("dd/MM/yy", Locale.ENGLISH);
         this.data=df.parse(data);
     }
-    private void setMedico(int medicoId){
-        MedicoService medService = new MedicoService();
-        this.medico=medService.selecionar(medicoId);
-    }
-    
     public Date getData(){
         return data;
     }

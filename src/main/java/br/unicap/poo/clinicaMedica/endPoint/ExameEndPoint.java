@@ -13,6 +13,7 @@ import javax.ws.rs.Path;
 import br.unicap.poo.clinicaMedica.service.ExameService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
 import br.unicap.poo.clinicaMedica.service.TipoExameService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import java.text.ParseException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -37,26 +38,21 @@ public class ExameEndPoint {
         medService = new MedicoService();
         tipoService = new TipoExameService();
     }
-    @Path("/{medicoid}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Iterador<Exame> listarExames(@PathParam("medicoid") int medicoId){
-        Medico medico = medService.selecionar(medicoId);
-        return service.verExames(medico);
+    public String listarExames(Medico medico) throws JsonProcessingException{
+        return service.verExames(medico).toJson();
     }
-    @Path("/{dia}/{mes}/{ano}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Iterador<Exame> listarExames(AgendamentoListDateParam exameListDateParam){        
-        return service.verExames(exameListDateParam.getData());
+    public String listarExames(AgendamentoListDateParam exameListDateParam) throws JsonProcessingException{        
+        return service.verExames(exameListDateParam.getData()).toJson();
     }
-    @Path("/{dia}/{mes}/{ano}/{medicoid}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-
-    public Iterador<Exame> listarExames(AgendamentoListDateMedicoParam exameListDateMedicoParam){
+    public String listarExames(AgendamentoListDateMedicoParam exameListDateMedicoParam) throws JsonProcessingException{
         return service.verExames(exameListDateMedicoParam.getMedico(), 
-                                 exameListDateMedicoParam.getData());
+                                 exameListDateMedicoParam.getData()).toJson();
     }
     @GET
     @Path("/{id}")

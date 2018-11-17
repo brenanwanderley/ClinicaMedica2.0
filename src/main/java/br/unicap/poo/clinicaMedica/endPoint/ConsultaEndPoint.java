@@ -23,7 +23,6 @@ import br.unicap.poo.clinicaMedica.service.MedicoService;
 import br.unicap.poo.clinicaMedica.service.PacienteService;
 import br.unicap.poo.clinicaMedica.service.ProcedimentoMedicoService;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import java.io.IOException;
 import java.text.ParseException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -51,20 +50,17 @@ public class ConsultaEndPoint {
         medService = new MedicoService();
     }
     
-    @Path("/{medicoid}")
     @GET
+    @Path("/listarpormedico")
     @Produces(MediaType.APPLICATION_JSON)
-    public String listarConsultas(@PathParam("medicoid") int medicoId) throws JsonProcessingException{
-        Medico medico = medService.selecionar(medicoId);
+    public String listarConsultas(Medico medico) throws JsonProcessingException{
         return service.verConsultas(medico).toJson();
     }
-    @Path("/{dia}/{mes}/{ano}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String listarConsultas(AgendamentoListDateParam consultaListDateParam) throws JsonProcessingException{
         return service.verConsultas(consultaListDateParam.getData()).toJson();
     }
-    @Path("/{dia}/{mes}/{ano}/{medicoid}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
 
@@ -109,11 +105,5 @@ public class ConsultaEndPoint {
     @Consumes(MediaType.APPLICATION_JSON)
     public void novoProcedimento(ProcedimentoMedico procedimentoMedico){
         procService.agendarProcedimento(procedimentoMedico);
-    }
-    @PUT
-    @Path("/config")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void setConfig(ConsultaConfigParam consultaConfig) throws IOException{
-        service.setConfig(consultaConfig.getConsultaEnum());
     }
 }
