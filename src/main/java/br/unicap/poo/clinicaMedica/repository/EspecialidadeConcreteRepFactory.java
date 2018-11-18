@@ -20,10 +20,7 @@ public class EspecialidadeConcreteRepFactory extends EspecialidadeRepFactory{
     @Override
     public EspecialidadeRepBridge getInstance(){
         EspecialidadeConfig config;
-        //1 - Memória
-        //2 - Arquivo
-        //3 - Banco de Dados
-        //int opcao=1;
+
         try {
             config = new EspecialidadeConfig();
         } catch (IOException ex) {

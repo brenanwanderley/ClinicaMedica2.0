@@ -5,9 +5,13 @@
  */
 package br.unicap.poo.clinicaMedica.repository;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
- * @author Aluno
+ * @author Brenan Wanderley
  */
 public class TipoProcedimentoConcreteRepFactory extends TipoProcedimentoRepFactory {
     public TipoProcedimentoConcreteRepFactory(){
@@ -15,19 +19,32 @@ public class TipoProcedimentoConcreteRepFactory extends TipoProcedimentoRepFacto
     }
     @Override
     public TipoProcedimentoRepBridge getInstance(){
-        //1 - Memória
-        //2 - Arquivo
-        //3 - Banco de Dados
-        int opcao=1;
+        TipoProcedimentoConfig config;
+
+        try {
+            config = new TipoProcedimentoConfig();
+        } catch (IOException ex) {
+            Logger.getLogger(TipoProcedimentoConcreteRepFactory.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        config.load();
+        TipoProcedimentoRepEnum tipoProcedimentoEnum = config.getNum();
         
-        switch(opcao){
-            case 1:
+        switch(tipoProcedimentoEnum){
+            case MEMORIA:
                 return TipoProcedimentoDAO.getInstance();
-            case 2:
+            case ARQUIVO:
                 throw new UnsupportedOperationException("Não há suporte para arquivo");
-            case 3:
+            case BANCODEDADOS:
                 throw new UnsupportedOperationException("Não há suporte para banco de dados");
             default:
                 return null;
-        }    }
+        }
+    }
+    
+    public void setConfig(TipoProcedimentoRepEnum tipoProcedimentoEnum) throws IOException{
+        TipoProcedimentoConfig config = new TipoProcedimentoConfig();
+        config.setNum(tipoProcedimentoEnum);
+        config.save();
+    }
 }
