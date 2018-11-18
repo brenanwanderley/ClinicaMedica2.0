@@ -36,4 +36,7 @@ public class ListIterador<T> extends Iterador<T>{
         pos++;
         return list.get(pos);
     }
+    public boolean isEmpty(){
+        return list.isEmpty();
+    }
 }

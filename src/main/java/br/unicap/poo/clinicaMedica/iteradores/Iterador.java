@@ -20,20 +20,23 @@ public abstract class Iterador<T> {
         String jsonResult;
         T item;
         
-        sb.append("[");
-        while(this.hasNext()){
-            item = this.next();
-            jsonResult = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(item);
-            sb.append(jsonResult);
-            sb.append(",");
+        if(!this.isEmpty()){
+            sb.append("[");
+            while(this.hasNext()){
+                item = this.next();
+                jsonResult = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(item);
+                sb.append(jsonResult);
+                sb.append(",");
+            }
+            sb.replace(sb.length()-1, sb.length(), " ");
+            sb.append("]");
+            return sb.toString();
         }
-        sb.replace(sb.length()-1, sb.length(), " ");
-        sb.append("]");
-        return sb.toString();
-        
+        return "";
     }
     
     public abstract boolean hasNext();
     public abstract T next();
+    public abstract boolean isEmpty();
     
 }
