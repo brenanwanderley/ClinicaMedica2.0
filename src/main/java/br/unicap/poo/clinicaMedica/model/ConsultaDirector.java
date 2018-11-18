@@ -3,22 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.unicap.poo.clinicaMedica.endPoint;
+package br.unicap.poo.clinicaMedica.model;
 
-import br.unicap.poo.clinicaMedica.model.Consulta;
-import br.unicap.poo.clinicaMedica.model.ConsultaBuilder;
-import br.unicap.poo.clinicaMedica.model.Medico;
-import br.unicap.poo.clinicaMedica.model.Paciente;
 import br.unicap.poo.clinicaMedica.model.exceptions.ConsultaException;
 import br.unicap.poo.clinicaMedica.model.exceptions.DataInvalidaException;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.text.ParseException;
+import javax.enterprise.context.ApplicationScoped;
 
 /**
  *
  * @author aluno
  */
+@ApplicationScoped
 public class ConsultaDirector {
     private Consulta consulta;
     

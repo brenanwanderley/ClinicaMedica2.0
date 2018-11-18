@@ -6,6 +6,9 @@
 package br.unicap.poo.clinicaMedica.model;
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.DataInvalidaException;
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Calendar;
@@ -37,8 +40,19 @@ public abstract class Agendamento{
     void setCodigo(int codigo){
         this.codigo=codigo;
     }
+    @JsonIgnore
     public Date getData() {
         return data;
+    }
+    @JsonGetter("data")
+    public String getDataString(){
+        if(this.data!=null){
+            Calendar calendar = Calendar.getInstance(); 
+            calendar.setTime(this.data);
+            DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
+            return df.format(calendar.getTime());
+        }
+        return "00/00/00";       
     }
     public void setData(Date data) throws DataInvalidaException {
         Calendar cal = Calendar.getInstance();

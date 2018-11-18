@@ -41,7 +41,7 @@ public class Consulta extends Agendamento{
             medico=null;
             return;
         }
-        if(medico.horarioDisponivel(super.getData())){
+        if(medico.horarioDisponivel(this.getData())){
             if(medico.atendePlanoSaude(paciente.getPlanoDeSaude().getSeguradoraPlano())){
                 this.medico=medico;
             }else{

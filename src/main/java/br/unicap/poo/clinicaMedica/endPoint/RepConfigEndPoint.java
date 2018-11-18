@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Danilo
  */
-@Path("repConfig")
+@Path("repconfig")
 public class RepConfigEndPoint {
    
     @PUT

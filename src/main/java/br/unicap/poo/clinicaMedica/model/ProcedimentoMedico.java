@@ -8,6 +8,7 @@ package br.unicap.poo.clinicaMedica.model;
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
 import br.unicap.poo.clinicaMedica.model.exceptions.DataInvalidaException;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -26,13 +27,14 @@ public class ProcedimentoMedico extends Agendamento{
 
     @JsonCreator
     public ProcedimentoMedico(@JsonProperty("data")String data, 
-                              @JsonProperty("consulta") Consulta consulta, 
+                              @JsonProperty("consulta") ConsultaDirector consultaDirector, 
                               @JsonProperty("tipo") TipoProcedimento tipo) throws AgendamentoException, ParseException{
         this.setData(data);
-        this.consulta=consulta;
+        this.consulta=consultaDirector.getConsulta();
         this.tipo=tipo;
         this.consulta.addProcedimento(getInstance());
     }
+    @JsonIgnore
     public Consulta getConsulta() {
         return consulta;
     }

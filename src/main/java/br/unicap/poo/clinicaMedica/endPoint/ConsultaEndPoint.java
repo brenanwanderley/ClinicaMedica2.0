@@ -12,6 +12,7 @@ package br.unicap.poo.clinicaMedica.endPoint;
  * @author Danilo
  */
 
+import br.unicap.poo.clinicaMedica.model.ConsultaDirector;
 import br.unicap.poo.clinicaMedica.model.Consulta;
 import br.unicap.poo.clinicaMedica.model.Exame;
 import br.unicap.poo.clinicaMedica.model.Medico;
@@ -57,10 +58,12 @@ public class ConsultaEndPoint {
         return service.verConsultas(medico).toJson();
     }
     @GET
+    @Path("/listarpordata")
     @Produces(MediaType.APPLICATION_JSON)
     public String listarConsultas(AgendamentoListDateParam consultaListDateParam) throws JsonProcessingException{
         return service.verConsultas(consultaListDateParam.getData()).toJson();
     }
+    @Path("/listarpordatamedico")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
 
@@ -74,10 +77,9 @@ public class ConsultaEndPoint {
         service.AgendarConsulta(consultaDirector.getConsulta());
     }
     @PUT
-    @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void reagendarConsulta(@PathParam("id")int id, ReagendarParam reagendarParam) throws ParseException, AgendamentoException{
-        Consulta consulta = service.selecionar(id);
+    public void reagendarConsulta(ReagendarParam reagendarParam) throws ParseException, AgendamentoException{
+        Consulta consulta = service.selecionar(reagendarParam.getCodigo());
         consulta.reagendar(reagendarParam.getData());
         
         service.alterarConsulta(consulta);
@@ -105,5 +107,12 @@ public class ConsultaEndPoint {
     @Consumes(MediaType.APPLICATION_JSON)
     public void novoProcedimento(ProcedimentoMedico procedimentoMedico){
         procService.agendarProcedimento(procedimentoMedico);
+    }
+    @PUT
+    @Path("/realizarconsulta/{id}")
+    public void realizarConsulta(@PathParam("id") int id) throws AgendamentoException{
+        Consulta item = service.selecionar(id);
+        item.realizar();
+        service.alterarConsulta(item);
     }
 }

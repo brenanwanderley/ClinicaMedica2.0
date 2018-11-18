@@ -5,10 +5,10 @@
  */
 package br.unicap.poo.clinicaMedica.endPoint;
 
+import br.unicap.poo.clinicaMedica.model.Consulta;
 import br.unicap.poo.clinicaMedica.model.Exame;
 import br.unicap.poo.clinicaMedica.model.Medico;
 import br.unicap.poo.clinicaMedica.model.exceptions.AgendamentoException;
-import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import javax.ws.rs.Path;
 import br.unicap.poo.clinicaMedica.service.ExameService;
 import br.unicap.poo.clinicaMedica.service.MedicoService;
@@ -38,17 +38,20 @@ public class ExameEndPoint {
         medService = new MedicoService();
         tipoService = new TipoExameService();
     }
+    @Path("/listarpormedico")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String listarExames(Medico medico) throws JsonProcessingException{
         return service.verExames(medico).toJson();
     }
+    @Path("/listarpordata")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String listarExames(AgendamentoListDateParam exameListDateParam) throws JsonProcessingException{        
         return service.verExames(exameListDateParam.getData()).toJson();
     }
     @GET
+    @Path("/listarpordatamedico")
     @Produces(MediaType.APPLICATION_JSON)
     public String listarExames(AgendamentoListDateMedicoParam exameListDateMedicoParam) throws JsonProcessingException{
         return service.verExames(exameListDateMedicoParam.getMedico(), 
@@ -62,10 +65,9 @@ public class ExameEndPoint {
         return item;
     }
     @PUT
-    @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void reagendarExame(@PathParam("id") int id, ReagendarParam reagendarParam) throws AgendamentoException, ParseException{
-        Exame item = service.selecionar(id);
+    public void reagendarExame(ReagendarParam reagendarParam) throws AgendamentoException, ParseException{
+        Exame item = service.selecionar(reagendarParam.getCodigo());
         item.reagendar(reagendarParam.getData());
     }
     @DELETE
@@ -75,5 +77,18 @@ public class ExameEndPoint {
         Exame item = service.selecionar(id);
         
         service.cancelarExame(item);
+    }
+    @PUT
+    @Path("/realizarexame/{id}")
+    public void realizarConsulta(@PathParam("id") int id) throws AgendamentoException{
+        Exame item = service.selecionar(id);
+        item.realizar();
+        service.alterarExame(item);
+    }
+    @GET
+    @Path("/{id}/consulta")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Consulta getConsulta(@PathParam("id") int id){
+        return service.selecionar(id).getConsulta();
     }
 }

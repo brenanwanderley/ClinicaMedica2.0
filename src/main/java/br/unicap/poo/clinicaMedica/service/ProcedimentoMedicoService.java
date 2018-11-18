@@ -55,7 +55,7 @@ public class ProcedimentoMedicoService {
     }
     public Iterador<ProcedimentoMedico> verProcedimentos(Date data){
         AgendamentoList list = new AgendamentoList();
-        Iterador<Agendamento> listagem = (Iterador<Agendamento>)(List<?>)procedimentos.listar();
+        Iterador<Agendamento> listagem = (Iterador<Agendamento>)(Iterador<?>)procedimentos.listar();
         Iterador<Agendamento> resultado = list.verAgendamentos(listagem, data);
         
         return (Iterador<ProcedimentoMedico>)(Iterador<?>) resultado;

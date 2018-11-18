@@ -6,7 +6,6 @@
 package br.unicap.poo.clinicaMedica.endPoint;
 
 import br.unicap.poo.clinicaMedica.model.Medico;
-import br.unicap.poo.clinicaMedica.service.MedicoService;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.text.DateFormat;

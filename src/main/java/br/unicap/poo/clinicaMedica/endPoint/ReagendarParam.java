@@ -13,13 +13,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author aluno
  */
 public class ReagendarParam {
+    private int codigo;
     private String data;
     
     @JsonCreator
-    public ReagendarParam(@JsonProperty("data") String data){
+    public ReagendarParam(@JsonProperty("id") int id, @JsonProperty("data") String data){
+        this.codigo=id;
         this.data=data;
     }
     public String getData(){
         return data;
+    }
+    public int getCodigo(){
+        return codigo;
     }
 }

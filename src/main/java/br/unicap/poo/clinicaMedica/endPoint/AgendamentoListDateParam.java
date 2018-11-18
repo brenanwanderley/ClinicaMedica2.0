@@ -22,7 +22,7 @@ public class AgendamentoListDateParam {
     private Date data;
     
     @JsonCreator
-    public AgendamentoListDateParam(@PathParam("dia") String data) throws ParseException{
+    public AgendamentoListDateParam(@JsonProperty("data") String data) throws ParseException{
         this.setData(data);
     }
     private void setData(String data) throws ParseException{

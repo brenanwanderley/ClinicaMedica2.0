@@ -54,4 +54,7 @@ public class Medico extends Pessoa{
     public int getCodigo(){
         return codigo;
     }
+    public boolean equals(Medico medico){
+        return this.codigo==medico.codigo;
+    }
 }

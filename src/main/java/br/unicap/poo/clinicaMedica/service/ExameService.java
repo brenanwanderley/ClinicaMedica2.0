@@ -7,7 +7,6 @@ import br.unicap.poo.clinicaMedica.repository.ExameRepBridge;
 import br.unicap.poo.clinicaMedica.repository.ExameConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.ExameRepFactory;
 import br.unicap.poo.clinicaMedica.iteradores.Iterador;
-import java.util.List;
 import java.util.Date;
 
 public class ExameService {
@@ -53,7 +52,7 @@ public class ExameService {
     }
     public Iterador<Exame> verExames(Medico medico, Date data){
         AgendamentoList list = new AgendamentoList();
-        Iterador<Agendamento> listagem = (Iterador<Agendamento>)(List<?>)exames.listar();
+        Iterador<Agendamento> listagem = (Iterador<Agendamento>)(Iterador<?>)exames.listar();
         Iterador<Agendamento> resultado = list.verAgendamentos(listagem, medico);
         
         return (Iterador<Exame>)(Iterador<?>) resultado;
