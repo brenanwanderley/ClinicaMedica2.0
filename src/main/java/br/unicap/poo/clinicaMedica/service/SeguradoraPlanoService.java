@@ -9,7 +9,9 @@ import br.unicap.poo.clinicaMedica.model.SeguradoraPlano;
 import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import br.unicap.poo.clinicaMedica.repository.SeguradoraPlanoRepBridge;
 import br.unicap.poo.clinicaMedica.repository.SeguradoraPlanoConcreteRepFactory;
+import br.unicap.poo.clinicaMedica.repository.SeguradoraPlanoRepEnum;
 import br.unicap.poo.clinicaMedica.repository.SeguradoraPlanoRepFactory;
+import java.io.IOException;
 /**
  *
  * @author Danilo
@@ -40,5 +42,9 @@ public class SeguradoraPlanoService {
 
         
         return selecao;
+    }
+    public static void setConfig(SeguradoraPlanoRepEnum seguradoraPlanoEnum) throws IOException{
+        SeguradoraPlanoRepFactory factory = new SeguradoraPlanoConcreteRepFactory();
+        factory.setConfig(seguradoraPlanoEnum);
     }
 }

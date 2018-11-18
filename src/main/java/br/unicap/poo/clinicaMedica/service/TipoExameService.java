@@ -8,7 +8,9 @@ import br.unicap.poo.clinicaMedica.model.TipoExame;
 import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import br.unicap.poo.clinicaMedica.repository.TipoExameRepBridge;
 import br.unicap.poo.clinicaMedica.repository.TipoExameConcreteRepFactory;
+import br.unicap.poo.clinicaMedica.repository.TipoExameRepEnum;
 import br.unicap.poo.clinicaMedica.repository.TipoExameRepFactory;
+import java.io.IOException;
 /**
  *
  * @author Danilo
@@ -40,5 +42,9 @@ public class TipoExameService {
         
         
         return tiposExames;
+    }
+    public static void setConfig(TipoExameRepEnum tipoExameEnum) throws IOException{
+        TipoExameRepFactory factory = new TipoExameConcreteRepFactory();
+        factory.setConfig(tipoExameEnum);
     }
 }

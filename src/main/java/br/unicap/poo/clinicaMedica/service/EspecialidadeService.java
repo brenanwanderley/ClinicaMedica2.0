@@ -9,6 +9,10 @@ import br.unicap.poo.clinicaMedica.repository.EspecialidadeRepBridge;
 import br.unicap.poo.clinicaMedica.repository.EspecialidadeConcreteRepFactory;
 import br.unicap.poo.clinicaMedica.repository.EspecialidadeRepFactory;
 import br.unicap.poo.clinicaMedica.iteradores.Iterador;
+import br.unicap.poo.clinicaMedica.repository.ConsultaConcreteRepFactory;
+import br.unicap.poo.clinicaMedica.repository.ConsultaRepFactory;
+import br.unicap.poo.clinicaMedica.repository.EspecialidadeRepEnum;
+import java.io.IOException;
 /**
  *
  * @author Danilo
@@ -40,5 +44,9 @@ public class EspecialidadeService {
         Especialidade selecao = especialidades.selecionar(codigo);
         
         return selecao;
+    }
+    public static void setConfig(EspecialidadeRepEnum especialidadeEnum) throws IOException{
+        EspecialidadeRepFactory factory = new EspecialidadeConcreteRepFactory();
+        factory.setConfig(especialidadeEnum);
     }
 }

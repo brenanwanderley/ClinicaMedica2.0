@@ -9,7 +9,9 @@ import br.unicap.poo.clinicaMedica.model.Medico;
 import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import br.unicap.poo.clinicaMedica.repository.MedicoRepBridge;
 import br.unicap.poo.clinicaMedica.repository.MedicoConcreteRepFactory;
+import br.unicap.poo.clinicaMedica.repository.MedicoRepEnum;
 import br.unicap.poo.clinicaMedica.repository.MedicoRepFactory;
+import java.io.IOException;
 /**
  *
  * @author aluno
@@ -38,5 +40,9 @@ public class MedicoService {
         Iterador<Medico> listaMedicos = medicos.listar();
                 
         return listaMedicos;
+    }
+    public static void setConfig(MedicoRepEnum medicoEnum) throws IOException{
+        MedicoRepFactory factory = new MedicoConcreteRepFactory();
+        factory.setConfig(medicoEnum);
     }
 }

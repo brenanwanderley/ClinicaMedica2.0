@@ -6,9 +6,10 @@ import br.unicap.poo.clinicaMedica.model.ProcedimentoMedico;
 import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import br.unicap.poo.clinicaMedica.repository.ProcedimentoMedicoRepBridge;
 import br.unicap.poo.clinicaMedica.repository.ProcedimentoMedicoConcreteRepFactory;
+import br.unicap.poo.clinicaMedica.repository.ProcedimentoMedicoRepEnum;
 import br.unicap.poo.clinicaMedica.repository.ProcedimentoMedicoRepFactory;
+import java.io.IOException;
 import java.util.Date;
-import java.util.List;
 
 public class ProcedimentoMedicoService {
     private ProcedimentoMedicoRepBridge procedimentos;
@@ -64,6 +65,10 @@ public class ProcedimentoMedicoService {
         ProcedimentoMedico selecao = procedimentos.selecionar(codigo);
         
         return selecao;
+    }
+    public static void setConfig(ProcedimentoMedicoRepEnum procedimentoEnum) throws IOException{
+        ProcedimentoMedicoRepFactory factory = new ProcedimentoMedicoConcreteRepFactory();
+        factory.setConfig(procedimentoEnum);
     }
 }
 

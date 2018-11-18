@@ -41,4 +41,10 @@ public class TipoExameConcreteRepFactory extends TipoExameRepFactory {
                 return null;
         }    
     }
+    @Override
+    public void setConfig(TipoExameRepEnum tipoExameEnum) throws IOException{
+        TipoExameConfig config = new TipoExameConfig();
+        config.setNum(tipoExameEnum);
+        config.save();
+    }
 }

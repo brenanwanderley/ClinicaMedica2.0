@@ -3,7 +3,9 @@ package br.unicap.poo.clinicaMedica.service;
 import br.unicap.poo.clinicaMedica.model.Paciente;
 import br.unicap.poo.clinicaMedica.repository.PacienteRepBridge;
 import br.unicap.poo.clinicaMedica.repository.PacienteConcreteRepFactory;
+import br.unicap.poo.clinicaMedica.repository.PacienteRepEnum;
 import br.unicap.poo.clinicaMedica.repository.PacienteRepFactory;
+import java.io.IOException;
 
 
 public class PacienteService {
@@ -30,5 +32,8 @@ public class PacienteService {
     public Paciente selecionar(String cpf){
         return pacientes.selecionar(cpf);        
     }
-
+    public static void setConfig(PacienteRepEnum pacienteEnum) throws IOException{
+        PacienteRepFactory factory = new PacienteConcreteRepFactory();
+        factory.setConfig(pacienteEnum);
+    }
 }

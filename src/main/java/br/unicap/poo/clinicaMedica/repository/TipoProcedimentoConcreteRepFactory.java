@@ -42,6 +42,7 @@ public class TipoProcedimentoConcreteRepFactory extends TipoProcedimentoRepFacto
         }
     }
     
+    @Override
     public void setConfig(TipoProcedimentoRepEnum tipoProcedimentoEnum) throws IOException{
         TipoProcedimentoConfig config = new TipoProcedimentoConfig();
         config.setNum(tipoProcedimentoEnum);

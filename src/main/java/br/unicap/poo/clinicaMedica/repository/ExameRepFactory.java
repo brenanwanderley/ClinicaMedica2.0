@@ -5,10 +5,14 @@
  */
 package br.unicap.poo.clinicaMedica.repository;
 
+import java.io.IOException;
+
 /**
  *
  * @author Danilo
  */
 public abstract class ExameRepFactory {
     public abstract ExameRepBridge getInstance();
+    public abstract void setConfig(ExameRepEnum exameEnum) throws IOException;
+
 }

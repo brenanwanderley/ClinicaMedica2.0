@@ -5,11 +5,13 @@
  */
 package br.unicap.poo.clinicaMedica.repository;
 
+import java.io.IOException;
+
 /**
  *
  * @author Danilo
  */
 public abstract class SeguradoraPlanoRepFactory {
     public abstract SeguradoraPlanoRepBridge getInstance();
-    
+    public abstract void setConfig(SeguradoraPlanoRepEnum seguradoraPlanoEnum) throws IOException;    
 }

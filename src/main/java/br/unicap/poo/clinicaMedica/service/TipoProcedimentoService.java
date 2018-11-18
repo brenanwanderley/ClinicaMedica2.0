@@ -8,7 +8,9 @@ import br.unicap.poo.clinicaMedica.model.TipoProcedimento;
 import br.unicap.poo.clinicaMedica.iteradores.Iterador;
 import br.unicap.poo.clinicaMedica.repository.TipoProcedimentoRepBridge;
 import br.unicap.poo.clinicaMedica.repository.TipoProcedimentoConcreteRepFactory;
+import br.unicap.poo.clinicaMedica.repository.TipoProcedimentoRepEnum;
 import br.unicap.poo.clinicaMedica.repository.TipoProcedimentoRepFactory;
+import java.io.IOException;
 /**
  *
  * @author Danilo
@@ -39,6 +41,10 @@ public class TipoProcedimentoService {
         TipoProcedimento selecao = tipoProcedimentos.selecionar(codigo);
         
         return selecao;        
+    }
+    public static void setConfig(TipoProcedimentoRepEnum tipoProcedimentoEnum) throws IOException{
+        TipoProcedimentoRepFactory factory = new TipoProcedimentoConcreteRepFactory();
+        factory.setConfig(tipoProcedimentoEnum);
     }
 
 }

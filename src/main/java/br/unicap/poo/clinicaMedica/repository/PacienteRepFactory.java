@@ -5,11 +5,15 @@
  */
 package br.unicap.poo.clinicaMedica.repository;
 
+import java.io.IOException;
+
 /**
  *
  * @author Danilo
  */
 public abstract class PacienteRepFactory {
     public abstract PacienteRepBridge getInstance();
+    public abstract void setConfig(PacienteRepEnum pacienteEnum) throws IOException;
+
     
 }

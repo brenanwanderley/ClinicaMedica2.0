@@ -5,6 +5,8 @@
  */
 package br.unicap.poo.clinicaMedica.repository;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 
 /**
@@ -12,5 +14,16 @@ import java.io.Serializable;
  * @author Brenan Wanderley
  */
 public enum TipoExameRepEnum implements Serializable{
-        MEMORIA, ARQUIVO, BANCODEDADOS;
+    MEMORIA, ARQUIVO, BANCODEDADOS;
+    
+    @JsonCreator
+    public static TipoExameRepEnum toEnum(@JsonProperty("tipoExameRepEnum")String tipoExameRepEnum){
+        if(tipoExameRepEnum.equalsIgnoreCase("MEMORIA"))
+            return TipoExameRepEnum.MEMORIA;
+        if(tipoExameRepEnum.equalsIgnoreCase("ARQUIVO"))
+            return TipoExameRepEnum.ARQUIVO;
+        if(tipoExameRepEnum.equalsIgnoreCase("BANCODEDADOS"))
+            return TipoExameRepEnum.BANCODEDADOS;
+        return null;
+    }
 }
