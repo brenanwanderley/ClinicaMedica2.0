@@ -5,6 +5,10 @@
  */
 package br.unicap.poo.clinicaMedica.repository;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Aluno
@@ -18,17 +22,32 @@ public class ProcedimentoMedicoConcreteRepFactory extends ProcedimentoMedicoRepF
         //1 - Memória
         //2 - Arquivo
         //3 - Banco de Dados
-        int opcao=1;
+        //int opcao=1;
+        ProcedimentoMedicoConfig config;
+        try {
+            config = new ProcedimentoMedicoConfig();
+        } catch (IOException ex) {
+            Logger.getLogger(ProcedimentoMedicoConcreteRepFactory.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        config.load();
+        ProcedimentoMedicoRepEnum procedimentoMedicoEnum = config.getNum();
         
-        switch(opcao){
-            case 1:
+        switch(procedimentoMedicoEnum){
+            case MEMORIA:
                 return ProcedimentoMedicoDAO.getInstance();
-            case 2:
+            case ARQUIVO:
                 throw new UnsupportedOperationException("Não há suporte para arquivo");
-            case 3:
+            case BANCODEDADOS:
                 throw new UnsupportedOperationException("Não há suporte para banco de dados");
             default:
                 return null;
         }    
+    }
+    
+    public void setConfig(ProcedimentoMedicoRepEnum procedimentoMedicoEnum) throws IOException{
+        ProcedimentoMedicoConfig config = new ProcedimentoMedicoConfig();
+        config.setNum(procedimentoMedicoEnum);
+        config.save();       
     }
 }

@@ -5,9 +5,13 @@
  */
 package br.unicap.poo.clinicaMedica.repository;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
- * @author Aluno
+ * @author Brenan Wanderley
  */
 public class ExameConcreteRepFactory extends ExameRepFactory{
     public ExameConcreteRepFactory(){
@@ -18,17 +22,33 @@ public class ExameConcreteRepFactory extends ExameRepFactory{
         //1 - Memória
         //2 - Arquivo
         //3 - Banco de Dados
-        int opcao=1;
+        //int opcao=1;
         
-        switch(opcao){
-            case 1:
+        ExameConfig config;
+        try {
+            config = new ExameConfig();
+        } catch (IOException ex) {
+            Logger.getLogger(ConsultaConcreteRepFactory.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        config.load();
+        ExameRepEnum exameEnum = config.getNum();
+        
+        switch(exameEnum){
+            case MEMORIA:
                 return ExameDAO.getInstance();
-            case 2:
+            case ARQUIVO:
                 throw new UnsupportedOperationException("Não há suporte para arquivo");
-            case 3:
+            case BANCODEDADOS:
                 throw new UnsupportedOperationException("Não há suporte para banco de dados");
             default:
                 return null;
         }    
+    }
+    
+    public void setConfig(ExameRepEnum exameEnum) throws IOException{
+        ExameConfig config = new ExameConfig();
+        config.setNum(exameEnum);
+        config.save();       
     }
 }
