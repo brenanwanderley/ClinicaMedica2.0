@@ -29,7 +29,7 @@ public class EspecialidadeConfig {
     public void load(){
         especialidadeRepEnum = config.Load();
         if(especialidadeRepEnum==null){
-            especialidadeRepEnum = especialidadeRepEnum.MEMORIA;
+            especialidadeRepEnum = EspecialidadeRepEnum.MEMORIA;
         }
     }
     
